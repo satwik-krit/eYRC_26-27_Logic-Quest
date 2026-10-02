@@ -1,0 +1,350 @@
+# Reading pref.tcl
+do do_sim.do
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# ** Warning: (vlog-8891) The -novopt option has no effect on this product. -novopt option is now deprecated and will be removed in future releases.
+# Start time: 14:51:42 on Sep 29,2026
+# vlog -reportprogress 300 -suppress 12110 code/t1a_fs_pwm_bdf.v code/pwm_generator.v code/frequency_scaling.v .test/tb.v 
+# -- Compiling module t1a_fs_pwm_bdf
+# -- Compiling module pwm_generator
+# -- Compiling module frequency_scaling
+# -- Compiling module tb
+# 
+# Top level modules:
+# 	tb
+# End time: 14:51:42 on Sep 29,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 1
+# vsim -voptargs=""+acc"" work.tb -suppress 12110 
+# Start time: 14:51:42 on Sep 29,2026
+# ** Warning: (vsim-8891) The -novopt option has no effect on this product. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.tb
+# Loading work.t1a_fs_pwm_bdf
+# Loading work.frequency_scaling
+# Loading work.pwm_generator
+# No errors encountered, congratulations!
+# 0 ns
+# 24150 us
+quit -sim
+# End time: 15:05:17 on Sep 29,2026, Elapsed time: 0:13:35
+# Errors: 0, Warnings: 1
+do do_sim.do
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# ** Warning: (vlog-8891) The -novopt option has no effect on this product. -novopt option is now deprecated and will be removed in future releases.
+# Start time: 15:05:20 on Sep 29,2026
+# vlog -reportprogress 300 -suppress 12110 code/t1a_fs_pwm_bdf.v code/pwm_generator.v code/frequency_scaling.v .test/tb.v 
+# -- Compiling module t1a_fs_pwm_bdf
+# -- Compiling module pwm_generator
+# -- Compiling module frequency_scaling
+# -- Compiling module tb
+# 
+# Top level modules:
+# 	tb
+# End time: 15:05:20 on Sep 29,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 1
+# vsim -voptargs=""+acc"" work.tb -suppress 12110 
+# Start time: 15:05:20 on Sep 29,2026
+# ** Warning: (vsim-8891) The -novopt option has no effect on this product. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.tb
+# Loading work.t1a_fs_pwm_bdf
+# Loading work.frequency_scaling
+# Loading work.pwm_generator
+# Invalid time value: all
+# 0 ns
+# 24150 us
+do do_sim.do
+# ** Error: Cannot change directory while a simulation is in progress.
+# Use the "quit -sim" command to unload the design first.
+# Error in macro ./do_sim.do line 2
+# Cannot change directory while a simulation is in progress.
+# Use the "quit -sim" command to unload the design first.
+#     while executing
+# "cd C:/dev/e-yantra/eYRC_26-27_Logic-Quest/Task_1/Task_1A/t1a_fs_pwm"
+quit -sim
+# End time: 15:05:39 on Sep 29,2026, Elapsed time: 0:00:19
+# Errors: 1, Warnings: 1
+do do_sim.do
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# ** Warning: (vlog-8891) The -novopt option has no effect on this product. -novopt option is now deprecated and will be removed in future releases.
+# Start time: 15:05:41 on Sep 29,2026
+# vlog -reportprogress 300 -suppress 12110 code/t1a_fs_pwm_bdf.v code/pwm_generator.v code/frequency_scaling.v .test/tb.v 
+# -- Compiling module t1a_fs_pwm_bdf
+# -- Compiling module pwm_generator
+# -- Compiling module frequency_scaling
+# -- Compiling module tb
+# 
+# Top level modules:
+# 	tb
+# End time: 15:05:42 on Sep 29,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 1
+# vsim -voptargs=""+acc"" work.tb -suppress 12110 
+# Start time: 15:05:42 on Sep 29,2026
+# ** Warning: (vsim-8891) The -novopt option has no effect on this product. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.tb
+# Loading work.t1a_fs_pwm_bdf
+# Loading work.frequency_scaling
+# Loading work.pwm_generator
+# Unknown option: -all
+# ** UI-Msg: (vsim-4005) Invalid argument '--all'.
+# Usage: run [<timesteps> [<time_units>]] | -all | -continue | -next | -step | -over | -out | -init | -final
+# 0 ns
+# 24150 us
+run -all
+# No errors encountered, congratulations!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+
+quit -sim
+# End time: 15:16:24 on Sep 29,2026, Elapsed time: 0:10:42
+# Errors: 0, Warnings: 1
+do do_sim.do
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# ** Warning: (vlog-8891) The -novopt option has no effect on this product. -novopt option is now deprecated and will be removed in future releases.
+# Start time: 15:16:27 on Sep 29,2026
+# vlog -reportprogress 300 -suppress 12110 code/t1a_fs_pwm_bdf.v code/pwm_generator.v code/frequency_scaling.v .test/tb.v 
+# -- Compiling module t1a_fs_pwm_bdf
+# -- Compiling module pwm_generator
+# ** Error: code/pwm_generator.v(54): (vlog-2730) Undefined variable: 'pulse_width_latched'.
+# -- Compiling module frequency_scaling
+# -- Compiling module tb
+# End time: 15:16:27 on Sep 29,2026, Elapsed time: 0:00:00
+# Errors: 1, Warnings: 1
+# ** Error: C:/altera_lite/20.1/modelsim_ase/win32aloem/vlog failed.
+# Error in macro ./do_sim.do line 9
+# C:/altera_lite/20.1/modelsim_ase/win32aloem/vlog failed.
+#     while executing
+# "vlog -suppress 12110 code/t1a_fs_pwm_bdf.v code/pwm_generator.v code/frequency_scaling.v .test/tb.v"
+do do_sim.do
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# ** Warning: (vlog-8891) The -novopt option has no effect on this product. -novopt option is now deprecated and will be removed in future releases.
+# Start time: 15:16:50 on Sep 29,2026
+# vlog -reportprogress 300 -suppress 12110 code/t1a_fs_pwm_bdf.v code/pwm_generator.v code/frequency_scaling.v .test/tb.v 
+# -- Compiling module t1a_fs_pwm_bdf
+# -- Compiling module pwm_generator
+# -- Compiling module frequency_scaling
+# -- Compiling module tb
+# 
+# Top level modules:
+# 	tb
+# End time: 15:16:51 on Sep 29,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 1
+# vsim -voptargs=""+acc"" work.tb -suppress 12110 
+# Start time: 15:16:51 on Sep 29,2026
+# ** Warning: (vsim-8891) The -novopt option has no effect on this product. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.tb
+# Loading work.t1a_fs_pwm_bdf
+# Loading work.frequency_scaling
+# Loading work.pwm_generator
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# 0 ns
+# 696280631 ns
+quit -sim
+# End time: 15:18:39 on Sep 29,2026, Elapsed time: 0:01:48
+# Errors: 0, Warnings: 1
+do do_sim.do
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# ** Warning: (vlog-8891) The -novopt option has no effect on this product. -novopt option is now deprecated and will be removed in future releases.
+# Start time: 15:18:41 on Sep 29,2026
+# vlog -reportprogress 300 -suppress 12110 code/t1a_fs_pwm_bdf.v code/pwm_generator.v code/frequency_scaling.v .test/tb.v 
+# -- Compiling module t1a_fs_pwm_bdf
+# -- Compiling module pwm_generator
+# -- Compiling module frequency_scaling
+# -- Compiling module tb
+# 
+# Top level modules:
+# 	tb
+# End time: 15:18:41 on Sep 29,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 1
+# vsim -voptargs=""+acc"" work.tb -suppress 12110 
+# Start time: 15:18:41 on Sep 29,2026
+# ** Warning: (vsim-8891) The -novopt option has no effect on this product. -novopt option is now deprecated and will be removed in future releases.
+# Loading work.tb
+# Loading work.t1a_fs_pwm_bdf
+# Loading work.frequency_scaling
+# Loading work.pwm_generator
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!
+# Error(s) encountered, please check your design!

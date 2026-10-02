@@ -25,11 +25,30 @@ module frequency_scaling (
 
 //////////////////DO NOT MAKE ANY CHANGES ABOVE THIS LINE //////////////////
 
+localparam FREQ_IN  = 50_000_000;
+localparam FREQ_OUT = 5_000_000;
 
-/*
- add your code here 
- */
+// -1 to account since count = 0 also counts a cycle
+localparam TOTAL_CYCLES = FREQ_IN / FREQ_OUT;
 
+localparam COUNTER_WIDTH = $clog2(TOTAL_CYCLES + 1);
+
+reg [COUNTER_WIDTH-1:0] count;
+
+always @(posedge clk_50MHz or negedge reset_n)
+begin
+   if (!reset_n) begin
+      count <= 0;
+      clk_5MHz <= 1'b0;
+   end
+   
+   else begin
+      if (count == TOTAL_CYCLES - 1) count <= 0;
+      else count <= count + 1'b1;
+
+      clk_5MHz <= (count < (TOTAL_CYCLES / 2));
+   end
+end
 //////////////////DO NOT MAKE ANY CHANGES BELOW THIS LINE //////////////////
 
 endmodule
