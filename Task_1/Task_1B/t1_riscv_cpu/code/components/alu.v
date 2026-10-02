@@ -8,16 +8,14 @@ module alu #(parameter WIDTH = 32) (
     output      zero                    // zero flag
 );
 
-always @(a, b, alu_ctrl) begin
+always @(*) begin
     case (alu_ctrl)
-        3'b000:  alu_out <= a + b;       // ADD
-        3'b001:  alu_out <= a + ~b + 1;  // SUB
-        3'b010:  alu_out <= a & b;       // AND
-        3'b011:  alu_out <= a | b;       // OR
-        3'b101:  begin                   // SLT
-                     if (a[31] != b[31]) alu_out <= a[31] ? 0 : 1;
-                     else alu_out <= a < b ? 1 : 0;
-                 end
+        3'b000:  alu_out = a + b;       // ADD
+        3'b001:  alu_out = a + ~b + 1;  // SUB
+        3'b010:  alu_out = 	a & b;       // AND
+        3'b011:  alu_out = a | b;       // OR
+        3'b101:  if (a[31] != b[31]) alu_out = a[31] ? 1 : 0;
+					  else alu_out = (a < b) ? 1 : 0; //SLT
         default: alu_out = 0;
     endcase
 end

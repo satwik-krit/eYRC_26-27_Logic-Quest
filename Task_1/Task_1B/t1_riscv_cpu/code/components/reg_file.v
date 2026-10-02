@@ -24,7 +24,9 @@ end
 
 // register file write logic (synchronous)
 always @(posedge clk) begin
-    if (wr_en) reg_file_arr[wr_addr] <= wr_data;
+    if (wr_en && (wr_addr != 5'd0)) begin
+        reg_file_arr[wr_addr] <= wr_data;
+    end
 end
 
 // register file read logic (combinational)

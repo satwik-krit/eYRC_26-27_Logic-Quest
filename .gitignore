@@ -3,5 +3,7 @@ incremental_db/
 simulation/
 work/
 output_files/
+rtl_work/
 *.bak
 *.zip
+*.rpt
