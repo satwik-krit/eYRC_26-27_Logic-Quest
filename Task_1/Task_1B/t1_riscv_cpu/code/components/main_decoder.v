@@ -2,63 +2,153 @@
 // main_decoder.v - logic for main decoder
 
 module main_decoder (
-    input  [6:0] op,
-    output [1:0] ResultSrc,
-    output       MemWrite, Branch, ALUSrc,
-    output       RegWrite, Jump,
-    output [2:0] ImmSrc,
-    output [1:0] ALUOp,
-	 output [1:0] ASrc,
-	 output Jalr
+    input      [6:0] op,
+    output reg [1:0] ResultSrc,
+    output reg       MemWrite,
+    output reg       Branch,
+    output reg       ALUSrc,
+    output reg       RegWrite,
+    output reg       Jump,
+    output reg [2:0] ImmSrc,
+    output reg [1:0] ALUOp,
+    output reg [1:0] ASrc,
+    output reg       Jalr
 );
 
-reg [14:0] controls;
-
-always @(*) begin
+  always @(*) begin
     case (op)
-        // RegWrite_ImmSrc_ALUSrc_MemWrite_ResultSrc_Branch_ALUOp_Jump
-        7'b0000011:begin
-            controls = 15'b1_000_1_0_01_0_00_0_00_0; // lw //the I-type stuff
-        end
+      // RegWrite_ImmSrc_ALUSrc_MemWrite_ResultSrc_Branch_ALUOp_Jump
+      7'b0000011: begin
+        RegWrite = 1'b1;
+        ImmSrc = 3'b000;
+        ALUSrc = 1'b1;
+        MemWrite = 1'b0;
+        ResultSrc = 2'b01;
+        Branch = 1'b0;
+        ALUOp = 2'b00;
+        Jump = 1'b0;
+        ASrc = 2'b00;
+        Jalr = 1'b0;
+      end
 
-        7'b0100011:begin
-            controls = 15'b0_001_1_1_00_0_00_0_00_0; // sw //the s-type
-        end
+      7'b0100011: begin
+        RegWrite = 1'b0;
+        ImmSrc = 3'b001;
+        ALUSrc = 1'b1;
+        MemWrite = 1'b1;
+        ResultSrc = 2'b00;
+        Branch = 1'b0;
+        ALUOp = 2'b00;
+        Jump = 1'b0;
+        ASrc = 2'b00;
+        Jalr = 1'b0;
+      end
 
-        7'b0110011:begin
-            controls = 15'b1_xxx_0_0_00_0_10_0_00_0; // R–type
-        end
+      7'b0110011: begin
+        RegWrite = 1'b1;
+        ImmSrc = 3'bxxx;
+        ALUSrc = 1'b0;
+        MemWrite = 1'b0;
+        ResultSrc = 2'b00;
+        Branch = 1'b0;
+        ALUOp = 2'b10;
+        Jump = 1'b0;
+        ASrc = 2'b00;
+        Jalr = 1'b0;
+      end
 
-        7'b1100011:begin
-            controls = 15'b0_010_0_0_00_1_01_0_00_0; // beq //the b-type
-        end
+      7'b1100011: begin
+        RegWrite = 1'b0;
+        ImmSrc = 3'b010;
+        ALUSrc = 1'b0;
+        MemWrite = 1'b0;
+        ResultSrc = 2'b00;
+        Branch = 1'b1;
+        ALUOp = 2'b01;
+        Jump = 1'b0;
+        ASrc = 2'b00;
+        Jalr = 1'b0;
+      end
 
-        7'b0010011:begin
-            controls = 15'b1_000_1_0_00_0_10_0_00_0; // I–type ALU
-        end
+      7'b0010011: begin
+        RegWrite = 1'b1;
+        ImmSrc = 3'b000;
+        ALUSrc = 1'b1;
+        MemWrite = 1'b0;
+        ResultSrc = 2'b00;
+        Branch = 1'b0;
+        ALUOp = 2'b10;
+        Jump = 1'b0;
+        ASrc = 2'b00;
+        Jalr = 1'b0;
+      end
 
-        7'b1101111:begin
-            controls = 15'b1_011_0_0_10_0_00_1_00_0; // jal //the j-type
-        end
+      7'b1101111: begin
+        RegWrite = 1'b1;
+        ImmSrc = 3'b011;
+        ALUSrc = 1'b0;
+        MemWrite = 1'b0;
+        ResultSrc = 2'b10;
+        Branch = 1'b0;
+        ALUOp = 2'b00;
+        Jump = 1'b1;
+        ASrc = 2'b00;
+        Jalr = 1'b0;
+      end
 
-		  7'b0110111:begin
-            controls = 15'b1_100_1_0_00_0_00_0_10_0; // LUI  
-        end
+      7'b0110111: begin
+        RegWrite = 1'b1;
+        ImmSrc = 3'b100;
+        ALUSrc = 1'b1;
+        MemWrite = 1'b0;
+        ResultSrc = 2'b00;
+        Branch = 1'b0;
+        ALUOp = 2'b00;
+        Jump = 1'b0;
+        ASrc = 2'b10;
+        Jalr = 1'b0;
+      end
 
-		  7'b0010111:begin
-            controls = 15'b1_100_1_0_00_0_00_0_01_0; //similar to LUI but immediate is added to current PC address
-        end
+      7'b0010111: begin
+        RegWrite = 1'b1;
+        ImmSrc = 3'b100;
+        ALUSrc = 1'b1;
+        MemWrite = 1'b0;
+        ResultSrc = 2'b00;
+        Branch = 1'b0;
+        ALUOp = 2'b00;
+        Jump = 1'b0;
+        ASrc = 2'b01;
+        Jalr = 1'b0;
+      end
 
-		  7'b1100111:begin
-            controls = 15'b1_000_1_0_10_0_00_0_00_1; // jalr jumping to a relative address 
-        end
+      7'b1100111: begin
+        RegWrite = 1'b1;
+        ImmSrc = 3'b000;
+        ALUSrc = 1'b1;
+        MemWrite = 1'b0;
+        ResultSrc = 2'b10;
+        Branch = 1'b0;
+        ALUOp = 2'b00;
+        Jump = 1'b0;
+        ASrc = 2'b00;
+        Jalr = 1'b1;
+      end
 
-        default: begin
-            controls = 15'bx_xxx_x_x_xx_x_xx_x_xx_x; // ???
-        end
-end
-
-assign {RegWrite, ImmSrc, ALUSrc, MemWrite, ResultSrc, Branch, ALUOp, Jump, ASrc, Jalr} = controls;
+      default: begin
+        RegWrite = 1'bx;
+        ImmSrc = 3'bxxx;
+        ALUSrc = 1'bx;
+        MemWrite = 1'bx;
+        ResultSrc = 2'bxx;
+        Branch = 1'bx;
+        ALUOp = 2'bxx;
+        Jump = 1'bx;
+        ASrc = 2'bxx;
+        Jalr = 1'bx;
+      end
+    endcase
+  end
 
 endmodule
 
