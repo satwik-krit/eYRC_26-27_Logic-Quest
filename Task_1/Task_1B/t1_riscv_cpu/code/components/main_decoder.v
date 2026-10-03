@@ -17,8 +17,7 @@ module main_decoder (
 
   always @(*) begin
     case (op)
-      // RegWrite_ImmSrc_ALUSrc_MemWrite_ResultSrc_Branch_ALUOp_Jump
-      7'b0000011: begin
+      7'b0000011: begin  // lw
         RegWrite = 1'b1;
         ImmSrc = 3'b000;
         ALUSrc = 1'b1;
@@ -31,7 +30,7 @@ module main_decoder (
         Jalr = 1'b0;
       end
 
-      7'b0100011: begin
+      7'b0100011: begin  // sw
         RegWrite = 1'b0;
         ImmSrc = 3'b001;
         ALUSrc = 1'b1;
@@ -44,7 +43,7 @@ module main_decoder (
         Jalr = 1'b0;
       end
 
-      7'b0110011: begin
+      7'b0110011: begin  // R-type (sltu)
         RegWrite = 1'b1;
         ImmSrc = 3'bxxx;
         ALUSrc = 1'b0;
@@ -57,7 +56,7 @@ module main_decoder (
         Jalr = 1'b0;
       end
 
-      7'b1100011: begin
+      7'b1100011: begin  // beq
         RegWrite = 1'b0;
         ImmSrc = 3'b010;
         ALUSrc = 1'b0;
@@ -70,7 +69,7 @@ module main_decoder (
         Jalr = 1'b0;
       end
 
-      7'b0010011: begin
+      7'b0010011: begin  // I-type ALu
         RegWrite = 1'b1;
         ImmSrc = 3'b000;
         ALUSrc = 1'b1;
@@ -83,7 +82,7 @@ module main_decoder (
         Jalr = 1'b0;
       end
 
-      7'b1101111: begin
+      7'b1101111: begin  // jal
         RegWrite = 1'b1;
         ImmSrc = 3'b011;
         ALUSrc = 1'b0;
@@ -96,7 +95,7 @@ module main_decoder (
         Jalr = 1'b0;
       end
 
-      7'b0110111: begin
+      7'b0110111: begin  // LUI
         RegWrite = 1'b1;
         ImmSrc = 3'b100;
         ALUSrc = 1'b1;
@@ -109,7 +108,7 @@ module main_decoder (
         Jalr = 1'b0;
       end
 
-      7'b0010111: begin
+      7'b0010111: begin  // AUIPC (similar to LUi but immediate added to current PC address)
         RegWrite = 1'b1;
         ImmSrc = 3'b100;
         ALUSrc = 1'b1;
@@ -122,7 +121,7 @@ module main_decoder (
         Jalr = 1'b0;
       end
 
-      7'b1100111: begin
+      7'b1100111: begin  // JALR
         RegWrite = 1'b1;
         ImmSrc = 3'b000;
         ALUSrc = 1'b1;

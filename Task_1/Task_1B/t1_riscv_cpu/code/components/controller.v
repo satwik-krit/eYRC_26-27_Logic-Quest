@@ -13,7 +13,7 @@ module controller (
     output       RegWrite,
     output       Jump,
     output [2:0] ImmSrc,
-    output [2:0] ALUControl,
+    output [3:0] ALUControl,
     output [1:0] ASrc,
     output       Jalr
 );
