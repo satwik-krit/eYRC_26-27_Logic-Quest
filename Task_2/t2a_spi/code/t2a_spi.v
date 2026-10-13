@@ -62,12 +62,14 @@ module t2a_spi
    reg [1:0] state = S_IDLE, next_state;
 
    reg [$clog2(2*HALF_PERIOD-1):0] cycle_counter;
-   reg [$clog2(SPI_WORD_LENGTH-1):0] bit_counter;
+   reg [$clog2(SPI_WORD_LENGTH):0] bit_counter;
 
    // Transmit and recieve shift registers
    reg [SPI_WORD_LENGTH-1:0] trans, recv;
 
-   wire current_tx_bit = (LSB_FIRST) ? trans[bit_counter + 1'b1] : trans[SPI_WORD_LENGTH - 2 - bit_counter];
+   localparam DRIVE_OFFSET = (CPHA == 0) ? 1 : 0;
+   wire [31:0] tx_idx = bit_counter + DRIVE_OFFSET;
+   wire current_tx_bit = (LSB_FIRST) ? trans[tx_idx] : trans[SPI_WORD_LENGTH - 1 - tx_idx];
 
    wire sclk_leading_edge  = (cycle_counter == HALF_PERIOD - 1);
    wire sclk_trailing_edge = (cycle_counter == 2 * HALF_PERIOD - 1);
@@ -75,7 +77,8 @@ module t2a_spi
    wire sample_edge = (CPHA == 0) ? sclk_leading_edge : sclk_trailing_edge;
    wire drive_edge  = (CPHA == 0) ? sclk_trailing_edge : sclk_leading_edge;
 
-   wire transfer_complete = (bit_counter == SPI_WORD_LENGTH - 1) && (cycle_counter == 2 * HALF_PERIOD - 1);
+   wire transfer_complete = (CPHA == 0) ? ((bit_counter == SPI_WORD_LENGTH - 1) && (sclk_trailing_edge))
+                                        : ((bit_counter == SPI_WORD_LENGTH)     && (cycle_counter == 0));
 
    always @(posedge clk_50MHz or negedge rst_n) begin
        if (!rst_n) state <= S_IDLE;
@@ -149,7 +152,7 @@ module t2a_spi
                if (drive_edge) begin
                    bit_counter <= bit_counter + 1'b1;
 
-                   if (bit_counter < SPI_WORD_LENGTH - 1) begin
+                   if (tx_idx < SPI_WORD_LENGTH) begin
                        mosi_output <= current_tx_bit;
                    end
                end
