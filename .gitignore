@@ -8,6 +8,8 @@ rtl_work/
 *.zip
 *.rpt
 
+lq_1137_*/
+
 # taken from - https://github.com/thomasrussellmurphy/quartus-DE1_SOC-project/blob/master/.gitignore
 
 # A gitignore for Altera Quartus II that tries to ignore almost all of the
@@ -60,3 +62,4 @@ timing
 *example*
 *sopc_*
 PLLJ_PLLSPE_INFO.txt # The generated PLL specification file
+Task_2/lq_1137_task2a/t2a_spi/
