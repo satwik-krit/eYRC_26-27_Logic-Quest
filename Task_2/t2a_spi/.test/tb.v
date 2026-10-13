@@ -144,7 +144,7 @@ module tb;
             end
             i = 0;
             #50000;
-            // $stop;
+            $stop;
         end
     end
 
