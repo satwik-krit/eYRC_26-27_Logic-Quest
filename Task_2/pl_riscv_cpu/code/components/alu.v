@@ -6,7 +6,7 @@ module alu #(
 ) (
     input      [WIDTH-1:0] a, b,  // operands
     input      [3:0]       alu_ctrl,  // ALU control
-    output reg [WIDTH-1:0] alu_out,   // ALU output
+    output reg [WIDTH-1:0] alu_out,  // ALU output
     output                 zero       // zero flag
 );
 
@@ -17,7 +17,7 @@ module alu #(
       4'b0010:  alu_out = a & b;  // AND
       4'b0011:  alu_out = a | b;  // OR
       4'b0101: begin  //SLT (Signed less than)
-        // Since MSB is the sign bit we can simply check that 
+        // Since MSB is the sign bit we can simply check that
         // rather than performing a complete comparison.
         if (a[31] != b[31]) alu_out = a[31] ? 1 : 0;
         else alu_out = (a < b) ? 1 : 0;
@@ -40,4 +40,3 @@ module alu #(
   assign zero = alu_out[0];
 
 endmodule
-
