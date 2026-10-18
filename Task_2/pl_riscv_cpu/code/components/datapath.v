@@ -1,29 +1,47 @@
-
 // datapath.v
 module datapath (
     input         clk, reset,
-    input [1:0]   ResultSrc,
+    input  [1:0]  ResultSrc,
     input         ALUSrc, RegWrite,
-    input [1:0]   ImmSrc,
-    input [2:0]   ALUControl,
+    input  [2:0]  ImmSrc,
+    input  [3:0]  ALUControl,
+    input  [1:0]  ASrc,
     input         Branch, Jump, Jalr,
-    output [31:0] PC,
     input  [31:0] Instr,
-    output [31:0] Mem_WrAddr, Mem_WrData,
     input  [31:0] ReadData,
+    // output        Zero,
+    output [31:0] PC,
+    output [31:0] Mem_WrAddr, Mem_WrData,
     output [31:0] Result,
     output [31:0] PCW, ALUResultW, WriteDataW
 );
 
 wire [31:0] PCNext, PCJalr, PCPlus4, PCTarget, AuiPC, lAuiPC;
 wire [31:0] ImmExt, SrcA, SrcB, WriteData, ALUResult;
-wire Zero, TakeBranch;
+wire [31:0] RD1; // Added back to separate reg_file output from SrcA
+wire TakeBranch;
+
+// --- Custom Memory Read Formatting ---
+reg [31:0] FormattedReadData;
+wire [15:0] selected_halfword = ALUResult[1] ? ReadData[31:16] : ReadData[15:0];
+
+always @(*) begin
+    case (Instr[14:12]) // funct3
+        3'b001:  FormattedReadData = { {16{selected_halfword[15]}}, selected_halfword }; // LH
+        3'b101:  FormattedReadData = { 16'b0, selected_halfword }; // LHU
+        default: FormattedReadData = ReadData; // LW
+    endcase
+end
+// -------------------------------------
 
 wire PCSrc = ((Branch & TakeBranch) || Jump || Jalr) ? 1'b1 : 1'b0;
 
 // next PC logic
 mux2 #(32)     pcmux(PCPlus4, PCTarget, PCSrc, PCNext);
-mux2 #(32)     jalrmux (PCNext, ALUResult, Jalr, PCJalr);
+
+// Jalr targets must have the LSB set to 0
+wire [31:0] JalrTarget = {ALUResult[31:1], 1'b0};
+mux2 #(32)     jalrmux (PCNext, JalrTarget, Jalr, PCJalr);
 
 // stallF - should be wired from hazard unit
 wire StallF = 0; // remove it after adding hazard unit.
@@ -40,15 +58,19 @@ wire FlushD = 0; // remove it after adding hazard unit
 adder          pcaddbranch(PC, ImmExt, PCTarget);
 
 // register file logic
-reg_file       rf (clk, RegWrite, Instr[19:15], Instr[24:20], Instr[11:7], Result, SrcA, WriteData);
+// Output goes to RD1 instead of SrcA directly
+reg_file       rf (clk, RegWrite, Instr[19:15], Instr[24:20], Instr[11:7], Result, RD1, WriteData);
 imm_extend     ext (Instr[31:7], ImmSrc, ImmExt);
 
 // Pipeline Register 2 -> Decode | Execute
 
-
 // ALU logic
-mux2 #(32)     srcbmux(WriteData, ImmExt, ALUSrc, SrcB);
+// ASrc multiplexer restored for SrcA
+mux3 #(32)     srcamux (RD1, PC, 32'b0, ASrc, SrcA);
+mux2 #(32)     srcbmux (WriteData, ImmExt, ALUSrc, SrcB);
+
 alu            alu (SrcA, SrcB, ALUControl, ALUResult, Zero);
+
 adder #(32)    auipcadder ({Instr[31:12], 12'b0}, PC, AuiPC);
 mux2 #(32)     lauipcmux (AuiPC, {Instr[31:12], 12'b0}, Instr[5], lAuiPC);
 
@@ -56,12 +78,10 @@ branching_unit bu (Instr[14:12], Zero, ALUResult[31], TakeBranch);
 
 // Pipeline Register 3 -> Execute | Memory
 
-
 // Pipeline Register 4 -> Memory | Writeback
 
-
-// Result Source
-mux4 #(32)     resultmux(ALUResult, ReadData, PCPlus4, lAuiPC, ResultSrc, Result);
+// Result Source (Updated to use FormattedReadData instead of ReadData)
+mux4 #(32)     resultmux(ALUResult, FormattedReadData, PCPlus4, lAuiPC, ResultSrc, Result);
 
 // hazard unit
 

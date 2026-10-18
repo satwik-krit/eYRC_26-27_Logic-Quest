@@ -15,13 +15,18 @@ module reg_file #(parameter DATA_WIDTH = 32) (
 
 reg [DATA_WIDTH-1:0] reg_file_arr [0:31];
 
+integer i;
 initial begin
-    reg_file_arr[0] = 0; // hardwired x0 - 0
+    for (i = 0; i < 32; i = i + 1) begin
+        reg_file_arr[i] = 0;
+    end
 end
 
 // register file write logic (synchronous)
-always @(negedge clk) begin
-    if (wr_en) reg_file_arr[wr_addr] <= wr_data;
+always @(posedge clk) begin
+    if (wr_en && (wr_addr != 5'd0)) begin
+        reg_file_arr[wr_addr] <= wr_data;
+    end
 end
 
 // register file read logic (combinational)
