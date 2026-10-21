@@ -1,4 +1,3 @@
-
 // adder.v - logic for adder
 
 module adder #(parameter WIDTH = 32) (

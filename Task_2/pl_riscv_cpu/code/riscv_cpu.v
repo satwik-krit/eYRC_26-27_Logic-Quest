@@ -17,11 +17,12 @@ wire       ALUSrc, RegWrite, Branch, Jump, Jalr;
 wire [1:0] ResultSrc, ASrc;
 wire [2:0] ImmSrc;
 wire [3:0] ALUControl;
+wire [31:0] InstrW;
 
 controller  c   (
-    .op(Instr[6:0]),
-    .funct3(Instr[14:12]),
-    .funct7b5(Instr[30]),
+    .op(InstrW[6:0]),
+    .funct3(InstrW[14:12]),
+    .funct7b5(InstrW[30]),
     .ResultSrc(ResultSrc),
     .MemWrite(MemWrite),
     .ALUSrc(ALUSrc),
@@ -54,8 +55,11 @@ datapath    dp  (
     .ReadData(ReadData),
     .Result(Result),
     .PCW(PCW),
+    .MemWriteW(MemWrite),
+    // .MemWriteW
     .ALUResultW(ALUResultW),
-    .WriteDataW(WriteDataW)
+    .WriteDataW(WriteDataW),
+    .InstrW(InstrW)
     // .Zero(Zero)
 );
 
