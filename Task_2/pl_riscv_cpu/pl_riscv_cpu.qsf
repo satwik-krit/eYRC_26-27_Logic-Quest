@@ -66,6 +66,17 @@ set_global_assignment -name EDA_TEST_BENCH_NAME tb -section_id eda_simulation
 set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id tb
 set_global_assignment -name EDA_TEST_BENCH_RUN_SIM_FOR "5000 ns" -section_id tb
 set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME tb -section_id tb
+set_global_assignment -name EDA_TEST_BENCH_NAME single_cycle -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id single_cycle
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME tb_1c -section_id single_cycle
+set_global_assignment -name VERILOG_FILE code/components/stage_memory.v
+set_global_assignment -name VERILOG_FILE code/components/stage_fetch.v
+set_global_assignment -name VERILOG_FILE code/components/stage_execute.v
+set_global_assignment -name VERILOG_FILE code/components/stage_decode.v
+set_global_assignment -name VERILOG_FILE code/components/pipe_mw.v
+set_global_assignment -name VERILOG_FILE code/components/pipe_fd.v
+set_global_assignment -name VERILOG_FILE code/components/pipe_em.v
+set_global_assignment -name VERILOG_FILE code/components/pipe_de.v
 set_global_assignment -name VERILOG_FILE code/pl_riscv_cpu.v
 set_global_assignment -name VERILOG_FILE code/riscv_cpu.v
 set_global_assignment -name VERILOG_FILE code/instr_mem.v
@@ -84,9 +95,10 @@ set_global_assignment -name VERILOG_FILE code/components/controller.v
 set_global_assignment -name VERILOG_FILE code/components/alu_decoder.v
 set_global_assignment -name VERILOG_FILE code/components/alu.v
 set_global_assignment -name VERILOG_FILE code/components/adder.v
-set_global_assignment -name EDA_TEST_BENCH_NAME single_cycle -section_id eda_simulation
-set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id single_cycle
-set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME tb_1c -section_id single_cycle
+set_global_assignment -name EDA_TEST_BENCH_NAME tb_check -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id tb_check
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME tb_check -section_id tb_check
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
 set_global_assignment -name EDA_TEST_BENCH_FILE .test/tb.v -section_id tb
 set_global_assignment -name EDA_TEST_BENCH_FILE .test/tb_1c.v -section_id single_cycle
-set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
+set_global_assignment -name EDA_TEST_BENCH_FILE .test/tb_check.v -section_id tb_check

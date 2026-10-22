@@ -13,18 +13,18 @@ module riscv_cpu (
     output [31:0] PCW, ALUResultW, WriteDataW
 );
 
-wire       ALUSrc, RegWrite, Branch, Jump, Jalr;
+wire       ALUSrc, RegWrite, Branch, Jump, Jalr, MemWrite_controller;
 wire [1:0] ResultSrc, ASrc;
 wire [2:0] ImmSrc;
 wire [3:0] ALUControl;
-wire [31:0] InstrW;
+wire [31:0] InstrD;
 
 controller  c   (
-    .op(InstrW[6:0]),
-    .funct3(InstrW[14:12]),
-    .funct7b5(InstrW[30]),
+    .op(InstrD[6:0]),
+    .funct3(InstrD[14:12]),
+    .funct7b5(InstrD[30]),
     .ResultSrc(ResultSrc),
-    .MemWrite(MemWrite),
+    .MemWrite(MemWrite_controller),
     .ALUSrc(ALUSrc),
     .ASrc(ASrc),
     .RegWrite(RegWrite),
@@ -55,15 +55,13 @@ datapath    dp  (
     .ReadData(ReadData),
     .Result(Result),
     .PCW(PCW),
-    .MemWriteW(MemWrite),
-    // .MemWriteW
+    .MemWrite(MemWrite_controller),
+    .MemWriteM(MemWrite),
+    .funct3(funct3),
     .ALUResultW(ALUResultW),
     .WriteDataW(WriteDataW),
-    .InstrW(InstrW)
+    .InstrD(InstrD)
     // .Zero(Zero)
 );
-
-// Eventually will be removed while adding pipeline registers
-assign funct3 = Instr[14:12];
 
 endmodule

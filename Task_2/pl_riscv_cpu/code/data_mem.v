@@ -54,4 +54,3 @@ always @(*) begin
 end
 
 endmodule
-

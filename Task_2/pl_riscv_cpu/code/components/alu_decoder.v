@@ -1,4 +1,3 @@
-
 // alu_decoder.v - logic for ALU decoder
 
 module alu_decoder (
@@ -12,7 +11,7 @@ module alu_decoder (
   always @(*) begin
     case (ALUOp)
       2'b00: ALUControl = 4'b0000;  // addition
-      2'b01: begin 
+      2'b01: begin
         case(funct3)
             3'b000: ALUControl = 4'b1010; // beq
             3'b001: ALUControl = 4'b1011; // bne
@@ -37,9 +36,9 @@ module alu_decoder (
         3'b011:  ALUControl = 4'b0111;  // sltu (set if less, unsigned)
         3'b100:  ALUControl = 4'b0100;  // xori (xor immediate)
         3'b101:  begin
-            if (funct7b5) 
+            if (funct7b5)
                 ALUControl = 4'b1001;  // srai
-            else 
+            else
                 ALUControl = 4'b1000;  // srli
         end
         default: ALUControl = 4'bxxxx;  // ???
@@ -48,4 +47,3 @@ module alu_decoder (
   end
 
 endmodule
-
