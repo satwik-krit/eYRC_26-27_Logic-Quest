@@ -44,3 +44,5 @@ module pipe_mw (
     end
 
 endmodule
+
+`default_nettype wire

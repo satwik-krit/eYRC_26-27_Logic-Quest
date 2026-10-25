@@ -64,3 +64,5 @@ module stage_memory (
     assign Mem_WrAddr = ALUResultM;
 
 endmodule
+
+`default_nettype wire

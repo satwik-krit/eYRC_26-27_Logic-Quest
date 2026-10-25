@@ -55,7 +55,7 @@ datapath    dp  (
     .ReadData(ReadData),
     .Result(Result),
     .PCW(PCW),
-    .MemWrite(MemWrite_controller),
+	 .MemWrite(MemWrite_controller),
     .MemWriteM(MemWrite),
     .funct3(funct3),
     .ALUResultW(ALUResultW),
