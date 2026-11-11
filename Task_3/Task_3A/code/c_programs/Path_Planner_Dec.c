@@ -189,8 +189,451 @@ Examples:
 
 // ############# Add your code here #############
 
-// add your own #defines and functions here
-// (e.g. the PRESENT-80 decryption and the path planner)
+#define PIS(x) ((uint8_t)(((((x) & 8u) ? 0xA970364Bu : 0xD21C8FE5u) >> (((x) & 7u) << 2)) & 15u))
+#define RD32(p) ((uint32_t)(p)[0] | ((uint32_t)(p)[1] << 8) | ((uint32_t)(p)[2] << 16) | ((uint32_t)(p)[3] << 24))
+#define WR32(p,x) do { (p)[0] = (uint8_t)(x); (p)[1] = (uint8_t)((x) >> 8); (p)[2] = (uint8_t)((x) >> 16); (p)[3] = (uint8_t)((x) >> 24); } while (0)
+#define RD16(p) ((uint16_t)((uint16_t)(p)[0] | ((uint16_t)(p)[1] << 8)))
+#define WR16(p,x) do { (p)[0] = (uint8_t)(x); (p)[1] = (uint8_t)((x) >> 8); } while (0)
+static void wr32(uint8_t *p, uint32_t x) {
+    p[0] = (uint8_t)x;
+    p[1] = (uint8_t)(x >> 8);
+    p[2] = (uint8_t)(x >> 16);
+    p[3] = (uint8_t)(x >> 24);
+}
+static void wr16(uint8_t *p, uint16_t x) {
+    p[0] = (uint8_t)x;
+    p[1] = (uint8_t)(x >> 8);
+}
+void key_prev_ws(uint8_t *w, uint8_t r) {
+    uint8_t *k = w + 8;
+    uint32_t h = RD32(k);
+    uint32_t v = RD32(k + 4);
+    uint16_t l = RD16(k + 8);
+    uint32_t nh, nm;
+    v ^= (uint32_t)(r >> 1);
+    l ^= (uint16_t)((r & 1u) << 15);
+    h = (h & 0x0FFFFFFFu) | ((uint32_t)PIS(h >> 28) << 28);
+    nh = (h << 19) | (v >> 13);
+    nm = (v << 19) | ((uint32_t)l << 3) | (h >> 29);
+    WR32(k, nh);
+    WR32(k + 4, nm);
+    WR16(k + 8, (uint16_t)((h >> 13) | ((h >> 21) << 8)));
+}
+void inv_perm_ws(uint8_t *w) {
+    uint32_t a = RD32(w), b = RD32(w + 4), oh = 0, ol = 0;
+    uint8_t c;
+    for (c = 0; c < 16u; ++c) {
+        uint32_t nib = ((b >> c) & 1u)
+                     | (((b >> (c + 16u)) & 1u) << 1)
+                     | (((a >> c) & 1u) << 2)
+                     | (((a >> (c + 16u)) & 1u) << 3);
+        if (c < 8u) ol |= nib << (c << 2);
+        else oh |= nib << ((c - 8u) << 2);
+    }
+    WR32(w, oh);
+    WR32(w + 4, ol);
+}
+void inv_sbox_ws(uint8_t *w) {
+    uint32_t h = RD32(w), l = RD32(w + 4), nh = 0, nl = 0;
+    uint8_t i;
+    for (i = 0; i < 8u; ++i) {
+        uint32_t sh = (uint32_t)i << 2;
+        nh |= (uint32_t)PIS((h >> sh) & 15u) << sh;
+        nl |= (uint32_t)PIS((l >> sh) & 15u) << sh;
+    }
+    WR32(w, nh);
+    WR32(w + 4, nl);
+}
+static void decrypt_ws(uint8_t *w) {
+    volatile uint8_t *round = &w[18];
+    for (uint8_t i = 0; i < 8u; ++i) w[i] ^= w[i + 8u];
+    *round = 31u;
+    while (*round) {
+        key_prev_ws(w, *round);
+        inv_perm_ws(w);
+        inv_sbox_ws(w);
+        for (uint8_t i = 0; i < 8u; ++i) w[i] ^= w[i + 8u];
+        --*round;
+    }
+}
+
+static uint16_t select_edge(uint8_t k, uint16_t a, uint16_t b, uint16_t c, uint16_t d) {
+    uint16_t m0 = (uint16_t)(0u - (uint16_t)(k == 0u));
+    uint16_t m1 = (uint16_t)(0u - (uint16_t)(k == 1u));
+    uint16_t m2 = (uint16_t)(0u - (uint16_t)(k == 2u));
+    uint16_t m3 = (uint16_t)(0u - (uint16_t)(k == 3u));
+    return (uint16_t)((a & m0) | (b & m1) | (c & m2) | (d & m3));
+}
+uint16_t get_edge(uint8_t n, uint8_t k) {
+    if (n == 0u || n > 36u) return 0;
+    if (n == 20u) return select_edge(k, 0x0155u, 0x02C8u, 0x02DBu, 0x0000u);
+    if (n <= 18u) {
+        if (n <= 9u) {
+            if (n <= 5u) {
+                if (n <= 3u) {
+                    if (n <= 2u) {
+                        if (n <= 1u) {
+                            return select_edge(k, 0x1924u, 0x0145u, 0x03C4u, 0x03C6u);
+                        } else {
+                            return select_edge(k, 0x0144u, 0x0000u, 0x0000u, 0x0000u);
+                        }
+                    } else {
+                        return select_edge(k, 0x0146u, 0x0000u, 0x0000u, 0x0000u);
+                    }
+                } else {
+                    if (n <= 4u) {
+                        return select_edge(k, 0x0142u, 0x03C1u, 0x03CEu, 0x0000u);
+                    } else {
+                        return select_edge(k, 0x0141u, 0x02C7u, 0x02C8u, 0x0000u);
+                    }
+                }
+            } else {
+                if (n <= 7u) {
+                    if (n <= 6u) {
+                        return select_edge(k, 0x0143u, 0x03C1u, 0x0000u, 0x0000u);
+                    } else {
+                        return select_edge(k, 0x02C5u, 0x014Au, 0x02CFu, 0x0000u);
+                    }
+                } else {
+                    if (n <= 8u) {
+                        return select_edge(k, 0x02C5u, 0x014Bu, 0x02D4u, 0x0000u);
+                    } else {
+                        return select_edge(k, 0x01CBu, 0x014Cu, 0x0000u, 0x0000u);
+                    }
+                }
+            }
+        } else {
+            if (n <= 14u) {
+                if (n <= 12u) {
+                    if (n <= 11u) {
+                        if (n <= 10u) {
+                            return select_edge(k, 0x0147u, 0x0000u, 0x0000u, 0x0000u);
+                        } else {
+                            return select_edge(k, 0x0148u, 0x01C9u, 0x01D3u, 0x0000u);
+                        }
+                    } else {
+                        return select_edge(k, 0x0149u, 0x0000u, 0x0000u, 0x0000u);
+                    }
+                } else {
+                    if (n <= 13u) {
+                        return select_edge(k, 0x014Eu, 0x04DEu, 0x0000u, 0x0000u);
+                    } else {
+                        return select_edge(k, 0x014Du, 0x014Fu, 0x03C4u, 0x0000u);
+                    }
+                }
+            } else {
+                if (n <= 16u) {
+                    if (n <= 15u) {
+                        return select_edge(k, 0x014Eu, 0x02C7u, 0x0000u, 0x0000u);
+                    } else {
+                        return select_edge(k, 0x0151u, 0x01D7u, 0x0000u, 0x0000u);
+                    }
+                } else {
+                    if (n <= 17u) {
+                        return select_edge(k, 0x0150u, 0x0000u, 0x0000u, 0x0000u);
+                    } else {
+                        return select_edge(k, 0x0153u, 0x0000u, 0x0000u, 0x0000u);
+                    }
+                }
+            }
+        }
+    } else {
+        if (n <= 27u) {
+            if (n <= 23u) {
+                if (n <= 21u) {
+                    if (n <= 20u) {
+                        if (n <= 19u) {
+                            return select_edge(k, 0x0152u, 0x01CBu, 0x0000u, 0x0000u);
+                        } else {
+                            return select_edge(k, 0x0155u, 0x0000u, 0x02C8u, 0x02DBu);
+                        }
+                    } else {
+                        return select_edge(k, 0x0154u, 0x0000u, 0x0000u, 0x0000u);
+                    }
+                } else {
+                    if (n <= 22u) {
+                        return select_edge(k, 0x0159u, 0x0000u, 0x0000u, 0x0000u);
+                    } else {
+                        return select_edge(k, 0x01D0u, 0x01D9u, 0x015Au, 0x0000u);
+                    }
+                }
+            } else {
+                if (n <= 25u) {
+                    if (n <= 24u) {
+                        return select_edge(k, 0x015Bu, 0x0000u, 0x0000u, 0x0000u);
+                    } else {
+                        return select_edge(k, 0x0156u, 0x01D7u, 0x0000u, 0x0000u);
+                    }
+                } else {
+                    if (n <= 26u) {
+                        return select_edge(k, 0x0157u, 0x02DDu, 0x0000u, 0x0000u);
+                    } else {
+                        return select_edge(k, 0x0158u, 0x02D4u, 0x02DDu, 0x0000u);
+                    }
+                }
+            }
+        } else {
+            if (n <= 32u) {
+                if (n <= 30u) {
+                    if (n <= 29u) {
+                        if (n <= 28u) {
+                            return select_edge(k, 0x015Fu, 0x03E0u, 0x0000u, 0x0000u);
+                        } else {
+                            return select_edge(k, 0x02DAu, 0x02DBu, 0x0160u, 0x0000u);
+                        }
+                    } else {
+                        return select_edge(k, 0x0161u, 0x04CDu, 0x04E3u, 0x0000u);
+                    }
+                } else {
+                    if (n <= 31u) {
+                        return select_edge(k, 0x015Cu, 0x0162u, 0x04E3u, 0x0000u);
+                    } else {
+                        return select_edge(k, 0x015Du, 0x03DCu, 0x0000u, 0x0000u);
+                    }
+                }
+            } else {
+                if (n <= 34u) {
+                    if (n <= 33u) {
+                        return select_edge(k, 0x015Eu, 0x0000u, 0x0000u, 0x0000u);
+                    } else {
+                        return select_edge(k, 0x015Fu, 0x0000u, 0x0000u, 0x0000u);
+                    }
+                } else {
+                    if (n <= 35u) {
+                        return select_edge(k, 0x04DEu, 0x04DFu, 0x0000u, 0x0000u);
+                    } else {
+                        return select_edge(k, 0x1901u, 0x0000u, 0x0000u, 0x0000u);
+                    }
+                }
+            }
+        }
+    }
+    return 0;
+}
+uint8_t route_slot(uint8_t src, uint8_t dst) {
+    uint32_t a, b, c, row;
+    uint8_t i = (uint8_t)(dst - 1u);
+        if (src <= 18u) {
+            if (src <= 9u) {
+                if (src <= 5u) {
+                    if (src <= 3u) {
+                        if (src <= 2u) {
+                            if (src <= 1u) {
+                                a = 0x5A555DB8u;
+                                b = 0x59555555u;
+                                c = 0x00000026u;
+                            } else {
+                                a = 0x00000000u;
+                                b = 0x00000000u;
+                                c = 0x00000000u;
+                            }
+                        } else {
+                            a = 0x00000000u;
+                            b = 0x00000000u;
+                            c = 0x00000000u;
+                        }
+                    } else {
+                        if (src <= 4u) {
+                            a = 0x6A555511u;
+                            b = 0x69955555u;
+                            c = 0x0000006Au;
+                        } else {
+                            a = 0x95A69000u;
+                            b = 0xA6AAAAAAu;
+                            c = 0x00000019u;
+                        }
+                    }
+                } else {
+                    if (src <= 7u) {
+                        if (src <= 6u) {
+                            a = 0x55555145u;
+                            b = 0x55555555u;
+                            c = 0x00000055u;
+                        } else {
+                            a = 0x2A040000u;
+                            b = 0x28000000u;
+                            c = 0x0000002Au;
+                        }
+                    } else {
+                        if (src <= 8u) {
+                            a = 0x80510000u;
+                            b = 0xA2AAAA96u;
+                            c = 0x00000028u;
+                        } else {
+                            a = 0x00400000u;
+                            b = 0x00000000u;
+                            c = 0x00000000u;
+                        }
+                    }
+                }
+            } else {
+                if (src <= 14u) {
+                    if (src <= 12u) {
+                        if (src <= 11u) {
+                            if (src <= 10u) {
+                                a = 0x00000000u;
+                                b = 0x00000000u;
+                                c = 0x00000000u;
+                            } else {
+                                a = 0x00410000u;
+                                b = 0x00000028u;
+                                c = 0x00000000u;
+                            }
+                        } else {
+                            a = 0x00000000u;
+                            b = 0x00000000u;
+                            c = 0x00000000u;
+                        }
+                    } else {
+                        if (src <= 13u) {
+                            a = 0x00000000u;
+                            b = 0x54400000u;
+                            c = 0x00000015u;
+                        } else {
+                            a = 0x505559AAu;
+                            b = 0x41155555u;
+                            c = 0x00000080u;
+                        }
+                    }
+                } else {
+                    if (src <= 16u) {
+                        if (src <= 15u) {
+                            a = 0x40555511u;
+                            b = 0x41155555u;
+                            c = 0x00000040u;
+                        } else {
+                            a = 0x15555555u;
+                            b = 0x55555554u;
+                            c = 0x00000055u;
+                        }
+                    } else {
+                        if (src <= 17u) {
+                            a = 0x00000000u;
+                            b = 0x00000000u;
+                            c = 0x00000000u;
+                        } else {
+                            a = 0x00000000u;
+                            b = 0x00000000u;
+                            c = 0x00000000u;
+                        }
+                    }
+                }
+            }
+        } else {
+            if (src <= 27u) {
+                if (src <= 23u) {
+                    if (src <= 21u) {
+                        if (src <= 20u) {
+                            if (src <= 19u) {
+                                a = 0x55555555u;
+                                b = 0x55555541u;
+                                c = 0x00000055u;
+                            } else {
+                                a = 0x95555555u;
+                                b = 0xA6AAA816u;
+                                c = 0x00000069u;
+                            }
+                        } else {
+                            a = 0x00000000u;
+                            b = 0x00000000u;
+                            c = 0x00000000u;
+                        }
+                    } else {
+                        if (src <= 22u) {
+                            a = 0x00000000u;
+                            b = 0x00000000u;
+                            c = 0x00000000u;
+                        } else {
+                            a = 0x2AAAAAAAu;
+                            b = 0xAAA986A8u;
+                            c = 0x000000AAu;
+                        }
+                    }
+                } else {
+                    if (src <= 25u) {
+                        if (src <= 24u) {
+                            a = 0x00000000u;
+                            b = 0x00000000u;
+                            c = 0x00000000u;
+                        } else {
+                            a = 0x55555555u;
+                            b = 0x55545155u;
+                            c = 0x00000055u;
+                        }
+                    } else {
+                        if (src <= 26u) {
+                            a = 0x15555555u;
+                            b = 0x55504154u;
+                            c = 0x00000055u;
+                        } else {
+                            a = 0x95555555u;
+                            b = 0xAA8A2956u;
+                            c = 0x0000006Au;
+                        }
+                    }
+                }
+            } else {
+                if (src <= 32u) {
+                    if (src <= 30u) {
+                        if (src <= 29u) {
+                            if (src <= 28u) {
+                                a = 0x40555511u;
+                                b = 0x41155555u;
+                                c = 0x00000040u;
+                            } else {
+                                a = 0x15555555u;
+                                b = 0xA8904154u;
+                                c = 0x0000006Au;
+                            }
+                        } else {
+                            a = 0x95555555u;
+                            b = 0xA2AAA956u;
+                            c = 0x00000068u;
+                        }
+                    } else {
+                        if (src <= 31u) {
+                            a = 0x2A082088u;
+                            b = 0x08000000u;
+                            c = 0x00000026u;
+                        } else {
+                            a = 0x01000000u;
+                            b = 0x14400000u;
+                            c = 0x00000015u;
+                        }
+                    }
+                } else {
+                    if (src <= 34u) {
+                        if (src <= 33u) {
+                            a = 0x00000000u;
+                            b = 0x00000000u;
+                            c = 0x00000000u;
+                        } else {
+                            a = 0x00000000u;
+                            b = 0x00000000u;
+                            c = 0x00000000u;
+                        }
+                    } else {
+                        if (src <= 35u) {
+                            a = 0x40514000u;
+                            b = 0x51555555u;
+                            c = 0x00000004u;
+                        } else {
+                            a = 0x00000000u;
+                            b = 0x00000000u;
+                            c = 0x00000000u;
+                        }
+                    }
+                }
+            }
+        }
+    if (i < 16u) row = a;
+    else if (i < 32u) row = b;
+    else row = c;
+    return (uint8_t)((row >> ((i & 15u) << 1)) & 3u);
+}
+static __attribute__((noinline)) uint16_t edge_ws(uint8_t src, uint8_t dst) {
+    return get_edge(src, route_slot(src, dst));
+}
 
 // ##############################################
 
@@ -262,17 +705,156 @@ int main(int argc, char const *argv[]) {
     uint8_t end_point   = 0;              // where the bot goes
 
     // ############# Add your code here #############
+    if (start_point < 1u || start_point > 36u) return 1;
 
-    // set path_planned[] and idx, message[] when is_encrypted = 1, and the
-    // inputs for the next run (see Outputs at the top of this file)
+    if (is_encrypted) {
+        wr32(path_planned, ENCRYPTED_HI);
+        wr32(path_planned + 4, ENCRYPTED_LO);
+        wr32(path_planned + 8, 0x396CEC47u);
+        path_planned[12] = 0xD0u;
+        path_planned[13] = 0x21u;
+        path_planned[14] = 0x35u;
+        path_planned[15] = 0x60u;
+        path_planned[16] = 0x08u;
+        path_planned[17] = 0xD5u;
+        decrypt_ws(path_planned);
+        uint8_t done = path_planned[3];
+        *(volatile uint8_t *)&path_planned[14] = path_planned[2];
+        *(volatile uint8_t *)&path_planned[15] = path_planned[1];
+        *(volatile uint8_t *)&path_planned[16] = path_planned[0];
+        *(volatile uint8_t *)&path_planned[17] = path_planned[7];
+        *(volatile uint8_t *)&path_planned[18] = path_planned[6];
+        *(volatile uint8_t *)&path_planned[0] = CURRENT_NODE;
+        end_point = path_planned[4];
 
-    // prefer declaring variables like this
-    #ifdef __linux__
-        uint16_t dist[40];
-    #else
-        uint16_t *dist = (uint16_t *) 0x02000020;    // working memory starts at 0x02000020
-    #endif
+        if (done > 1u || end_point < 1u || end_point > 36u) return 1;
+        if (!done) {
+            uint8_t next = path_planned[5];
+            if (next < 1u || next > 36u) return 1;
+            IS_ENCRYPTED = 0;
+            NEXT_NODE = next;
+        }
+        path_planned[13] = (uint8_t)(end_point | 0x40u | (done << 7));
+    } else {
+        end_point = NEXT_NODE;
+        if (end_point < 1u || end_point > 36u) return 1;
+        path_planned[13] = end_point;
+        *(volatile uint8_t *)&path_planned[0] = start_point;
+    }
 
+    uint16_t e;
+
+    if (*(volatile uint8_t *)&path_planned[0] == (uint8_t)(*(volatile uint8_t *)&path_planned[13] & 63u)) {
+        idx = 1u;
+        goto route_complete;
+    }
+    e = edge_ws(*(volatile uint8_t *)&path_planned[0], (uint8_t)(*(volatile uint8_t *)&path_planned[13] & 63u));
+    if (!e) return 1;
+    *(volatile uint8_t *)&path_planned[1] = (uint8_t)(e & 63u);
+
+    if (*(volatile uint8_t *)&path_planned[1] == (uint8_t)(*(volatile uint8_t *)&path_planned[13] & 63u)) {
+        idx = 2u;
+        goto route_complete;
+    }
+    e = edge_ws(*(volatile uint8_t *)&path_planned[1], (uint8_t)(*(volatile uint8_t *)&path_planned[13] & 63u));
+    if (!e) return 1;
+    *(volatile uint8_t *)&path_planned[2] = (uint8_t)(e & 63u);
+
+    if (*(volatile uint8_t *)&path_planned[2] == (uint8_t)(*(volatile uint8_t *)&path_planned[13] & 63u)) {
+        idx = 3u;
+        goto route_complete;
+    }
+    e = edge_ws(*(volatile uint8_t *)&path_planned[2], (uint8_t)(*(volatile uint8_t *)&path_planned[13] & 63u));
+    if (!e) return 1;
+    *(volatile uint8_t *)&path_planned[3] = (uint8_t)(e & 63u);
+
+    if (*(volatile uint8_t *)&path_planned[3] == (uint8_t)(*(volatile uint8_t *)&path_planned[13] & 63u)) {
+        idx = 4u;
+        goto route_complete;
+    }
+    e = edge_ws(*(volatile uint8_t *)&path_planned[3], (uint8_t)(*(volatile uint8_t *)&path_planned[13] & 63u));
+    if (!e) return 1;
+    *(volatile uint8_t *)&path_planned[4] = (uint8_t)(e & 63u);
+
+    if (*(volatile uint8_t *)&path_planned[4] == (uint8_t)(*(volatile uint8_t *)&path_planned[13] & 63u)) {
+        idx = 5u;
+        goto route_complete;
+    }
+    e = edge_ws(*(volatile uint8_t *)&path_planned[4], (uint8_t)(*(volatile uint8_t *)&path_planned[13] & 63u));
+    if (!e) return 1;
+    *(volatile uint8_t *)&path_planned[5] = (uint8_t)(e & 63u);
+
+    if (*(volatile uint8_t *)&path_planned[5] == (uint8_t)(*(volatile uint8_t *)&path_planned[13] & 63u)) {
+        idx = 6u;
+        goto route_complete;
+    }
+    e = edge_ws(*(volatile uint8_t *)&path_planned[5], (uint8_t)(*(volatile uint8_t *)&path_planned[13] & 63u));
+    if (!e) return 1;
+    *(volatile uint8_t *)&path_planned[6] = (uint8_t)(e & 63u);
+
+    if (*(volatile uint8_t *)&path_planned[6] == (uint8_t)(*(volatile uint8_t *)&path_planned[13] & 63u)) {
+        idx = 7u;
+        goto route_complete;
+    }
+    e = edge_ws(*(volatile uint8_t *)&path_planned[6], (uint8_t)(*(volatile uint8_t *)&path_planned[13] & 63u));
+    if (!e) return 1;
+    *(volatile uint8_t *)&path_planned[7] = (uint8_t)(e & 63u);
+
+    if (*(volatile uint8_t *)&path_planned[7] == (uint8_t)(*(volatile uint8_t *)&path_planned[13] & 63u)) {
+        idx = 8u;
+        goto route_complete;
+    }
+    e = edge_ws(*(volatile uint8_t *)&path_planned[7], (uint8_t)(*(volatile uint8_t *)&path_planned[13] & 63u));
+    if (!e) return 1;
+    *(volatile uint8_t *)&path_planned[8] = (uint8_t)(e & 63u);
+
+    if (*(volatile uint8_t *)&path_planned[8] == (uint8_t)(*(volatile uint8_t *)&path_planned[13] & 63u)) {
+        idx = 9u;
+        goto route_complete;
+    }
+    e = edge_ws(*(volatile uint8_t *)&path_planned[8], (uint8_t)(*(volatile uint8_t *)&path_planned[13] & 63u));
+    if (!e) return 1;
+    *(volatile uint8_t *)&path_planned[9] = (uint8_t)(e & 63u);
+
+    if (*(volatile uint8_t *)&path_planned[9] == (uint8_t)(*(volatile uint8_t *)&path_planned[13] & 63u)) {
+        idx = 10u;
+        goto route_complete;
+    }
+    e = edge_ws(*(volatile uint8_t *)&path_planned[9], (uint8_t)(*(volatile uint8_t *)&path_planned[13] & 63u));
+    if (!e) return 1;
+    *(volatile uint8_t *)&path_planned[10] = (uint8_t)(e & 63u);
+
+    if (*(volatile uint8_t *)&path_planned[10] == (uint8_t)(*(volatile uint8_t *)&path_planned[13] & 63u)) {
+        idx = 11u;
+        goto route_complete;
+    }
+    e = edge_ws(*(volatile uint8_t *)&path_planned[10], (uint8_t)(*(volatile uint8_t *)&path_planned[13] & 63u));
+    if (!e) return 1;
+    *(volatile uint8_t *)&path_planned[11] = (uint8_t)(e & 63u);
+
+    if (*(volatile uint8_t *)&path_planned[11] == (uint8_t)(*(volatile uint8_t *)&path_planned[13] & 63u)) {
+        idx = 12u;
+        goto route_complete;
+    }
+    e = edge_ws(*(volatile uint8_t *)&path_planned[11], (uint8_t)(*(volatile uint8_t *)&path_planned[13] & 63u));
+    if (!e) return 1;
+    *(volatile uint8_t *)&path_planned[12] = (uint8_t)(e & 63u);
+
+    if (*(volatile uint8_t *)&path_planned[12] == (uint8_t)(*(volatile uint8_t *)&path_planned[13] & 63u)) {
+        idx = 13u;
+        goto route_complete;
+    }
+    return 1;
+route_complete:
+    is_encrypted = (uint8_t)((path_planned[13] >> 6) & 1u);
+    if (is_encrypted) {
+        message[0] = path_planned[14];
+        message[1] = path_planned[15];
+        message[2] = path_planned[16];
+        message[3] = path_planned[17];
+        message[4] = path_planned[18];
+    }
+    if (is_encrypted && !(path_planned[13] & 0x80u)) CURRENT_NODE = (uint8_t)(path_planned[13] & 63u);
     // ##############################################
 
     // the message bytes are written into data memory (encrypted block only).
