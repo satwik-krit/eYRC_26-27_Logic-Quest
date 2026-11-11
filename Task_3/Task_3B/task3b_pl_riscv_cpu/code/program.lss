@@ -1,0 +1,1512 @@
+
+.temp.file.elf:     file format elf32-littleriscv
+
+SYMBOL TABLE:
+00000000 l    d  .init	00000000 .init
+00000058 l    d  .text	00000000 .text
+02000000 l    d  .data	00000000 .data
+02000000 l    d  .bss	00000000 .bss
+02000000 l    d  .stack	00000000 .stack
+00000000 l    d  .riscv.attributes	00000000 .riscv.attributes
+00000000 l    d  .comment	00000000 .comment
+00000000 l    d  .debug_aranges	00000000 .debug_aranges
+00000000 l    d  .debug_info	00000000 .debug_info
+00000000 l    d  .debug_abbrev	00000000 .debug_abbrev
+00000000 l    d  .debug_line	00000000 .debug_line
+00000000 l    d  .debug_str	00000000 .debug_str
+00000000 l    d  .debug_loc	00000000 .debug_loc
+00000000 l    d  .debug_ranges	00000000 .debug_ranges
+00000000 l    d  .debug_frame	00000000 .debug_frame
+00000000 l    d  .debug_macro	00000000 .debug_macro
+00000000 l    df *ABS*	00000000 
+000007b4 l     F .text	0000004c select_edge
+00000800 l     F .text	000006e4 edge_ws
+00000000 l    df *ABS*	00000000 tls.c
+00000000 l    df *ABS*	00000000 
+0000047e l       .debug_info	00000000 
+0000047e l       .debug_info	00000000 
+0000047e l       .debug_info	00000000 
+0000047e l       .debug_info	00000000 
+0000047e l       .debug_info	00000000 
+0000047e l       .debug_info	00000000 
+0000047e l       .debug_info	00000000 
+0000047e l       .debug_info	00000000 
+0000047e l       .debug_info	00000000 
+0000047e l       .debug_info	00000000 
+0000047e l       .debug_info	00000000 
+0000047e l       .debug_info	00000000 
+0000047e l       .debug_info	00000000 
+0000047e l       .debug_info	00000000 
+0000047e l       .debug_info	00000000 
+0000047e l       .debug_info	00000000 
+0000047e l       .debug_info	00000000 
+0000047e l       .debug_info	00000000 
+0000047e l       .debug_info	00000000 
+0000047e l       .debug_info	00000000 
+0000047e l       .debug_info	00000000 
+0000047e l       .debug_info	00000000 
+0000047e l       .debug_info	00000000 
+0000047e l       .debug_info	00000000 
+0000047e l       .debug_info	00000000 
+0000047e l       .debug_info	00000000 
+0000047e l       .debug_info	00000000 
+0000047e l       .debug_info	00000000 
+0000047e l       .debug_info	00000000 
+0000047e l       .debug_info	00000000 
+0000047e l       .debug_info	00000000 
+0000047e l       .debug_info	00000000 
+00000000 g       *ABS*	00000000 __data_size
+02000800 g       .data	00000000 __global_pointer$
+02000000 g       .bss	00000000 __tls_base
+00001000 g       *ABS*	00000000 __flash_size
+000000b8 g       *ABS*	00000000 __stack_size
+00000000 g       *ABS*	00000000 __bss_size
+00000eec g     F .text	00000024 memcpy
+02000000 g       .bss	00000000 __bss_end
+00000000 g       *ABS*	00000000 __tbss_size
+00000ee4 g     F .text	00000008 _set_tls
+00000000 g     F .init	00000000 _start
+02000000 g       *ABS*	00000000 __ram
+02000000 g       .bss	00000000 __data_end
+0000047e  w      .debug_info	00000000 .hidden Path_Planner_Dec.c.10848506
+00000f2c g       .text	00000000 __text_end
+02000000 g       .bss	00000000 __bss_start
+00000f10 g     F .text	0000001c memset
+00000058 g     F .text	0000075c main
+00000200 g       *ABS*	00000000 __ram_size
+02000200 g       .init	00000000 __stack
+00000000 g     F *ABS*	00000000 vfscanf
+00000f30 g       *ABS*	00000000 __data_source
+00000000 g       *ABS*	00000000 __flash
+02000000 g       .data	00000000 __data_start
+00000000 g     F *ABS*	00000000 vfprintf
+
+
+
+Disassembly of section .init:
+
+00000000 <_start>:
+   0:	    02000117          	auipc	x2,0x2000
+   4:	    20010113          	addi	x2,x2,512 # 2000200 <__stack>
+   8:	    02000197          	auipc	x3,0x2000
+   c:	    7f818193          	addi	x3,x3,2040 # 2000800 <__global_pointer$>
+  10:	    02000517          	auipc	x10,0x2000
+  14:	    ff050513          	addi	x10,x10,-16 # 2000000 <__bss_end>
+  18:	    00001597          	auipc	x11,0x1
+  1c:	    f1858593          	addi	x11,x11,-232 # f30 <__data_source>
+  20:	    00000613          	addi	x12,x0,0
+  24:	    6c9000ef          	jal	x1,eec <memcpy>
+  28:	    02000517          	auipc	x10,0x2000
+  2c:	    fd850513          	addi	x10,x10,-40 # 2000000 <__bss_end>
+  30:	    00000593          	addi	x11,x0,0
+  34:	    00000613          	addi	x12,x0,0
+  38:	    6d9000ef          	jal	x1,f10 <memset>
+  3c:	    02000517          	auipc	x10,0x2000
+  40:	    fc450513          	addi	x10,x10,-60 # 2000000 <__bss_end>
+  44:	    6a1000ef          	jal	x1,ee4 <_set_tls>
+  48:	    00000513          	addi	x10,x0,0
+  4c:	    00000593          	addi	x11,x0,0
+  50:	    008000ef          	jal	x1,58 <main>
+  54:	/-- 0000006f          	jal	x0,54 <_start+0x54>
+
+Disassembly of section .text:
+
+00000058 <main>:
+     ###         #define CPU_DONE            (* (volatile uint8_t  * ) 0x0200001c)
+     ### 
+     ###     #endif
+     ### 
+     ###     // read once here: for the next run, the program may write IS_ENCRYPTED = 0
+     ###     uint8_t is_encrypted = IS_ENCRYPTED;
+  58:	                                                                02000737          	lui	x14,0x2000
+  5c:	                                                                00874683          	lbu	x13,8(x14) # 2000008 <__bss_end+0x8>
+     ###     // array to store the planned path
+     ###     uint8_t path_planned[40];
+     ###     // index to keep track of the path_planned array
+     ###     uint8_t idx = 0;
+     ### 
+     ###     uint8_t start_point = CURRENT_NODE;   // where the bot is
+  60:	                                                                00d74783          	lbu	x15,13(x14)
+     ###     uint8_t end_point   = 0;              // where the bot goes
+     ### 
+     ###     // ############# Add your code here #############
+     ###     if (start_point < 1u || start_point > 36u) return 1;
+  64:	                                                                02300593          	addi	x11,x0,35
+     ###     uint8_t start_point = CURRENT_NODE;   // where the bot is
+  68:	                                                                0ff7f793          	andi	x15,x15,255
+     ###     if (start_point < 1u || start_point > 36u) return 1;
+  6c:	                                                                fff78613          	addi	x12,x15,-1
+  70:	                                                                0ff67613          	andi	x12,x12,255
+  74:	                                                            /-- 00c5fe63          	bgeu	x11,x12,90 <main+0x38>
+  78:	                                                            |   00100513          	addi	x10,x0,1
+     ###         }
+     ### 
+     ###     #endif
+     ### 
+     ###     return 0;
+     ### }
+  7c:	                                                            |   00008067          	jalr	x0,0(x1)
+     ###     if (start_point < 1u || start_point > 36u) return 1;
+  80:	/-----------------------------------------------------------|-> 00100513          	addi	x10,x0,1
+     ### }
+  84:	|                                                  /--------|-> 03c12083          	lw	x1,60(x2)
+  88:	|                                                  |        |   04010113          	addi	x2,x2,64
+  8c:	|                                                  |        |   00008067          	jalr	x0,0(x1)
+     ### int main(int argc, char const *argv[]) {
+  90:	|                                                  |        \-> fc010113          	addi	x2,x2,-64
+  94:	|                                                  |            02112e23          	sw	x1,60(x2)
+  98:	|                                                  |            0ff6f693          	andi	x13,x13,255
+     ###     if (is_encrypted) {
+  9c:	|  /-----------------------------------------------|----------- 68068c63          	beq	x13,x0,734 <Path_Planner_Dec.c.10848506+0x2b6>
+     ###         wr32(path_planned, ENCRYPTED_HI);
+  a0:	|  |                                               |            00072783          	lw	x15,0(x14)
+     ###     p[0] = (uint8_t)x;
+  a4:	|  |                                               |            01010813          	addi	x16,x2,16
+     ###     p[1] = (uint8_t)(x >> 8);
+  a8:	|  |                                               |            0087d693          	srli	x13,x15,0x8
+     ###     p[0] = (uint8_t)x;
+  ac:	|  |                                               |            00f10423          	sb	x15,8(x2)
+     ###     p[1] = (uint8_t)(x >> 8);
+  b0:	|  |                                               |            00d104a3          	sb	x13,9(x2)
+     ###     p[2] = (uint8_t)(x >> 16);
+  b4:	|  |                                               |            0107d693          	srli	x13,x15,0x10
+     ###     p[3] = (uint8_t)(x >> 24);
+  b8:	|  |                                               |            0187d793          	srli	x15,x15,0x18
+     ###     p[2] = (uint8_t)(x >> 16);
+  bc:	|  |                                               |            00d10523          	sb	x13,10(x2)
+     ###     p[3] = (uint8_t)(x >> 24);
+  c0:	|  |                                               |            00f105a3          	sb	x15,11(x2)
+     ###         wr32(path_planned + 4, ENCRYPTED_LO);
+  c4:	|  |                                               |            00472783          	lw	x15,4(x14)
+     ###     p[1] = (uint8_t)(x >> 8);
+  c8:	|  |                                               |            0087d713          	srli	x14,x15,0x8
+     ###     p[0] = (uint8_t)x;
+  cc:	|  |                                               |            00f10623          	sb	x15,12(x2)
+     ###     p[1] = (uint8_t)(x >> 8);
+  d0:	|  |                                               |            00e106a3          	sb	x14,13(x2)
+     ###     p[2] = (uint8_t)(x >> 16);
+  d4:	|  |                                               |            0107d713          	srli	x14,x15,0x10
+     ###     p[3] = (uint8_t)(x >> 24);
+  d8:	|  |                                               |            0187d793          	srli	x15,x15,0x18
+  dc:	|  |                                               |            00f107a3          	sb	x15,15(x2)
+     ###     p[0] = (uint8_t)x;
+  e0:	|  |                                               |            04700793          	addi	x15,x0,71
+  e4:	|  |                                               |            00f10823          	sb	x15,16(x2)
+     ###     p[1] = (uint8_t)(x >> 8);
+  e8:	|  |                                               |            fec00793          	addi	x15,x0,-20
+  ec:	|  |                                               |            00f108a3          	sb	x15,17(x2)
+     ###     p[2] = (uint8_t)(x >> 16);
+  f0:	|  |                                               |            06c00793          	addi	x15,x0,108
+  f4:	|  |                                               |            00f10923          	sb	x15,18(x2)
+     ###     p[3] = (uint8_t)(x >> 24);
+  f8:	|  |                                               |            03900793          	addi	x15,x0,57
+  fc:	|  |                                               |            00f109a3          	sb	x15,19(x2)
+     ###         path_planned[12] = 0xD0u;
+ 100:	|  |                                               |            fd000793          	addi	x15,x0,-48
+ 104:	|  |                                               |            00f10a23          	sb	x15,20(x2)
+     ###         path_planned[13] = 0x21u;
+ 108:	|  |                                               |            02100793          	addi	x15,x0,33
+ 10c:	|  |                                               |            00f10aa3          	sb	x15,21(x2)
+     ###         path_planned[14] = 0x35u;
+ 110:	|  |                                               |            03500793          	addi	x15,x0,53
+ 114:	|  |                                               |            00f10b23          	sb	x15,22(x2)
+     ###         path_planned[15] = 0x60u;
+ 118:	|  |                                               |            06000793          	addi	x15,x0,96
+ 11c:	|  |                                               |            00f10ba3          	sb	x15,23(x2)
+     ###         path_planned[16] = 0x08u;
+ 120:	|  |                                               |            00800793          	addi	x15,x0,8
+ 124:	|  |                                               |            00f10c23          	sb	x15,24(x2)
+     ###         path_planned[17] = 0xD5u;
+ 128:	|  |                                               |            fd500793          	addi	x15,x0,-43
+ 12c:	|  |                                               |            00f10ca3          	sb	x15,25(x2)
+     ###     p[2] = (uint8_t)(x >> 16);
+ 130:	|  |                                               |            00e10723          	sb	x14,14(x2)
+     ###         path_planned[17] = 0xD5u;
+ 134:	|  |                                               |            00810793          	addi	x15,x2,8
+     ###     for (uint8_t i = 0; i < 8u; ++i) w[i] ^= w[i + 8u];
+ 138:	|  |                                               |        /-> 0007c703          	lbu	x14,0(x15)
+ 13c:	|  |                                               |        |   0087c683          	lbu	x13,8(x15)
+ 140:	|  |                                               |        |   00178793          	addi	x15,x15,1
+ 144:	|  |                                               |        |   00d74733          	xor	x14,x14,x13
+ 148:	|  |                                               |        |   fee78fa3          	sb	x14,-1(x15)
+ 14c:	|  |                                               |        \-- fef816e3          	bne	x16,x15,138 <__stack_size+0x80>
+     ###     *round = 31u;
+ 150:	|  |                                               |            01f00793          	addi	x15,x0,31
+     ###     h = (h & 0x0FFFFFFFu) | ((uint32_t)PIS(h >> 28) << 28);
+ 154:	|  |                                               |            10000537          	lui	x10,0x10000
+ 158:	|  |                                               |            a9703637          	lui	x12,0xa9703
+ 15c:	|  |                                               |            d21c95b7          	lui	x11,0xd21c9
+     ###     *round = 31u;
+ 160:	|  |                                               |            00f10d23          	sb	x15,26(x2)
+     ###     h = (h & 0x0FFFFFFFu) | ((uint32_t)PIS(h >> 28) << 28);
+ 164:	|  |                                               |            fff50513          	addi	x10,x10,-1 # fffffff <__global_pointer$+0xdfff7ff>
+ 168:	|  |                                               |            64b60613          	addi	x12,x12,1611 # a970364b <__global_pointer$+0xa7702e4b>
+ 16c:	|  |                                               |            fe558593          	addi	x11,x11,-27 # d21c8fe5 <__global_pointer$+0xd01c87e5>
+     ###         if (c < 8u) ol |= nib << (c << 2);
+ 170:	|  |                                               |            00700893          	addi	x17,x0,7
+     ###     for (c = 0; c < 16u; ++c) {
+ 174:	|  |                                               |            01000313          	addi	x6,x0,16
+     ###     for (i = 0; i < 8u; ++i) {
+ 178:	|  |                                               |            02000e13          	addi	x28,x0,32
+     ###     while (*round) {
+ 17c:	|  |  /--------------------------------------------|----------> 01a14783          	lbu	x15,26(x2)
+ 180:	|  |  |                                            |            0ff7f793          	andi	x15,x15,255
+ 184:	|  |  |                                            |  /-------- 38079a63          	bne	x15,x0,518 <Path_Planner_Dec.c.10848506+0x9a>
+     ###         *(volatile uint8_t *)&path_planned[14] = path_planned[2];
+ 188:	|  |  |                                            |  |         00a14783          	lbu	x15,10(x2)
+     ###         *(volatile uint8_t *)&path_planned[0] = CURRENT_NODE;
+ 18c:	|  |  |                                            |  |         020006b7          	lui	x13,0x2000
+     ###         uint8_t done = path_planned[3];
+ 190:	|  |  |                                            |  |         00b14703          	lbu	x14,11(x2)
+     ###         *(volatile uint8_t *)&path_planned[14] = path_planned[2];
+ 194:	|  |  |                                            |  |         00f10b23          	sb	x15,22(x2)
+     ###         *(volatile uint8_t *)&path_planned[15] = path_planned[1];
+ 198:	|  |  |                                            |  |         00914783          	lbu	x15,9(x2)
+ 19c:	|  |  |                                            |  |         00f10ba3          	sb	x15,23(x2)
+     ###         *(volatile uint8_t *)&path_planned[16] = path_planned[0];
+ 1a0:	|  |  |                                            |  |         00814783          	lbu	x15,8(x2)
+ 1a4:	|  |  |                                            |  |         00f10c23          	sb	x15,24(x2)
+     ###         *(volatile uint8_t *)&path_planned[17] = path_planned[7];
+ 1a8:	|  |  |                                            |  |         00f14783          	lbu	x15,15(x2)
+ 1ac:	|  |  |                                            |  |         00f10ca3          	sb	x15,25(x2)
+     ###         *(volatile uint8_t *)&path_planned[18] = path_planned[6];
+ 1b0:	|  |  |                                            |  |         00e14783          	lbu	x15,14(x2)
+ 1b4:	|  |  |                                            |  |         00f10d23          	sb	x15,26(x2)
+     ###         *(volatile uint8_t *)&path_planned[0] = CURRENT_NODE;
+ 1b8:	|  |  |                                            |  |         00d6c783          	lbu	x15,13(x13) # 200000d <__bss_end+0xd>
+ 1bc:	|  |  |                                            |  |         0ff7f793          	andi	x15,x15,255
+ 1c0:	|  |  |                                            |  |         00f10423          	sb	x15,8(x2)
+     ###         if (done > 1u || end_point < 1u || end_point > 36u) return 1;
+ 1c4:	|  |  |                                            |  |         00100793          	addi	x15,x0,1
+ 1c8:	+--|--|--------------------------------------------|--|-------- eae7ece3          	bltu	x15,x14,80 <main+0x28>
+     ###         end_point = path_planned[4];
+ 1cc:	|  |  |                                            |  |         00c14783          	lbu	x15,12(x2)
+     ###         if (done > 1u || end_point < 1u || end_point > 36u) return 1;
+ 1d0:	|  |  |                                            |  |         02300513          	addi	x10,x0,35
+ 1d4:	|  |  |                                            |  |         fff78613          	addi	x12,x15,-1
+ 1d8:	|  |  |                                            |  |         0ff67613          	andi	x12,x12,255
+ 1dc:	+--|--|--------------------------------------------|--|-------- eac562e3          	bltu	x10,x12,80 <main+0x28>
+     ###         if (!done) {
+ 1e0:	|  |  |                                            |  |     /-- 00071e63          	bne	x14,x0,1fc <__stack_size+0x144>
+     ###             uint8_t next = path_planned[5];
+ 1e4:	|  |  |                                            |  |     |   00d14583          	lbu	x11,13(x2)
+     ###             if (next < 1u || next > 36u) return 1;
+ 1e8:	|  |  |                                            |  |     |   fff58613          	addi	x12,x11,-1
+ 1ec:	|  |  |                                            |  |     |   0ff67613          	andi	x12,x12,255
+ 1f0:	+--|--|--------------------------------------------|--|-----|-- e8c568e3          	bltu	x10,x12,80 <main+0x28>
+     ###             IS_ENCRYPTED = 0;
+ 1f4:	|  |  |                                            |  |     |   00068423          	sb	x0,8(x13)
+     ###             NEXT_NODE = next;
+ 1f8:	|  |  |                                            |  |     |   00b68623          	sb	x11,12(x13)
+     ###         path_planned[13] = (uint8_t)(end_point | 0x40u | (done << 7));
+ 1fc:	|  |  |                                            |  |     \-> 00771713          	slli	x14,x14,0x7
+ 200:	|  |  |                                            |  |         00e7e7b3          	or	x15,x15,x14
+ 204:	|  |  |                                            |  |         0407e793          	ori	x15,x15,64
+ 208:	|  |  |                                            |  |         00f10aa3          	sb	x15,21(x2)
+     ###     if (*(volatile uint8_t *)&path_planned[0] == (uint8_t)(*(volatile uint8_t *)&path_planned[13] & 63u)) {
+ 20c:	|  |  |  /-----------------------------------------|--|-------> 00814783          	lbu	x15,8(x2)
+ 210:	|  |  |  |                                         |  |         01514703          	lbu	x14,21(x2)
+ 214:	|  |  |  |                                         |  |         0ff7f793          	andi	x15,x15,255
+ 218:	|  |  |  |                                         |  |         03f77713          	andi	x14,x14,63
+ 21c:	|  |  |  |  /--------------------------------------|--|-------- 52f70c63          	beq	x14,x15,754 <Path_Planner_Dec.c.10848506+0x2d6>
+     ###     e = edge_ws(*(volatile uint8_t *)&path_planned[0], (uint8_t)(*(volatile uint8_t *)&path_planned[13] & 63u));
+ 220:	|  |  |  |  |                                      |  |         00814503          	lbu	x10,8(x2)
+ 224:	|  |  |  |  |                                      |  |         01514583          	lbu	x11,21(x2)
+ 228:	|  |  |  |  |                                      |  |         0ff57513          	andi	x10,x10,255
+ 22c:	|  |  |  |  |                                      |  |         03f5f593          	andi	x11,x11,63
+ 230:	|  |  |  |  |                                      |  |         5d0000ef          	jal	x1,800 <edge_ws>
+     ###     if (!e) return 1;
+ 234:	+--|--|--|--|--------------------------------------|--|-------- e40506e3          	beq	x10,x0,80 <main+0x28>
+     ###     *(volatile uint8_t *)&path_planned[1] = (uint8_t)(e & 63u);
+ 238:	|  |  |  |  |                                      |  |         03f57513          	andi	x10,x10,63
+ 23c:	|  |  |  |  |                                      |  |         00a104a3          	sb	x10,9(x2)
+     ###     if (*(volatile uint8_t *)&path_planned[1] == (uint8_t)(*(volatile uint8_t *)&path_planned[13] & 63u)) {
+ 240:	|  |  |  |  |                                      |  |         00914703          	lbu	x14,9(x2)
+ 244:	|  |  |  |  |                                      |  |         01514783          	lbu	x15,21(x2)
+ 248:	|  |  |  |  |                                      |  |         0ff77713          	andi	x14,x14,255
+ 24c:	|  |  |  |  |                                      |  |         03f7f793          	andi	x15,x15,63
+ 250:	|  |  |  |  |  /-----------------------------------|--|-------- 50f70663          	beq	x14,x15,75c <Path_Planner_Dec.c.10848506+0x2de>
+     ###     e = edge_ws(*(volatile uint8_t *)&path_planned[1], (uint8_t)(*(volatile uint8_t *)&path_planned[13] & 63u));
+ 254:	|  |  |  |  |  |                                   |  |         00914503          	lbu	x10,9(x2)
+ 258:	|  |  |  |  |  |                                   |  |         01514583          	lbu	x11,21(x2)
+ 25c:	|  |  |  |  |  |                                   |  |         0ff57513          	andi	x10,x10,255
+ 260:	|  |  |  |  |  |                                   |  |         03f5f593          	andi	x11,x11,63
+ 264:	|  |  |  |  |  |                                   |  |         59c000ef          	jal	x1,800 <edge_ws>
+     ###     if (!e) return 1;
+ 268:	+--|--|--|--|--|-----------------------------------|--|-------- e0050ce3          	beq	x10,x0,80 <main+0x28>
+     ###     *(volatile uint8_t *)&path_planned[2] = (uint8_t)(e & 63u);
+ 26c:	|  |  |  |  |  |                                   |  |         03f57513          	andi	x10,x10,63
+ 270:	|  |  |  |  |  |                                   |  |         00a10523          	sb	x10,10(x2)
+     ###     if (*(volatile uint8_t *)&path_planned[2] == (uint8_t)(*(volatile uint8_t *)&path_planned[13] & 63u)) {
+ 274:	|  |  |  |  |  |                                   |  |         00a14783          	lbu	x15,10(x2)
+ 278:	|  |  |  |  |  |                                   |  |         01514703          	lbu	x14,21(x2)
+ 27c:	|  |  |  |  |  |                                   |  |         0ff7f793          	andi	x15,x15,255
+ 280:	|  |  |  |  |  |                                   |  |         03f77713          	andi	x14,x14,63
+ 284:	|  |  |  |  |  |  /--------------------------------|--|-------- 4ef70063          	beq	x14,x15,764 <Path_Planner_Dec.c.10848506+0x2e6>
+     ###     e = edge_ws(*(volatile uint8_t *)&path_planned[2], (uint8_t)(*(volatile uint8_t *)&path_planned[13] & 63u));
+ 288:	|  |  |  |  |  |  |                                |  |         00a14503          	lbu	x10,10(x2)
+ 28c:	|  |  |  |  |  |  |                                |  |         01514583          	lbu	x11,21(x2)
+ 290:	|  |  |  |  |  |  |                                |  |         0ff57513          	andi	x10,x10,255
+ 294:	|  |  |  |  |  |  |                                |  |         03f5f593          	andi	x11,x11,63
+ 298:	|  |  |  |  |  |  |                                |  |         568000ef          	jal	x1,800 <edge_ws>
+     ###     if (!e) return 1;
+ 29c:	+--|--|--|--|--|--|--------------------------------|--|-------- de0502e3          	beq	x10,x0,80 <main+0x28>
+     ###     *(volatile uint8_t *)&path_planned[3] = (uint8_t)(e & 63u);
+ 2a0:	|  |  |  |  |  |  |                                |  |         03f57513          	andi	x10,x10,63
+ 2a4:	|  |  |  |  |  |  |                                |  |         00a105a3          	sb	x10,11(x2)
+     ###     if (*(volatile uint8_t *)&path_planned[3] == (uint8_t)(*(volatile uint8_t *)&path_planned[13] & 63u)) {
+ 2a8:	|  |  |  |  |  |  |                                |  |         00b14703          	lbu	x14,11(x2)
+ 2ac:	|  |  |  |  |  |  |                                |  |         01514783          	lbu	x15,21(x2)
+ 2b0:	|  |  |  |  |  |  |                                |  |         0ff77713          	andi	x14,x14,255
+ 2b4:	|  |  |  |  |  |  |                                |  |         03f7f793          	andi	x15,x15,63
+ 2b8:	|  |  |  |  |  |  |  /-----------------------------|--|-------- 4af70a63          	beq	x14,x15,76c <Path_Planner_Dec.c.10848506+0x2ee>
+     ###     e = edge_ws(*(volatile uint8_t *)&path_planned[3], (uint8_t)(*(volatile uint8_t *)&path_planned[13] & 63u));
+ 2bc:	|  |  |  |  |  |  |  |                             |  |         00b14503          	lbu	x10,11(x2)
+ 2c0:	|  |  |  |  |  |  |  |                             |  |         01514583          	lbu	x11,21(x2)
+ 2c4:	|  |  |  |  |  |  |  |                             |  |         0ff57513          	andi	x10,x10,255
+ 2c8:	|  |  |  |  |  |  |  |                             |  |         03f5f593          	andi	x11,x11,63
+ 2cc:	|  |  |  |  |  |  |  |                             |  |         534000ef          	jal	x1,800 <edge_ws>
+     ###     if (!e) return 1;
+ 2d0:	+--|--|--|--|--|--|--|-----------------------------|--|-------- da0508e3          	beq	x10,x0,80 <main+0x28>
+     ###     *(volatile uint8_t *)&path_planned[4] = (uint8_t)(e & 63u);
+ 2d4:	|  |  |  |  |  |  |  |                             |  |         03f57513          	andi	x10,x10,63
+ 2d8:	|  |  |  |  |  |  |  |                             |  |         00a10623          	sb	x10,12(x2)
+     ###     if (*(volatile uint8_t *)&path_planned[4] == (uint8_t)(*(volatile uint8_t *)&path_planned[13] & 63u)) {
+ 2dc:	|  |  |  |  |  |  |  |                             |  |         00c14783          	lbu	x15,12(x2)
+ 2e0:	|  |  |  |  |  |  |  |                             |  |         01514703          	lbu	x14,21(x2)
+ 2e4:	|  |  |  |  |  |  |  |                             |  |         0ff7f793          	andi	x15,x15,255
+ 2e8:	|  |  |  |  |  |  |  |                             |  |         03f77713          	andi	x14,x14,63
+ 2ec:	|  |  |  |  |  |  |  |  /--------------------------|--|-------- 48f70463          	beq	x14,x15,774 <Path_Planner_Dec.c.10848506+0x2f6>
+     ###     e = edge_ws(*(volatile uint8_t *)&path_planned[4], (uint8_t)(*(volatile uint8_t *)&path_planned[13] & 63u));
+ 2f0:	|  |  |  |  |  |  |  |  |                          |  |         00c14503          	lbu	x10,12(x2)
+ 2f4:	|  |  |  |  |  |  |  |  |                          |  |         01514583          	lbu	x11,21(x2)
+ 2f8:	|  |  |  |  |  |  |  |  |                          |  |         0ff57513          	andi	x10,x10,255
+ 2fc:	|  |  |  |  |  |  |  |  |                          |  |         03f5f593          	andi	x11,x11,63
+ 300:	|  |  |  |  |  |  |  |  |                          |  |         500000ef          	jal	x1,800 <edge_ws>
+     ###     if (!e) return 1;
+ 304:	+--|--|--|--|--|--|--|--|--------------------------|--|-------- d6050ee3          	beq	x10,x0,80 <main+0x28>
+     ###     *(volatile uint8_t *)&path_planned[5] = (uint8_t)(e & 63u);
+ 308:	|  |  |  |  |  |  |  |  |                          |  |         03f57513          	andi	x10,x10,63
+ 30c:	|  |  |  |  |  |  |  |  |                          |  |         00a106a3          	sb	x10,13(x2)
+     ###     if (*(volatile uint8_t *)&path_planned[5] == (uint8_t)(*(volatile uint8_t *)&path_planned[13] & 63u)) {
+ 310:	|  |  |  |  |  |  |  |  |                          |  |         00d14783          	lbu	x15,13(x2)
+ 314:	|  |  |  |  |  |  |  |  |                          |  |         01514703          	lbu	x14,21(x2)
+ 318:	|  |  |  |  |  |  |  |  |                          |  |         0ff7f793          	andi	x15,x15,255
+ 31c:	|  |  |  |  |  |  |  |  |                          |  |         03f77713          	andi	x14,x14,63
+ 320:	|  |  |  |  |  |  |  |  |  /-----------------------|--|-------- 44f70e63          	beq	x14,x15,77c <Path_Planner_Dec.c.10848506+0x2fe>
+     ###     e = edge_ws(*(volatile uint8_t *)&path_planned[5], (uint8_t)(*(volatile uint8_t *)&path_planned[13] & 63u));
+ 324:	|  |  |  |  |  |  |  |  |  |                       |  |         00d14503          	lbu	x10,13(x2)
+ 328:	|  |  |  |  |  |  |  |  |  |                       |  |         01514583          	lbu	x11,21(x2)
+ 32c:	|  |  |  |  |  |  |  |  |  |                       |  |         0ff57513          	andi	x10,x10,255
+ 330:	|  |  |  |  |  |  |  |  |  |                       |  |         03f5f593          	andi	x11,x11,63
+ 334:	|  |  |  |  |  |  |  |  |  |                       |  |         4cc000ef          	jal	x1,800 <edge_ws>
+     ###     if (!e) return 1;
+ 338:	+--|--|--|--|--|--|--|--|--|-----------------------|--|-------- d40504e3          	beq	x10,x0,80 <main+0x28>
+     ###     *(volatile uint8_t *)&path_planned[6] = (uint8_t)(e & 63u);
+ 33c:	|  |  |  |  |  |  |  |  |  |                       |  |         03f57513          	andi	x10,x10,63
+ 340:	|  |  |  |  |  |  |  |  |  |                       |  |         00a10723          	sb	x10,14(x2)
+     ###     if (*(volatile uint8_t *)&path_planned[6] == (uint8_t)(*(volatile uint8_t *)&path_planned[13] & 63u)) {
+ 344:	|  |  |  |  |  |  |  |  |  |                       |  |         00e14703          	lbu	x14,14(x2)
+ 348:	|  |  |  |  |  |  |  |  |  |                       |  |         01514783          	lbu	x15,21(x2)
+ 34c:	|  |  |  |  |  |  |  |  |  |                       |  |         0ff77713          	andi	x14,x14,255
+ 350:	|  |  |  |  |  |  |  |  |  |                       |  |         03f7f793          	andi	x15,x15,63
+ 354:	|  |  |  |  |  |  |  |  |  |  /--------------------|--|-------- 42f70863          	beq	x14,x15,784 <Path_Planner_Dec.c.10848506+0x306>
+     ###     e = edge_ws(*(volatile uint8_t *)&path_planned[6], (uint8_t)(*(volatile uint8_t *)&path_planned[13] & 63u));
+ 358:	|  |  |  |  |  |  |  |  |  |  |                    |  |         00e14503          	lbu	x10,14(x2)
+ 35c:	|  |  |  |  |  |  |  |  |  |  |                    |  |         01514583          	lbu	x11,21(x2)
+ 360:	|  |  |  |  |  |  |  |  |  |  |                    |  |         0ff57513          	andi	x10,x10,255
+ 364:	|  |  |  |  |  |  |  |  |  |  |                    |  |         03f5f593          	andi	x11,x11,63
+ 368:	|  |  |  |  |  |  |  |  |  |  |                    |  |         498000ef          	jal	x1,800 <edge_ws>
+     ###     if (!e) return 1;
+ 36c:	+--|--|--|--|--|--|--|--|--|--|--------------------|--|-------- d0050ae3          	beq	x10,x0,80 <main+0x28>
+     ###     *(volatile uint8_t *)&path_planned[7] = (uint8_t)(e & 63u);
+ 370:	|  |  |  |  |  |  |  |  |  |  |                    |  |         03f57513          	andi	x10,x10,63
+ 374:	|  |  |  |  |  |  |  |  |  |  |                    |  |         00a107a3          	sb	x10,15(x2)
+     ###     if (*(volatile uint8_t *)&path_planned[7] == (uint8_t)(*(volatile uint8_t *)&path_planned[13] & 63u)) {
+ 378:	|  |  |  |  |  |  |  |  |  |  |                    |  |         00f14783          	lbu	x15,15(x2)
+ 37c:	|  |  |  |  |  |  |  |  |  |  |                    |  |         01514703          	lbu	x14,21(x2)
+ 380:	|  |  |  |  |  |  |  |  |  |  |                    |  |         0ff7f793          	andi	x15,x15,255
+ 384:	|  |  |  |  |  |  |  |  |  |  |                    |  |         03f77713          	andi	x14,x14,63
+ 388:	|  |  |  |  |  |  |  |  |  |  |  /-----------------|--|-------- 40f70263          	beq	x14,x15,78c <Path_Planner_Dec.c.10848506+0x30e>
+     ###     e = edge_ws(*(volatile uint8_t *)&path_planned[7], (uint8_t)(*(volatile uint8_t *)&path_planned[13] & 63u));
+ 38c:	|  |  |  |  |  |  |  |  |  |  |  |                 |  |         00f14503          	lbu	x10,15(x2)
+ 390:	|  |  |  |  |  |  |  |  |  |  |  |                 |  |         01514583          	lbu	x11,21(x2)
+ 394:	|  |  |  |  |  |  |  |  |  |  |  |                 |  |         0ff57513          	andi	x10,x10,255
+ 398:	|  |  |  |  |  |  |  |  |  |  |  |                 |  |         03f5f593          	andi	x11,x11,63
+ 39c:	|  |  |  |  |  |  |  |  |  |  |  |                 |  |         464000ef          	jal	x1,800 <edge_ws>
+     ###     if (!e) return 1;
+ 3a0:	+--|--|--|--|--|--|--|--|--|--|--|-----------------|--|-------- ce0500e3          	beq	x10,x0,80 <main+0x28>
+     ###     *(volatile uint8_t *)&path_planned[8] = (uint8_t)(e & 63u);
+ 3a4:	|  |  |  |  |  |  |  |  |  |  |  |                 |  |         03f57513          	andi	x10,x10,63
+ 3a8:	|  |  |  |  |  |  |  |  |  |  |  |                 |  |         00a10823          	sb	x10,16(x2)
+     ###     if (*(volatile uint8_t *)&path_planned[8] == (uint8_t)(*(volatile uint8_t *)&path_planned[13] & 63u)) {
+ 3ac:	|  |  |  |  |  |  |  |  |  |  |  |                 |  |         01014783          	lbu	x15,16(x2)
+ 3b0:	|  |  |  |  |  |  |  |  |  |  |  |                 |  |         01514703          	lbu	x14,21(x2)
+ 3b4:	|  |  |  |  |  |  |  |  |  |  |  |                 |  |         0ff7f793          	andi	x15,x15,255
+ 3b8:	|  |  |  |  |  |  |  |  |  |  |  |                 |  |         03f77713          	andi	x14,x14,63
+ 3bc:	|  |  |  |  |  |  |  |  |  |  |  |  /--------------|--|-------- 3cf70c63          	beq	x14,x15,794 <Path_Planner_Dec.c.10848506+0x316>
+     ###     e = edge_ws(*(volatile uint8_t *)&path_planned[8], (uint8_t)(*(volatile uint8_t *)&path_planned[13] & 63u));
+ 3c0:	|  |  |  |  |  |  |  |  |  |  |  |  |              |  |         01014503          	lbu	x10,16(x2)
+ 3c4:	|  |  |  |  |  |  |  |  |  |  |  |  |              |  |         01514583          	lbu	x11,21(x2)
+ 3c8:	|  |  |  |  |  |  |  |  |  |  |  |  |              |  |         0ff57513          	andi	x10,x10,255
+ 3cc:	|  |  |  |  |  |  |  |  |  |  |  |  |              |  |         03f5f593          	andi	x11,x11,63
+ 3d0:	|  |  |  |  |  |  |  |  |  |  |  |  |              |  |         430000ef          	jal	x1,800 <edge_ws>
+     ###     if (!e) return 1;
+ 3d4:	+--|--|--|--|--|--|--|--|--|--|--|--|--------------|--|-------- ca0506e3          	beq	x10,x0,80 <main+0x28>
+     ###     *(volatile uint8_t *)&path_planned[9] = (uint8_t)(e & 63u);
+ 3d8:	|  |  |  |  |  |  |  |  |  |  |  |  |              |  |         03f57513          	andi	x10,x10,63
+ 3dc:	|  |  |  |  |  |  |  |  |  |  |  |  |              |  |         00a108a3          	sb	x10,17(x2)
+     ###     if (*(volatile uint8_t *)&path_planned[9] == (uint8_t)(*(volatile uint8_t *)&path_planned[13] & 63u)) {
+ 3e0:	|  |  |  |  |  |  |  |  |  |  |  |  |              |  |         01114783          	lbu	x15,17(x2)
+ 3e4:	|  |  |  |  |  |  |  |  |  |  |  |  |              |  |         01514703          	lbu	x14,21(x2)
+ 3e8:	|  |  |  |  |  |  |  |  |  |  |  |  |              |  |         0ff7f793          	andi	x15,x15,255
+ 3ec:	|  |  |  |  |  |  |  |  |  |  |  |  |              |  |         03f77713          	andi	x14,x14,63
+ 3f0:	|  |  |  |  |  |  |  |  |  |  |  |  |  /-----------|--|-------- 3af70663          	beq	x14,x15,79c <Path_Planner_Dec.c.10848506+0x31e>
+     ###     e = edge_ws(*(volatile uint8_t *)&path_planned[9], (uint8_t)(*(volatile uint8_t *)&path_planned[13] & 63u));
+ 3f4:	|  |  |  |  |  |  |  |  |  |  |  |  |  |           |  |         01114503          	lbu	x10,17(x2)
+ 3f8:	|  |  |  |  |  |  |  |  |  |  |  |  |  |           |  |         01514583          	lbu	x11,21(x2)
+ 3fc:	|  |  |  |  |  |  |  |  |  |  |  |  |  |           |  |         0ff57513          	andi	x10,x10,255
+ 400:	|  |  |  |  |  |  |  |  |  |  |  |  |  |           |  |         03f5f593          	andi	x11,x11,63
+ 404:	|  |  |  |  |  |  |  |  |  |  |  |  |  |           |  |         3fc000ef          	jal	x1,800 <edge_ws>
+     ###     if (!e) return 1;
+ 408:	+--|--|--|--|--|--|--|--|--|--|--|--|--|-----------|--|-------- c6050ce3          	beq	x10,x0,80 <main+0x28>
+     ###     *(volatile uint8_t *)&path_planned[10] = (uint8_t)(e & 63u);
+ 40c:	|  |  |  |  |  |  |  |  |  |  |  |  |  |           |  |         03f57513          	andi	x10,x10,63
+ 410:	|  |  |  |  |  |  |  |  |  |  |  |  |  |           |  |         00a10923          	sb	x10,18(x2)
+     ###     if (*(volatile uint8_t *)&path_planned[10] == (uint8_t)(*(volatile uint8_t *)&path_planned[13] & 63u)) {
+ 414:	|  |  |  |  |  |  |  |  |  |  |  |  |  |           |  |         01214783          	lbu	x15,18(x2)
+ 418:	|  |  |  |  |  |  |  |  |  |  |  |  |  |           |  |         01514703          	lbu	x14,21(x2)
+ 41c:	|  |  |  |  |  |  |  |  |  |  |  |  |  |           |  |         0ff7f793          	andi	x15,x15,255
+ 420:	|  |  |  |  |  |  |  |  |  |  |  |  |  |           |  |         03f77713          	andi	x14,x14,63
+ 424:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  /--------|--|-------- 38f70063          	beq	x14,x15,7a4 <Path_Planner_Dec.c.10848506+0x326>
+     ###     e = edge_ws(*(volatile uint8_t *)&path_planned[10], (uint8_t)(*(volatile uint8_t *)&path_planned[13] & 63u));
+ 428:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |        |  |         01214503          	lbu	x10,18(x2)
+ 42c:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |        |  |         01514583          	lbu	x11,21(x2)
+ 430:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |        |  |         0ff57513          	andi	x10,x10,255
+ 434:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |        |  |         03f5f593          	andi	x11,x11,63
+ 438:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |        |  |         3c8000ef          	jal	x1,800 <edge_ws>
+     ###     if (!e) return 1;
+ 43c:	+--|--|--|--|--|--|--|--|--|--|--|--|--|--|--------|--|-------- c40502e3          	beq	x10,x0,80 <main+0x28>
+     ###     *(volatile uint8_t *)&path_planned[11] = (uint8_t)(e & 63u);
+ 440:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |        |  |         03f57513          	andi	x10,x10,63
+ 444:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |        |  |         00a109a3          	sb	x10,19(x2)
+     ###     if (*(volatile uint8_t *)&path_planned[11] == (uint8_t)(*(volatile uint8_t *)&path_planned[13] & 63u)) {
+ 448:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |        |  |         01314703          	lbu	x14,19(x2)
+ 44c:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |        |  |         01514783          	lbu	x15,21(x2)
+ 450:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |        |  |         0ff77713          	andi	x14,x14,255
+ 454:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |        |  |         03f7f793          	andi	x15,x15,63
+ 458:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  /-----|--|-------- 34f70a63          	beq	x14,x15,7ac <Path_Planner_Dec.c.10848506+0x32e>
+     ###     e = edge_ws(*(volatile uint8_t *)&path_planned[11], (uint8_t)(*(volatile uint8_t *)&path_planned[13] & 63u));
+ 45c:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |     |  |         01314503          	lbu	x10,19(x2)
+ 460:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |     |  |         01514583          	lbu	x11,21(x2)
+ 464:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |     |  |         0ff57513          	andi	x10,x10,255
+ 468:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |     |  |         03f5f593          	andi	x11,x11,63
+ 46c:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |     |  |         394000ef          	jal	x1,800 <edge_ws>
+     ###     if (!e) return 1;
+ 470:	+--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|-----|--|-------- c00508e3          	beq	x10,x0,80 <main+0x28>
+     ###     *(volatile uint8_t *)&path_planned[12] = (uint8_t)(e & 63u);
+ 474:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |     |  |         03f57513          	andi	x10,x10,63
+ 478:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |     |  |         00a10a23          	sb	x10,20(x2)
+     ###     if (*(volatile uint8_t *)&path_planned[12] == (uint8_t)(*(volatile uint8_t *)&path_planned[13] & 63u)) {
+ 47c:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |     |  |         01414703          	lbu	x14,20(x2)
+ 480:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |     |  |         01514783          	lbu	x15,21(x2)
+ 484:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |     |  |         0ff77713          	andi	x14,x14,255
+ 488:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |     |  |         03f7f793          	andi	x15,x15,63
+ 48c:	+--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|-----|--|-------- bef71ae3          	bne	x14,x15,80 <main+0x28>
+     ###         idx = 13u;
+ 490:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |     |  |         00d00793          	addi	x15,x0,13
+     ###     is_encrypted = (uint8_t)((path_planned[13] >> 6) & 1u);
+ 494:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  /--|--|-------> 01514703          	lbu	x14,21(x2)
+ 498:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |         00675693          	srli	x13,x14,0x6
+     ###     if (is_encrypted) {
+ 49c:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |         0016f693          	andi	x13,x13,1
+ 4a0:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  /----- 04068463          	beq	x13,x0,4e8 <Path_Planner_Dec.c.10848506+0x6a>
+     ###     if (is_encrypted && !(path_planned[13] & 0x80u)) CURRENT_NODE = (uint8_t)(path_planned[13] & 63u);
+ 4a4:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |      01871893          	slli	x17,x14,0x18
+ 4a8:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |      4188d893          	srai	x17,x17,0x18
+     ###         message[0] = path_planned[14];
+ 4ac:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |      01614803          	lbu	x16,22(x2)
+     ###         message[1] = path_planned[15];
+ 4b0:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |      01714503          	lbu	x10,23(x2)
+     ###         message[2] = path_planned[16];
+ 4b4:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |      01814583          	lbu	x11,24(x2)
+     ###         message[3] = path_planned[17];
+ 4b8:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |      01914603          	lbu	x12,25(x2)
+     ###         message[4] = path_planned[18];
+ 4bc:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |      01a14683          	lbu	x13,26(x2)
+     ###     if (is_encrypted && !(path_planned[13] & 0x80u)) CURRENT_NODE = (uint8_t)(path_planned[13] & 63u);
+ 4c0:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  /-- 0008c863          	blt	x17,x0,4d0 <Path_Planner_Dec.c.10848506+0x52>
+ 4c4:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |   03f77713          	andi	x14,x14,63
+ 4c8:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |   020008b7          	lui	x17,0x2000
+ 4cc:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |   00e886a3          	sb	x14,13(x17) # 200000d <__bss_end+0xd>
+     ###         MESSAGE_0 = message[0];
+ 4d0:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  \-> 02000737          	lui	x14,0x2000
+ 4d4:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |      01070823          	sb	x16,16(x14) # 2000010 <__bss_end+0x10>
+     ###         MESSAGE_1 = message[1];
+ 4d8:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |      00a708a3          	sb	x10,17(x14)
+     ###         MESSAGE_2 = message[2];
+ 4dc:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |      00b70923          	sb	x11,18(x14)
+     ###         MESSAGE_3 = message[3];
+ 4e0:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |      00c709a3          	sb	x12,19(x14)
+     ###         MESSAGE_4 = message[4];
+ 4e4:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |      00d70a23          	sb	x13,20(x14)
+     ###         idx = 13u;
+ 4e8:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  \----> 00000713          	addi	x14,x0,0
+     ###         NODE_POINT = path_planned[i];
+ 4ec:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |         020006b7          	lui	x13,0x2000
+ 4f0:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |     /-> 00810613          	addi	x12,x2,8
+ 4f4:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |     |   00e60633          	add	x12,x12,x14
+ 4f8:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |     |   00064603          	lbu	x12,0(x12)
+     ###     for (int i = 0; i < idx; ++i) {
+ 4fc:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |     |   00170713          	addi	x14,x14,1
+     ###         NODE_POINT = path_planned[i];
+ 500:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |     |   00c68c23          	sb	x12,24(x13) # 2000018 <__bss_end+0x18>
+     ###     for (int i = 0; i < idx; ++i) {
+ 504:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |     \-- fef746e3          	blt	x14,x15,4f0 <Path_Planner_Dec.c.10848506+0x72>
+     ###     CPU_DONE = 1;
+ 508:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |         00100793          	addi	x15,x0,1
+ 50c:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |         00f68e23          	sb	x15,28(x13)
+     ###     return 0;
+ 510:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |         00000513          	addi	x10,x0,0
+ 514:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  \--|-------- b71ff06f          	jal	x0,84 <main+0x2c>
+     ###         key_prev_ws(w, *round);
+ 518:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |     \-------> 01a14783          	lbu	x15,26(x2)
+     ###     uint32_t h = RD32(k);
+ 51c:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |               01012f83          	lw	x31,16(x2)
+     ###     v ^= (uint32_t)(r >> 1);
+ 520:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |               01412703          	lw	x14,20(x2)
+     ###         key_prev_ws(w, *round);
+ 524:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |               0ff7f793          	andi	x15,x15,255
+     ###     v ^= (uint32_t)(r >> 1);
+ 528:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |               0017d693          	srli	x13,x15,0x1
+     ###     l ^= (uint16_t)((r & 1u) << 15);
+ 52c:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |               00f79e93          	slli	x29,x15,0xf
+ 530:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |               01815783          	lhu	x15,24(x2)
+     ###     v ^= (uint32_t)(r >> 1);
+ 534:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |               00e6c6b3          	xor	x13,x13,x14
+     ###     h = (h & 0x0FFFFFFFu) | ((uint32_t)PIS(h >> 28) << 28);
+ 538:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |               00afff33          	and	x30,x31,x10
+     ###     l ^= (uint16_t)((r & 1u) << 15);
+ 53c:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |               00feceb3          	xor	x29,x29,x15
+ 540:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |               010e9e93          	slli	x29,x29,0x10
+ 544:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |               010ede93          	srli	x29,x29,0x10
+     ###     h = (h & 0x0FFFFFFFu) | ((uint32_t)PIS(h >> 28) << 28);
+ 548:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |               01cfd713          	srli	x14,x31,0x1c
+ 54c:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |               00060793          	addi	x15,x12,0
+ 550:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |           /-- 000fc463          	blt	x31,x0,558 <Path_Planner_Dec.c.10848506+0xda>
+ 554:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |           |   00058793          	addi	x15,x11,0
+ 558:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |           \-> 00271713          	slli	x14,x14,0x2
+ 55c:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |               01c77713          	andi	x14,x14,28
+ 560:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |               00e7d7b3          	srl	x15,x15,x14
+ 564:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |               01c79793          	slli	x15,x15,0x1c
+ 568:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |               01e7e7b3          	or	x15,x15,x30
+     ###     nh = (h << 19) | (v >> 13);
+ 56c:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |               00d6d713          	srli	x14,x13,0xd
+ 570:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |               013f1f13          	slli	x30,x30,0x13
+ 574:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |               00ef6f33          	or	x30,x30,x14
+     ###     nm = (v << 19) | ((uint32_t)l << 3) | (h >> 29);
+ 578:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |               01369713          	slli	x14,x13,0x13
+ 57c:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |               003e9693          	slli	x13,x29,0x3
+ 580:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |               00d76733          	or	x14,x14,x13
+ 584:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |               01d7d693          	srli	x13,x15,0x1d
+ 588:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |               00d76733          	or	x14,x14,x13
+     ###     WR32(k, nh);
+ 58c:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |               008f5693          	srli	x13,x30,0x8
+ 590:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |               00d108a3          	sb	x13,17(x2)
+ 594:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |               010f5693          	srli	x13,x30,0x10
+ 598:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |               00d10923          	sb	x13,18(x2)
+     ###     WR32(k + 4, nm);
+ 59c:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |               00875693          	srli	x13,x14,0x8
+ 5a0:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |               00e10a23          	sb	x14,20(x2)
+ 5a4:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |               00d10aa3          	sb	x13,21(x2)
+ 5a8:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |               01075693          	srli	x13,x14,0x10
+ 5ac:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |               01875713          	srli	x14,x14,0x18
+ 5b0:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |               00e10ba3          	sb	x14,23(x2)
+     ###     WR16(k + 8, (uint16_t)((h >> 13) | ((h >> 21) << 8)));
+ 5b4:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |               00d7d713          	srli	x14,x15,0xd
+ 5b8:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |               0157d793          	srli	x15,x15,0x15
+ 5bc:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |               00879793          	slli	x15,x15,0x8
+ 5c0:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |               00e7e7b3          	or	x15,x15,x14
+ 5c4:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |               01079793          	slli	x15,x15,0x10
+ 5c8:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |               0107d793          	srli	x15,x15,0x10
+     ###     uint32_t a = RD32(w), b = RD32(w + 4), oh = 0, ol = 0;
+ 5cc:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |               00812283          	lw	x5,8(x2)
+ 5d0:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |               00c12383          	lw	x7,12(x2)
+     ###     WR32(k, nh);
+ 5d4:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |               01e10823          	sb	x30,16(x2)
+     ###     WR16(k + 8, (uint16_t)((h >> 13) | ((h >> 21) << 8)));
+ 5d8:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |               0087d793          	srli	x15,x15,0x8
+     ###     WR32(k, nh);
+ 5dc:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |               018f5f13          	srli	x30,x30,0x18
+ 5e0:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |               01e109a3          	sb	x30,19(x2)
+     ###     WR32(k + 4, nm);
+ 5e4:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |               00d10b23          	sb	x13,22(x2)
+     ###     WR16(k + 8, (uint16_t)((h >> 13) | ((h >> 21) << 8)));
+ 5e8:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |               00e10c23          	sb	x14,24(x2)
+ 5ec:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |               00f10ca3          	sb	x15,25(x2)
+     ###     uint32_t a = RD32(w), b = RD32(w + 4), oh = 0, ol = 0;
+ 5f0:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |               00000693          	addi	x13,x0,0
+ 5f4:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |               00000e93          	addi	x29,x0,0
+ 5f8:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |               00000f13          	addi	x30,x0,0
+     ###                      | (((a >> c) & 1u) << 2)
+ 5fc:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |           /-> 00d2d7b3          	srl	x15,x5,x13
+ 600:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |           |   00279793          	slli	x15,x15,0x2
+     ###         uint32_t nib = ((b >> c) & 1u)
+ 604:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |           |   00d3dfb3          	srl	x31,x7,x13
+ 608:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |           |   01068713          	addi	x14,x13,16
+ 60c:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |           |   001fff93          	andi	x31,x31,1
+     ###                      | (((a >> c) & 1u) << 2)
+ 610:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |           |   0047f793          	andi	x15,x15,4
+ 614:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |           |   01f7e7b3          	or	x15,x15,x31
+     ###                      | (((b >> (c + 16u)) & 1u) << 1)
+ 618:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |           |   00e3dfb3          	srl	x31,x7,x14
+ 61c:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |           |   001f9f93          	slli	x31,x31,0x1
+     ###                      | (((a >> (c + 16u)) & 1u) << 3);
+ 620:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |           |   00e2d733          	srl	x14,x5,x14
+     ###                      | (((b >> (c + 16u)) & 1u) << 1)
+ 624:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |           |   002fff93          	andi	x31,x31,2
+     ###                      | (((a >> (c + 16u)) & 1u) << 3);
+ 628:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |           |   00371713          	slli	x14,x14,0x3
+ 62c:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |           |   00877713          	andi	x14,x14,8
+     ###                      | (((a >> c) & 1u) << 2)
+ 630:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |           |   01f7e7b3          	or	x15,x15,x31
+     ###         uint32_t nib = ((b >> c) & 1u)
+ 634:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |           |   00e7e7b3          	or	x15,x15,x14
+     ###         if (c < 8u) ol |= nib << (c << 2);
+ 638:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |           |   00269713          	slli	x14,x13,0x2
+ 63c:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |     /-----|-- 0ed8e463          	bltu	x17,x13,724 <Path_Planner_Dec.c.10848506+0x2a6>
+ 640:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |     |     |   00e797b3          	sll	x15,x15,x14
+ 644:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |     |     |   00ff6f33          	or	x30,x30,x15
+     ###     for (c = 0; c < 16u; ++c) {
+ 648:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  /--|-----|-> 00168693          	addi	x13,x13,1
+ 64c:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |     \-- fa6698e3          	bne	x13,x6,5fc <Path_Planner_Dec.c.10848506+0x17e>
+ 650:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |         00000f93          	addi	x31,x0,0
+     ###     uint32_t h = RD32(w), l = RD32(w + 4), nh = 0, nl = 0;
+ 654:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |         00000793          	addi	x15,x0,0
+ 658:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |         00000713          	addi	x14,x0,0
+     ###         nh |= (uint32_t)PIS((h >> sh) & 15u) << sh;
+ 65c:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  /----> 01fed2b3          	srl	x5,x29,x31
+ 660:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |      0082f393          	andi	x7,x5,8
+ 664:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |      00060693          	addi	x13,x12,0
+ 668:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  /-- 00039463          	bne	x7,x0,670 <Path_Planner_Dec.c.10848506+0x1f2>
+ 66c:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |   00058693          	addi	x13,x11,0
+ 670:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  \-> 00229293          	slli	x5,x5,0x2
+ 674:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |      01c2f293          	andi	x5,x5,28
+ 678:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |      0056d6b3          	srl	x13,x13,x5
+ 67c:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |      00f6f693          	andi	x13,x13,15
+     ###         nl |= (uint32_t)PIS((l >> sh) & 15u) << sh;
+ 680:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |      01ff52b3          	srl	x5,x30,x31
+     ###         nh |= (uint32_t)PIS((h >> sh) & 15u) << sh;
+ 684:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |      01f696b3          	sll	x13,x13,x31
+     ###         nl |= (uint32_t)PIS((l >> sh) & 15u) << sh;
+ 688:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |      0082f393          	andi	x7,x5,8
+     ###         nh |= (uint32_t)PIS((h >> sh) & 15u) << sh;
+ 68c:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |      00d76733          	or	x14,x14,x13
+     ###         nl |= (uint32_t)PIS((l >> sh) & 15u) << sh;
+ 690:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |      00060693          	addi	x13,x12,0
+ 694:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  /-- 00039463          	bne	x7,x0,69c <Path_Planner_Dec.c.10848506+0x21e>
+ 698:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |   00058693          	addi	x13,x11,0
+ 69c:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  \-> 00229293          	slli	x5,x5,0x2
+ 6a0:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |      01c2f293          	andi	x5,x5,28
+ 6a4:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |      0056d6b3          	srl	x13,x13,x5
+ 6a8:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |      00f6f693          	andi	x13,x13,15
+ 6ac:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |      01f696b3          	sll	x13,x13,x31
+     ###     for (i = 0; i < 8u; ++i) {
+ 6b0:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |      004f8f93          	addi	x31,x31,4
+     ###         nl |= (uint32_t)PIS((l >> sh) & 15u) << sh;
+ 6b4:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |      00d7e7b3          	or	x15,x15,x13
+     ###     for (i = 0; i < 8u; ++i) {
+ 6b8:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  \----- fbcf92e3          	bne	x31,x28,65c <Path_Planner_Dec.c.10848506+0x1de>
+     ###     WR32(w, nh);
+ 6bc:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |         00875693          	srli	x13,x14,0x8
+ 6c0:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |         00e10423          	sb	x14,8(x2)
+ 6c4:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |         00d104a3          	sb	x13,9(x2)
+ 6c8:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |         01075693          	srli	x13,x14,0x10
+ 6cc:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |         01875713          	srli	x14,x14,0x18
+ 6d0:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |         00e105a3          	sb	x14,11(x2)
+     ###     WR32(w + 4, nl);
+ 6d4:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |         0087d713          	srli	x14,x15,0x8
+ 6d8:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |         00f10623          	sb	x15,12(x2)
+ 6dc:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |         00e106a3          	sb	x14,13(x2)
+ 6e0:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |         0107d713          	srli	x14,x15,0x10
+ 6e4:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |         0187d793          	srli	x15,x15,0x18
+ 6e8:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |         00f107a3          	sb	x15,15(x2)
+     ###     WR32(w, nh);
+ 6ec:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |         00d10523          	sb	x13,10(x2)
+     ###     WR32(w + 4, nl);
+ 6f0:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |         00e10723          	sb	x14,14(x2)
+ 6f4:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |         00810793          	addi	x15,x2,8
+     ###         for (uint8_t i = 0; i < 8u; ++i) w[i] ^= w[i + 8u];
+ 6f8:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |     /-> 0007c703          	lbu	x14,0(x15)
+ 6fc:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |     |   0087c683          	lbu	x13,8(x15)
+ 700:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |     |   00178793          	addi	x15,x15,1
+ 704:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |     |   00d74733          	xor	x14,x14,x13
+ 708:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |     |   fee78fa3          	sb	x14,-1(x15)
+ 70c:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |     \-- fef816e3          	bne	x16,x15,6f8 <Path_Planner_Dec.c.10848506+0x27a>
+     ###         --*round;
+ 710:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |         01a14783          	lbu	x15,26(x2)
+ 714:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |         fff78793          	addi	x15,x15,-1
+ 718:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |         0ff7f793          	andi	x15,x15,255
+ 71c:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |         00f10d23          	sb	x15,26(x2)
+ 720:	|  |  \--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|-------- a5dff06f          	jal	x0,17c <__stack_size+0xc4>
+     ###         else oh |= nib << ((c - 8u) << 2);
+ 724:	|  |     |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  \-------> fe070713          	addi	x14,x14,-32
+ 728:	|  |     |  |  |  |  |  |  |  |  |  |  |  |  |  |  |            00e797b3          	sll	x15,x15,x14
+ 72c:	|  |     |  |  |  |  |  |  |  |  |  |  |  |  |  |  |            00feeeb3          	or	x29,x29,x15
+ 730:	|  |     |  |  |  |  |  |  |  |  |  |  |  |  |  |  \----------- f19ff06f          	jal	x0,648 <Path_Planner_Dec.c.10848506+0x1ca>
+     ###         end_point = NEXT_NODE;
+ 734:	|  \-----|--|--|--|--|--|--|--|--|--|--|--|--|--|-------------> 00c74703          	lbu	x14,12(x14)
+ 738:	|        |  |  |  |  |  |  |  |  |  |  |  |  |  |               0ff77713          	andi	x14,x14,255
+     ###         if (end_point < 1u || end_point > 36u) return 1;
+ 73c:	|        |  |  |  |  |  |  |  |  |  |  |  |  |  |               fff70693          	addi	x13,x14,-1
+ 740:	|        |  |  |  |  |  |  |  |  |  |  |  |  |  |               0ff6f693          	andi	x13,x13,255
+ 744:	\--------|--|--|--|--|--|--|--|--|--|--|--|--|--|-------------- 92d5eee3          	bltu	x11,x13,80 <main+0x28>
+     ###         path_planned[13] = end_point;
+ 748:	         |  |  |  |  |  |  |  |  |  |  |  |  |  |               00e10aa3          	sb	x14,21(x2)
+     ###         *(volatile uint8_t *)&path_planned[0] = start_point;
+ 74c:	         |  |  |  |  |  |  |  |  |  |  |  |  |  |               00f10423          	sb	x15,8(x2)
+ 750:	         \--|--|--|--|--|--|--|--|--|--|--|--|--|-------------- abdff06f          	jal	x0,20c <__ram_size+0xc>
+     ###         idx = 1u;
+ 754:	            \--|--|--|--|--|--|--|--|--|--|--|--|-------------> 00100793          	addi	x15,x0,1
+ 758:	               |  |  |  |  |  |  |  |  |  |  |  +-------------- d3dff06f          	jal	x0,494 <Path_Planner_Dec.c.10848506+0x16>
+     ###         idx = 2u;
+ 75c:	               \--|--|--|--|--|--|--|--|--|--|--|-------------> 00200793          	addi	x15,x0,2
+ 760:	                  |  |  |  |  |  |  |  |  |  |  +-------------- d35ff06f          	jal	x0,494 <Path_Planner_Dec.c.10848506+0x16>
+     ###         idx = 3u;
+ 764:	                  \--|--|--|--|--|--|--|--|--|--|-------------> 00300793          	addi	x15,x0,3
+ 768:	                     |  |  |  |  |  |  |  |  |  +-------------- d2dff06f          	jal	x0,494 <Path_Planner_Dec.c.10848506+0x16>
+     ###         idx = 4u;
+ 76c:	                     \--|--|--|--|--|--|--|--|--|-------------> 00400793          	addi	x15,x0,4
+ 770:	                        |  |  |  |  |  |  |  |  +-------------- d25ff06f          	jal	x0,494 <Path_Planner_Dec.c.10848506+0x16>
+     ###         idx = 5u;
+ 774:	                        \--|--|--|--|--|--|--|--|-------------> 00500793          	addi	x15,x0,5
+ 778:	                           |  |  |  |  |  |  |  +-------------- d1dff06f          	jal	x0,494 <Path_Planner_Dec.c.10848506+0x16>
+     ###         idx = 6u;
+ 77c:	                           \--|--|--|--|--|--|--|-------------> 00600793          	addi	x15,x0,6
+ 780:	                              |  |  |  |  |  |  +-------------- d15ff06f          	jal	x0,494 <Path_Planner_Dec.c.10848506+0x16>
+     ###         idx = 7u;
+ 784:	                              \--|--|--|--|--|--|-------------> 00700793          	addi	x15,x0,7
+ 788:	                                 |  |  |  |  |  +-------------- d0dff06f          	jal	x0,494 <Path_Planner_Dec.c.10848506+0x16>
+     ###         idx = 8u;
+ 78c:	                                 \--|--|--|--|--|-------------> 00800793          	addi	x15,x0,8
+ 790:	                                    |  |  |  |  +-------------- d05ff06f          	jal	x0,494 <Path_Planner_Dec.c.10848506+0x16>
+     ###         idx = 9u;
+ 794:	                                    \--|--|--|--|-------------> 00900793          	addi	x15,x0,9
+ 798:	                                       |  |  |  +-------------- cfdff06f          	jal	x0,494 <Path_Planner_Dec.c.10848506+0x16>
+     ###         idx = 10u;
+ 79c:	                                       \--|--|--|-------------> 00a00793          	addi	x15,x0,10
+ 7a0:	                                          |  |  +-------------- cf5ff06f          	jal	x0,494 <Path_Planner_Dec.c.10848506+0x16>
+     ###         idx = 11u;
+ 7a4:	                                          \--|--|-------------> 00b00793          	addi	x15,x0,11
+ 7a8:	                                             |  +-------------- cedff06f          	jal	x0,494 <Path_Planner_Dec.c.10848506+0x16>
+     ###         idx = 12u;
+ 7ac:	                                             \--|-------------> 00c00793          	addi	x15,x0,12
+ 7b0:	                                                \-------------- ce5ff06f          	jal	x0,494 <Path_Planner_Dec.c.10848506+0x16>
+
+000007b4 <select_edge>:
+     ###     uint16_t m0 = (uint16_t)(0u - (uint16_t)(k == 0u));
+ 7b4:	00153793          	sltiu	x15,x10,1
+ 7b8:	40f007b3          	sub	x15,x0,x15
+     ###     return (uint16_t)((a & m0) | (b & m1) | (c & m2) | (d & m3));
+ 7bc:	00f5f5b3          	and	x11,x11,x15
+     ###     uint16_t m1 = (uint16_t)(0u - (uint16_t)(k == 1u));
+ 7c0:	fff50793          	addi	x15,x10,-1
+ 7c4:	0017b793          	sltiu	x15,x15,1
+ 7c8:	40f007b3          	sub	x15,x0,x15
+     ###     return (uint16_t)((a & m0) | (b & m1) | (c & m2) | (d & m3));
+ 7cc:	00f67633          	and	x12,x12,x15
+     ###     uint16_t m2 = (uint16_t)(0u - (uint16_t)(k == 2u));
+ 7d0:	ffe50793          	addi	x15,x10,-2
+ 7d4:	0017b793          	sltiu	x15,x15,1
+ 7d8:	40f007b3          	sub	x15,x0,x15
+     ###     return (uint16_t)((a & m0) | (b & m1) | (c & m2) | (d & m3));
+ 7dc:	00f6f6b3          	and	x13,x13,x15
+     ###     uint16_t m3 = (uint16_t)(0u - (uint16_t)(k == 3u));
+ 7e0:	ffd50793          	addi	x15,x10,-3
+ 7e4:	0017b793          	sltiu	x15,x15,1
+     ###     return (uint16_t)((a & m0) | (b & m1) | (c & m2) | (d & m3));
+ 7e8:	00c5e5b3          	or	x11,x11,x12
+     ###     uint16_t m3 = (uint16_t)(0u - (uint16_t)(k == 3u));
+ 7ec:	40f007b3          	sub	x15,x0,x15
+     ###     return (uint16_t)((a & m0) | (b & m1) | (c & m2) | (d & m3));
+ 7f0:	00d5e5b3          	or	x11,x11,x13
+ 7f4:	00f77533          	and	x10,x14,x15
+     ### }
+ 7f8:	00a5e533          	or	x10,x11,x10
+ 7fc:	00008067          	jalr	x0,0(x1)
+
+00000800 <edge_ws>:
+     ###     uint8_t i = (uint8_t)(dst - 1u);
+ 800:	                                                                            fff58593          	addi	x11,x11,-1
+     ###         if (src <= 18u) {
+ 804:	                                                                            01200793          	addi	x15,x0,18
+     ### static __attribute__((noinline)) uint16_t edge_ws(uint8_t src, uint8_t dst) {
+ 808:	                                                                            00050713          	addi	x14,x10,0
+     ###     uint8_t i = (uint8_t)(dst - 1u);
+ 80c:	                                                                            0ff5f593          	andi	x11,x11,255
+     ###         if (src <= 18u) {
+ 810:	                                                         /----------------- 14a7e663          	bltu	x15,x10,95c <edge_ws+0x15c>
+     ###             if (src <= 9u) {
+ 814:	                                                         |                  00900793          	addi	x15,x0,9
+ 818:	                                                         |     /----------- 0ca7e863          	bltu	x15,x10,8e8 <edge_ws+0xe8>
+     ###                 if (src <= 5u) {
+ 81c:	                                                         |     |            00500793          	addi	x15,x0,5
+ 820:	                                                         |     |     /----- 08a7e863          	bltu	x15,x10,8b0 <edge_ws+0xb0>
+     ###                     if (src <= 3u) {
+ 824:	                                                         |     |     |      00300793          	addi	x15,x0,3
+ 828:	                                                         |     |     |  /-- 00a7ee63          	bltu	x15,x10,844 <edge_ws+0x44>
+     ###                             if (src <= 1u) {
+ 82c:	                                                         |     |     |  |   ffe50793          	addi	x15,x10,-2
+ 830:	                                                         |     |     |  |   0ff7f793          	andi	x15,x15,255
+ 834:	                                                         |     |     |  |   00100693          	addi	x13,x0,1
+ 838:	                  /--------------------------------------|-----|-----|--|-- 20f6ea63          	bltu	x13,x15,a4c <edge_ws+0x24c>
+     ###                                 c = 0x00000000u;
+ 83c:	                  |  /-----------------------------------|-----|-----|--|-> 00000613          	addi	x12,x0,0
+ 840:	                  |  |                                   |     |  /--|--|-- 0c80006f          	jal	x0,908 <edge_ws+0x108>
+     ###                         if (src <= 4u) {
+ 844:	                  |  |                                   |     |  |  |  \-> 00400793          	addi	x15,x0,4
+ 848:	               /--|--|-----------------------------------|-----|--|--|----- 20f50e63          	beq	x10,x15,a64 <edge_ws+0x264>
+     ###                             b = 0xA6AAAAAAu;
+ 84c:	               |  |  |                                   |     |  |  |      a6aab6b7          	lui	x13,0xa6aab
+     ###                             c = 0x00000019u;
+ 850:	               |  |  |                                   |     |  |  |      01900613          	addi	x12,x0,25
+     ###                             b = 0xA6AAAAAAu;
+ 854:	               |  |  |                                   |     |  |  |      aaa68693          	addi	x13,x13,-1366 # a6aaaaaa <__global_pointer$+0xa4aaa2aa>
+     ###                             a = 0x95A69000u;
+ 858:	               |  |  |                                   |     |  |  |      95a697b7          	lui	x15,0x95a69
+     ###     if (i < 16u) row = a;
+ 85c:	         /-----|--|--|-----------------------------------|-----|--|--|----> 00f00513          	addi	x10,x0,15
+ 860:	         |     |  |  |                                   |     |  |  |  /-- 00b57a63          	bgeu	x10,x11,874 <edge_ws+0x74>
+     ###     else if (i < 32u) row = b;
+ 864:	         |     |  |  |                                   |     |  |  |  |   01f00513          	addi	x10,x0,31
+ 868:	         |     |  |  |                                   |     |  |  |  |   00068793          	addi	x15,x13,0
+ 86c:	         |     |  |  |                                   |     |  |  |  +-- 00b57463          	bgeu	x10,x11,874 <edge_ws+0x74>
+     ###     else row = c;
+ 870:	         |     |  |  |                                   |     |  |  |  |   00060793          	addi	x15,x12,0
+     ###     if (n == 0u || n > 36u) return 0;
+ 874:	         |     |  |  |                                   |     |  |  |  \-> fff70693          	addi	x13,x14,-1
+ 878:	         |     |  |  |                                   |     |  |  |      0ff6f693          	andi	x13,x13,255
+ 87c:	         |     |  |  |                                   |     |  |  |      02300613          	addi	x12,x0,35
+ 880:	/--------|-----|--|--|-----------------------------------|-----|--|--|----- 64d66e63          	bltu	x12,x13,edc <edge_ws+0x6dc>
+     ###     return (uint8_t)((row >> ((i & 15u) << 1)) & 3u);
+ 884:	|        |     |  |  |                                   |     |  |  |      00159513          	slli	x10,x11,0x1
+ 888:	|        |     |  |  |                                   |     |  |  |      01e57513          	andi	x10,x10,30
+ 88c:	|        |     |  |  |                                   |     |  |  |      00a7d7b3          	srl	x15,x15,x10
+ 890:	|        |     |  |  |                                   |     |  |  |      0037f513          	andi	x10,x15,3
+     ###     if (n == 20u) return select_edge(k, 0x0155u, 0x02C8u, 0x02DBu, 0x0000u);
+ 894:	|        |     |  |  |                                   |     |  |  |      01400793          	addi	x15,x0,20
+ 898:	|        |  /--|--|--|-----------------------------------|-----|--|--|----- 26f71c63          	bne	x14,x15,b10 <edge_ws+0x310>
+ 89c:	|        |  |  |  |  |                                   |     |  |  |      00000713          	addi	x14,x0,0
+ 8a0:	|        |  |  |  |  |                                   |     |  |  |      2db00693          	addi	x13,x0,731
+ 8a4:	|        |  |  |  |  |                                   |     |  |  |      2c800613          	addi	x12,x0,712
+     ###                             return select_edge(k, 0x0155u, 0x0000u, 0x02C8u, 0x02DBu);
+ 8a8:	|     /--|--|--|--|--|-----------------------------------|-----|--|--|----> 15500593          	addi	x11,x0,341
+ 8ac:	|  /--|--|--|--|--|--|-----------------------------------|-----|--|--|----- 2a40006f          	jal	x0,b50 <edge_ws+0x350>
+     ###                     if (src <= 7u) {
+ 8b0:	|  |  |  |  |  |  |  |                                   |     |  |  \----> 00700793          	addi	x15,x0,7
+ 8b4:	|  |  |  |  |  |  |  |                                   |     |  |     /-- 00a7ee63          	bltu	x15,x10,8d0 <edge_ws+0xd0>
+     ###                         if (src <= 6u) {
+ 8b8:	|  |  |  |  |  |  |  |                                   |     |  |     |   00600793          	addi	x15,x0,6
+ 8bc:	|  |  |  |  |  |  |  |  /--------------------------------|-----|--|-----|-- 1af50e63          	beq	x10,x15,a78 <edge_ws+0x278>
+     ###                             c = 0x0000002Au;
+ 8c0:	|  |  |  |  |  |  |  |  |                                |     |  |     |   02a00613          	addi	x12,x0,42
+     ###                             b = 0x28000000u;
+ 8c4:	|  |  |  |  |  |  |  |  |                                |     |  |     |   280006b7          	lui	x13,0x28000
+     ###                             a = 0x2A040000u;
+ 8c8:	|  |  |  |  |  |  |  |  |                                |     |  |     |   2a0407b7          	lui	x15,0x2a040
+ 8cc:	|  |  |  +--|--|--|--|--|--------------------------------|-----|--|-----|-- f91ff06f          	jal	x0,85c <edge_ws+0x5c>
+     ###                         if (src <= 8u) {
+ 8d0:	|  |  |  |  |  |  |  |  |                                |     |  |     \-> 00800793          	addi	x15,x0,8
+ 8d4:	|  |  |  |  |  |  |  |  |  /-----------------------------|-----|--|-------- 1af50c63          	beq	x10,x15,a8c <edge_ws+0x28c>
+     ###                             c = 0x00000000u;
+ 8d8:	|  |  |  |  |  |  |  |  |  |                             |     |  |         00000613          	addi	x12,x0,0
+     ###                             b = 0x00000000u;
+ 8dc:	|  |  |  |  |  |  |  |  |  |                             |     |  |         00000693          	addi	x13,x0,0
+     ###                             a = 0x00400000u;
+ 8e0:	|  |  |  |  |  |  |  |  |  |                             |     |  |         004007b7          	lui	x15,0x400
+ 8e4:	|  |  |  +--|--|--|--|--|--|-----------------------------|-----|--|-------- f79ff06f          	jal	x0,85c <edge_ws+0x5c>
+     ###                 if (src <= 14u) {
+ 8e8:	|  |  |  |  |  |  |  |  |  |                             |     \--|-------> 00e00793          	addi	x15,x0,14
+ 8ec:	|  |  |  |  |  |  |  |  |  |                             |        |  /----- 04a7e463          	bltu	x15,x10,934 <edge_ws+0x134>
+     ###                     if (src <= 12u) {
+ 8f0:	|  |  |  |  |  |  |  |  |  |                             |        |  |      00c00793          	addi	x15,x0,12
+ 8f4:	|  |  |  |  |  |  |  |  |  |                             |        |  |  /-- 02a7e063          	bltu	x15,x10,914 <edge_ws+0x114>
+     ###                         if (src <= 11u) {
+ 8f8:	|  |  |  |  |  |  |  +--|--|-----------------------------|--------|--|--|-- f4f502e3          	beq	x10,x15,83c <edge_ws+0x3c>
+     ###                             if (src <= 10u) {
+ 8fc:	|  |  |  |  |  |  |  |  |  |                             |        |  |  |   00a00793          	addi	x15,x0,10
+     ###                                 c = 0x00000000u;
+ 900:	|  |  |  |  |  |  |  |  |  |                             |        |  |  |   00000613          	addi	x12,x0,0
+     ###                             if (src <= 10u) {
+ 904:	|  |  |  |  |  |  |  |  |  |     /-----------------------|--------|--|--|-- 18f51e63          	bne	x10,x15,aa0 <edge_ws+0x2a0>
+     ###                                 b = 0x00000000u;
+ 908:	|  |  |  |  |  |  |  |  |  |     |                       |        \--|--|-> 00000693          	addi	x13,x0,0
+     ###                             a = 0x00000000u;
+ 90c:	|  |  |  |  |  |  |  |  |  |  /--|-----------------------|-----------|--|-> 00000793          	addi	x15,x0,0
+ 910:	|  |  |  +--|--|--|--|--|--|--|--|-----------------------|-----------|--|-- f4dff06f          	jal	x0,85c <edge_ws+0x5c>
+     ###                         if (src <= 13u) {
+ 914:	|  |  |  |  |  |  |  |  |  |  |  |                       |           |  \-> 00d00793          	addi	x15,x0,13
+ 918:	|  |  |  |  |  |  |  |  |  |  |  |  /--------------------|-----------|----- 18f50a63          	beq	x10,x15,aac <edge_ws+0x2ac>
+     ###                             b = 0x41155555u;
+ 91c:	|  |  |  |  |  |  |  |  |  |  |  |  |                    |           |      411556b7          	lui	x13,0x41155
+     ###                             a = 0x505559AAu;
+ 920:	|  |  |  |  |  |  |  |  |  |  |  |  |                    |           |      505567b7          	lui	x15,0x50556
+     ###                             c = 0x00000080u;
+ 924:	|  |  |  |  |  |  |  |  |  |  |  |  |                    |           |      08000613          	addi	x12,x0,128
+     ###                             b = 0x41155555u;
+ 928:	|  |  |  |  |  |  |  |  |  |  |  |  |                    |           |      55568693          	addi	x13,x13,1365 # 41155555 <__global_pointer$+0x3f154d55>
+     ###                             a = 0x505559AAu;
+ 92c:	|  |  |  |  |  |  |  |  |  |  |  |  |                    |           |      9aa78793          	addi	x15,x15,-1622 # 505559aa <__global_pointer$+0x4e5551aa>
+ 930:	|  |  |  +--|--|--|--|--|--|--|--|--|--------------------|-----------|----- f2dff06f          	jal	x0,85c <edge_ws+0x5c>
+     ###                     if (src <= 16u) {
+ 934:	|  |  |  |  |  |  |  |  |  |  |  |  |                    |           \----> 01000793          	addi	x15,x0,16
+ 938:	|  |  |  |  |  |  |  +--|--|--|--|--|--------------------|----------------- f0a7e2e3          	bltu	x15,x10,83c <edge_ws+0x3c>
+     ###                         if (src <= 15u) {
+ 93c:	|  |  |  |  |  |  |  |  |  |  |  |  |                    |                  00f00793          	addi	x15,x0,15
+ 940:	|  |  |  |  |  |  |  |  |  |  |  |  |  /-----------------|----------------- 16f51c63          	bne	x10,x15,ab8 <edge_ws+0x2b8>
+     ###                             b = 0x41155555u;
+ 944:	|  |  |  |  |  |  |  |  |  |  |  |  |  |                 |  /-------------> 411556b7          	lui	x13,0x41155
+     ###                             c = 0x00000040u;
+ 948:	|  |  |  |  |  |  |  |  |  |  |  |  |  |                 |  |               04000613          	addi	x12,x0,64
+     ###                             b = 0x41155555u;
+ 94c:	|  |  |  |  |  |  |  |  |  |  |  |  |  |                 |  |               55568693          	addi	x13,x13,1365 # 41155555 <__global_pointer$+0x3f154d55>
+     ###                             a = 0x40555511u;
+ 950:	|  |  |  |  |  |  |  |  |  |  |  |  |  |                 |  |               405557b7          	lui	x15,0x40555
+     ###                             a = 0x6A555511u;
+ 954:	|  |  |  |  |  |  |  |  |  |  |  |  |  |        /--------|--|-------------> 51178793          	addi	x15,x15,1297 # 40555511 <__global_pointer$+0x3e554d11>
+ 958:	|  |  |  +--|--|--|--|--|--|--|--|--|--|--------|--------|--|-------------- f05ff06f          	jal	x0,85c <edge_ws+0x5c>
+     ###             if (src <= 27u) {
+ 95c:	|  |  |  |  |  |  |  |  |  |  |  |  |  |        |        \--|-------------> 01b00793          	addi	x15,x0,27
+ 960:	|  |  |  |  |  |  |  |  |  |  |  |  |  |        |           |  /----------- 08a7e863          	bltu	x15,x10,9f0 <edge_ws+0x1f0>
+     ###                 if (src <= 23u) {
+ 964:	|  |  |  |  |  |  |  |  |  |  |  |  |  |        |           |  |            01700793          	addi	x15,x0,23
+ 968:	|  |  |  |  |  |  |  |  |  |  |  |  |  |        |           |  |     /----- 04a7e663          	bltu	x15,x10,9b4 <edge_ws+0x1b4>
+     ###                     if (src <= 21u) {
+ 96c:	|  |  |  |  |  |  |  |  |  |  |  |  |  |        |           |  |     |      01500793          	addi	x15,x0,21
+ 970:	|  |  |  |  |  |  |  |  |  |  |  |  |  |        |           |  |     |  /-- 02a7e263          	bltu	x15,x10,994 <edge_ws+0x194>
+     ###                         if (src <= 20u) {
+ 974:	|  |  |  |  |  |  |  +--|--|--|--|--|--|--------|-----------|--|-----|--|-- ecf504e3          	beq	x10,x15,83c <edge_ws+0x3c>
+     ###                             if (src <= 19u) {
+ 978:	|  |  |  |  |  |  |  |  |  |  |  |  |  |        |           |  |     |  |   01300793          	addi	x15,x0,19
+ 97c:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  /-----|-----------|--|-----|--|-- 14f50863          	beq	x10,x15,acc <edge_ws+0x2cc>
+     ###                                 b = 0xA6AAA816u;
+ 980:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |     |           |  |     |  |   a6aab6b7          	lui	x13,0xa6aab
+     ###                                 c = 0x00000069u;
+ 984:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |     |           |  |     |  |   06900613          	addi	x12,x0,105
+     ###                                 b = 0xA6AAA816u;
+ 988:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |     |           |  |     |  |   81668693          	addi	x13,x13,-2026 # a6aaa816 <__global_pointer$+0xa4aaa016>
+     ###                             a = 0x95555555u;
+ 98c:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |     |           |  |  /--|--|-> 955557b7          	lui	x15,0x95555
+ 990:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  /--|-----------|--|--|--|--|-- 1480006f          	jal	x0,ad8 <edge_ws+0x2d8>
+     ###                         if (src <= 22u) {
+ 994:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |           |  |  |  |  \-> 01600793          	addi	x15,x0,22
+ 998:	|  |  |  |  |  |  |  +--|--|--|--|--|--|--|--|--|-----------|--|--|--|----- eaf502e3          	beq	x10,x15,83c <edge_ws+0x3c>
+     ###                             b = 0xAAA986A8u;
+ 99c:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |           |  |  |  |      aaa986b7          	lui	x13,0xaaa98
+     ###                             a = 0x2AAAAAAAu;
+ 9a0:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |           |  |  |  |      2aaab7b7          	lui	x15,0x2aaab
+     ###                             c = 0x000000AAu;
+ 9a4:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |           |  |  |  |      0aa00613          	addi	x12,x0,170
+     ###                             b = 0xAAA986A8u;
+ 9a8:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |           |  |  |  |      6a868693          	addi	x13,x13,1704 # aaa986a8 <__global_pointer$+0xa8a97ea8>
+     ###                             a = 0x2AAAAAAAu;
+ 9ac:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |           |  |  |  |      aaa78793          	addi	x15,x15,-1366 # 2aaaaaaa <__global_pointer$+0x28aaa2aa>
+ 9b0:	|  |  |  +--|--|--|--|--|--|--|--|--|--|--|--|--|-----------|--|--|--|----- eadff06f          	jal	x0,85c <edge_ws+0x5c>
+     ###                     if (src <= 25u) {
+ 9b4:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |           |  |  |  \----> 01900793          	addi	x15,x0,25
+ 9b8:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |           |  |  |     /-- 02a7e063          	bltu	x15,x10,9d8 <edge_ws+0x1d8>
+     ###                         if (src <= 24u) {
+ 9bc:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |           |  |  |     |   01800793          	addi	x15,x0,24
+ 9c0:	|  |  |  |  |  |  |  +--|--|--|--|--|--|--|--|--|-----------|--|--|-----|-- e6f50ee3          	beq	x10,x15,83c <edge_ws+0x3c>
+     ###                             b = 0x55545155u;
+ 9c4:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |           |  |  |     |   555456b7          	lui	x13,0x55545
+     ###                             c = 0x00000055u;
+ 9c8:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |           |  |  |     |   05500613          	addi	x12,x0,85
+     ###                             b = 0x55545155u;
+ 9cc:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |           |  |  |     |   15568693          	addi	x13,x13,341 # 55545155 <__global_pointer$+0x53544955>
+     ###                             a = 0x55555555u;
+ 9d0:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |           |  |  |     |   555557b7          	lui	x15,0x55555
+ 9d4:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  +--|-----------|--|--|-----|-- 1040006f          	jal	x0,ad8 <edge_ws+0x2d8>
+     ###                         if (src <= 26u) {
+ 9d8:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |           |  |  |     \-> 01a00793          	addi	x15,x0,26
+ 9dc:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |     /-----|--|--|-------- 10f50263          	beq	x10,x15,ae0 <edge_ws+0x2e0>
+     ###                             c = 0x0000006Au;
+ 9e0:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |     |     |  |  |         06a00613          	addi	x12,x0,106
+     ###                             b = 0xAA8A2956u;
+ 9e4:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |     |     |  |  |         aa8a36b7          	lui	x13,0xaa8a3
+     ###                             b = 0xA2AAA956u;
+ 9e8:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  /--|-----|--|--|-------> 95668693          	addi	x13,x13,-1706 # aa8a2956 <__global_pointer$+0xa88a2156>
+ 9ec:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |     |  |  \-------- fa1ff06f          	jal	x0,98c <edge_ws+0x18c>
+     ###                 if (src <= 32u) {
+ 9f0:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |     |  \----------> 02000793          	addi	x15,x0,32
+ 9f4:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |     |        /----- 02a7ee63          	bltu	x15,x10,a30 <edge_ws+0x230>
+     ###                     if (src <= 30u) {
+ 9f8:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |     |        |      01e00793          	addi	x15,x0,30
+ 9fc:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |     |        |  /-- 00a7ee63          	bltu	x15,x10,a18 <edge_ws+0x218>
+     ###                         if (src <= 29u) {
+ a00:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  /--|--------|--|-- 0ef50863          	beq	x10,x15,af0 <edge_ws+0x2f0>
+     ###                             if (src <= 28u) {
+ a04:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |        |  |   01c00793          	addi	x15,x0,28
+ a08:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  \--------|--|-- f2f50ee3          	beq	x10,x15,944 <edge_ws+0x144>
+     ###                                 c = 0x0000006Au;
+ a0c:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |           |  |   06a00613          	addi	x12,x0,106
+     ###                                 b = 0xA8904154u;
+ a10:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |           |  |   a89046b7          	lui	x13,0xa8904
+ a14:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |        /--|--|-- 0d40006f          	jal	x0,ae8 <edge_ws+0x2e8>
+     ###                         if (src <= 31u) {
+ a18:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |        |  |  \-> 01f00793          	addi	x15,x0,31
+ a1c:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |     /--|--|----- 0ef50063          	beq	x10,x15,afc <edge_ws+0x2fc>
+     ###                             c = 0x00000015u;
+ a20:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |     |  |  |      01500613          	addi	x12,x0,21
+     ###                             b = 0x14400000u;
+ a24:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |     |  |  |      144006b7          	lui	x13,0x14400
+     ###                             a = 0x01000000u;
+ a28:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |     |  |  |      010007b7          	lui	x15,0x1000
+ a2c:	|  |  |  +--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|-----|--|--|----- e31ff06f          	jal	x0,85c <edge_ws+0x5c>
+     ###                         if (src <= 35u) {
+ a30:	|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |     |  |  \----> 02300793          	addi	x15,x0,35
+ a34:	|  |  |  |  |  |  |  \--|--|--|--|--|--|--|--|--|--|--|--|-----|--|-------- e0f514e3          	bne	x10,x15,83c <edge_ws+0x3c>
+     ###                             b = 0x51555555u;
+ a38:	|  |  |  |  |  |  |     |  |  |  |  |  |  |  |  |  |  |  |     |  |         515556b7          	lui	x13,0x51555
+     ###                             c = 0x00000004u;
+ a3c:	|  |  |  |  |  |  |     |  |  |  |  |  |  |  |  |  |  |  |     |  |         00400613          	addi	x12,x0,4
+     ###                             b = 0x51555555u;
+ a40:	|  |  |  |  |  |  |     |  |  |  |  |  |  |  |  |  |  |  |     |  |         55568693          	addi	x13,x13,1365 # 51555555 <__global_pointer$+0x4f554d55>
+     ###                             a = 0x40514000u;
+ a44:	|  |  |  |  |  |  |     |  |  |  |  |  |  |  |  |  |  |  |     |  |         405147b7          	lui	x15,0x40514
+ a48:	|  |  |  +--|--|--|-----|--|--|--|--|--|--|--|--|--|--|--|-----|--|-------- e15ff06f          	jal	x0,85c <edge_ws+0x5c>
+     ###                                 b = 0x59555555u;
+ a4c:	|  |  |  |  |  |  \-----|--|--|--|--|--|--|--|--|--|--|--|-----|--|-------> 595556b7          	lui	x13,0x59555
+     ###                                 a = 0x5A555DB8u;
+ a50:	|  |  |  |  |  |        |  |  |  |  |  |  |  |  |  |  |  |     |  |         5a5567b7          	lui	x15,0x5a556
+     ###                                 c = 0x00000026u;
+ a54:	|  |  |  |  |  |        |  |  |  |  |  |  |  |  |  |  |  |     |  |         02600613          	addi	x12,x0,38
+     ###                                 b = 0x59555555u;
+ a58:	|  |  |  |  |  |        |  |  |  |  |  |  |  |  |  |  |  |     |  |         55568693          	addi	x13,x13,1365 # 59555555 <__global_pointer$+0x57554d55>
+     ###                                 a = 0x5A555DB8u;
+ a5c:	|  |  |  |  |  |        |  |  |  |  |  |  |  |  |  |  |  |     |  |         db878793          	addi	x15,x15,-584 # 5a555db8 <__global_pointer$+0x585555b8>
+ a60:	|  |  |  +--|--|--------|--|--|--|--|--|--|--|--|--|--|--|-----|--|-------- dfdff06f          	jal	x0,85c <edge_ws+0x5c>
+     ###                             b = 0x69955555u;
+ a64:	|  |  |  |  |  \--------|--|--|--|--|--|--|--|--|--|--|--|-----|--|-------> 699556b7          	lui	x13,0x69955
+     ###                             c = 0x0000006Au;
+ a68:	|  |  |  |  |           |  |  |  |  |  |  |  |  |  |  |  |     |  |         06a00613          	addi	x12,x0,106
+     ###                             b = 0x69955555u;
+ a6c:	|  |  |  |  |           |  |  |  |  |  |  |  |  |  |  |  |     |  |         55568693          	addi	x13,x13,1365 # 69955555 <__global_pointer$+0x67954d55>
+     ###                             a = 0x6A555511u;
+ a70:	|  |  |  |  |           |  |  |  |  |  |  |  |  |  |  |  |     |  |         6a5557b7          	lui	x15,0x6a555
+ a74:	|  |  |  |  |           |  |  |  |  |  |  |  |  \--|--|--|-----|--|-------- ee1ff06f          	jal	x0,954 <edge_ws+0x154>
+     ###                             b = 0x55555555u;
+ a78:	|  |  |  |  |           \--|--|--|--|--|--|--|-----|--|--|-----|--|-------> 555557b7          	lui	x15,0x55555
+ a7c:	|  |  |  |  |              |  |  |  |  |  |  |     |  |  |     |  |         55578693          	addi	x13,x15,1365 # 55555555 <__global_pointer$+0x53554d55>
+     ###                             c = 0x00000055u;
+ a80:	|  |  |  |  |              |  |  |  |  |  |  |     |  |  |     |  |         05500613          	addi	x12,x0,85
+     ###                             a = 0x55555145u;
+ a84:	|  |  |  |  |              |  |  |  |  |  |  |     |  |  |     |  |         14578793          	addi	x15,x15,325
+ a88:	|  |  |  +--|--------------|--|--|--|--|--|--|-----|--|--|-----|--|-------- dd5ff06f          	jal	x0,85c <edge_ws+0x5c>
+     ###                             b = 0xA2AAAA96u;
+ a8c:	|  |  |  |  |              \--|--|--|--|--|--|-----|--|--|-----|--|-------> a2aab6b7          	lui	x13,0xa2aab
+     ###                             c = 0x00000028u;
+ a90:	|  |  |  |  |                 |  |  |  |  |  |     |  |  |     |  |         02800613          	addi	x12,x0,40
+     ###                             b = 0xA2AAAA96u;
+ a94:	|  |  |  |  |                 |  |  |  |  |  |     |  |  |     |  |         a9668693          	addi	x13,x13,-1386 # a2aaaa96 <__global_pointer$+0xa0aaa296>
+     ###                             a = 0x80510000u;
+ a98:	|  |  |  |  |                 |  |  |  |  |  |     |  |  |     |  |         805107b7          	lui	x15,0x80510
+ a9c:	|  |  |  +--|-----------------|--|--|--|--|--|-----|--|--|-----|--|-------- dc1ff06f          	jal	x0,85c <edge_ws+0x5c>
+     ###                                 b = 0x00000028u;
+ aa0:	|  |  |  |  |                 |  \--|--|--|--|-----|--|--|-----|--|-------> 02800693          	addi	x13,x0,40
+     ###                                 a = 0x00410000u;
+ aa4:	|  |  |  |  |                 |     |  |  |  |     |  |  |     |  |         004107b7          	lui	x15,0x410
+ aa8:	|  |  |  +--|-----------------|-----|--|--|--|-----|--|--|-----|--|-------- db5ff06f          	jal	x0,85c <edge_ws+0x5c>
+     ###                             c = 0x00000015u;
+ aac:	|  |  |  |  |                 |     \--|--|--|-----|--|--|-----|--|-------> 01500613          	addi	x12,x0,21
+     ###                             b = 0x54400000u;
+ ab0:	|  |  |  |  |                 |        |  |  |     |  |  |     |  |         544006b7          	lui	x13,0x54400
+ ab4:	|  |  |  |  |                 \--------|--|--|-----|--|--|-----|--|-------- e59ff06f          	jal	x0,90c <edge_ws+0x10c>
+     ###                             b = 0x55555554u;
+ ab8:	|  |  |  |  |                          \--|--|-----|--|--|-----|--|-------> 555556b7          	lui	x13,0x55555
+     ###                             c = 0x00000055u;
+ abc:	|  |  |  |  |                             |  |     |  |  |     |  |         05500613          	addi	x12,x0,85
+     ###                             b = 0x55555554u;
+ ac0:	|  |  |  |  |                             |  |     |  |  |     |  |         55468693          	addi	x13,x13,1364 # 55555554 <__global_pointer$+0x53554d54>
+     ###                                 a = 0x15555555u;
+ ac4:	|  |  |  |  |                             |  |     |  |  |     |  |     /-> 155557b7          	lui	x15,0x15555
+ ac8:	|  |  |  |  |                             |  +-----|--|--|-----|--|-----|-- 0100006f          	jal	x0,ad8 <edge_ws+0x2d8>
+     ###                                 b = 0x55555541u;
+ acc:	|  |  |  |  |                             \--|-----|--|--|-----|--|-----|-> 555557b7          	lui	x15,0x55555
+     ###                                 c = 0x00000055u;
+ ad0:	|  |  |  |  |                                |     |  |  |     |  |     |   05500613          	addi	x12,x0,85
+     ###                                 b = 0x55555541u;
+ ad4:	|  |  |  |  |                                |     |  |  |     |  |     |   54178693          	addi	x13,x15,1345 # 55555541 <__global_pointer$+0x53554d41>
+     ###                             a = 0x95555555u;
+ ad8:	|  |  |  |  |                                \-----|--|--|-----|--|-----|-> 55578793          	addi	x15,x15,1365
+ adc:	|  |  |  +--|--------------------------------------|--|--|-----|--|-----|-- d81ff06f          	jal	x0,85c <edge_ws+0x5c>
+     ###                             c = 0x00000055u;
+ ae0:	|  |  |  |  |                                      |  \--|-----|--|-----|-> 05500613          	addi	x12,x0,85
+     ###                             b = 0x55504154u;
+ ae4:	|  |  |  |  |                                      |     |     |  |     |   555046b7          	lui	x13,0x55504
+     ###                                 b = 0xA8904154u;
+ ae8:	|  |  |  |  |                                      |     |     |  \-----|-> 15468693          	addi	x13,x13,340 # 55504154 <__global_pointer$+0x53503954>
+ aec:	|  |  |  |  |                                      |     |     |        \-- fd9ff06f          	jal	x0,ac4 <edge_ws+0x2c4>
+     ###                             c = 0x00000068u;
+ af0:	|  |  |  |  |                                      |     \-----|----------> 06800613          	addi	x12,x0,104
+     ###                             b = 0xA2AAA956u;
+ af4:	|  |  |  |  |                                      |           |            a2aab6b7          	lui	x13,0xa2aab
+ af8:	|  |  |  |  |                                      \-----------|----------- ef1ff06f          	jal	x0,9e8 <edge_ws+0x1e8>
+     ###                             a = 0x2A082088u;
+ afc:	|  |  |  |  |                                                  \----------> 2a0827b7          	lui	x15,0x2a082
+     ###                             c = 0x00000026u;
+ b00:	|  |  |  |  |                                                               02600613          	addi	x12,x0,38
+     ###                             b = 0x08000000u;
+ b04:	|  |  |  |  |                                                               080006b7          	lui	x13,0x8000
+     ###                             a = 0x2A082088u;
+ b08:	|  |  |  |  |                                                               08878793          	addi	x15,x15,136 # 2a082088 <__global_pointer$+0x28081888>
+ b0c:	|  |  |  \--|-------------------------------------------------------------- d51ff06f          	jal	x0,85c <edge_ws+0x5c>
+     ###     if (n <= 18u) {
+ b10:	|  |  |     \-------------------------------------------------------------> 01200793          	addi	x15,x0,18
+ b14:	|  |  |                                                  /----------------- 1ee7e463          	bltu	x15,x14,cfc <edge_ws+0x4fc>
+     ###         if (n <= 9u) {
+ b18:	|  |  |                                                  |                  00900793          	addi	x15,x0,9
+ b1c:	|  |  |                                                  |  /-------------- 0ee7ea63          	bltu	x15,x14,c10 <edge_ws+0x410>
+     ###             if (n <= 5u) {
+ b20:	|  |  |                                                  |  |               00500793          	addi	x15,x0,5
+ b24:	|  |  |                                                  |  |  /----------- 08e7e463          	bltu	x15,x14,bac <edge_ws+0x3ac>
+     ###                 if (n <= 3u) {
+ b28:	|  |  |                                                  |  |  |            00300793          	addi	x15,x0,3
+ b2c:	|  |  |                                                  |  |  |  /-------- 04e7e863          	bltu	x15,x14,b7c <edge_ws+0x37c>
+     ###                     if (n <= 2u) {
+ b30:	|  |  |                                                  |  |  |  |  /----- 02f70c63          	beq	x14,x15,b68 <edge_ws+0x368>
+     ###                         if (n <= 1u) {
+ b34:	|  |  |                                                  |  |  |  |  |      00100793          	addi	x15,x0,1
+ b38:	|  |  |                                                  |  |  |  |  |  /-- 00f71e63          	bne	x14,x15,b54 <edge_ws+0x354>
+     ###                             return select_edge(k, 0x1924u, 0x0145u, 0x03C4u, 0x03C6u);
+ b3c:	|  |  |                                                  |  |  |  |  |  |   000025b7          	lui	x11,0x2
+ b40:	|  |  |                                                  |  |  |  |  |  |   3c600713          	addi	x14,x0,966
+ b44:	|  |  |                                                  |  |  |  |  |  |   3c400693          	addi	x13,x0,964
+ b48:	|  |  |                                                  |  |  |  |  |  |   14500613          	addi	x12,x0,325
+ b4c:	|  |  |                                                  |  |  |  |  |  |   92458593          	addi	x11,x11,-1756 # 1924 <__flash_size+0x924>
+     ###                         return select_edge(k, 0x1901u, 0x0000u, 0x0000u, 0x0000u);
+ b50:	|  >--|--------------------------------------------------|--|--|--|--|--|-> c65ff06f          	jal	x0,7b4 <select_edge>
+     ###                             return select_edge(k, 0x0144u, 0x0000u, 0x0000u, 0x0000u);
+ b54:	|  |  |                                                  |  |  |  |  |  \-> 00000713          	addi	x14,x0,0
+ b58:	|  |  |                                                  |  |  |  |  |      00000693          	addi	x13,x0,0
+ b5c:	|  |  |                                                  |  |  |  |  |      00000613          	addi	x12,x0,0
+ b60:	|  |  |                                                  |  |  |  |  |      14400593          	addi	x11,x0,324
+ b64:	|  +--|--------------------------------------------------|--|--|--|--|----- fedff06f          	jal	x0,b50 <edge_ws+0x350>
+     ###                         return select_edge(k, 0x0146u, 0x0000u, 0x0000u, 0x0000u);
+ b68:	|  |  |                                                  |  |  |  |  \----> 00000713          	addi	x14,x0,0
+ b6c:	|  |  |                                                  |  |  |  |         00000693          	addi	x13,x0,0
+ b70:	|  |  |                                                  |  |  |  |         00000613          	addi	x12,x0,0
+ b74:	|  |  |                                                  |  |  |  |         14600593          	addi	x11,x0,326
+ b78:	|  +--|--------------------------------------------------|--|--|--|-------- fd9ff06f          	jal	x0,b50 <edge_ws+0x350>
+     ###                     if (n <= 4u) {
+ b7c:	|  |  |                                                  |  |  |  \-------> 00400793          	addi	x15,x0,4
+ b80:	|  |  |                                                  |  |  |        /-- 00f71c63          	bne	x14,x15,b98 <edge_ws+0x398>
+     ###                         return select_edge(k, 0x0142u, 0x03C1u, 0x03CEu, 0x0000u);
+ b84:	|  |  |                                                  |  |  |        |   00000713          	addi	x14,x0,0
+ b88:	|  |  |                                                  |  |  |        |   3ce00693          	addi	x13,x0,974
+ b8c:	|  |  |                                                  |  |  |        |   3c100613          	addi	x12,x0,961
+ b90:	|  |  |                                                  |  |  |        |   14200593          	addi	x11,x0,322
+ b94:	|  +--|--------------------------------------------------|--|--|--------|-- fbdff06f          	jal	x0,b50 <edge_ws+0x350>
+     ###                         return select_edge(k, 0x0141u, 0x02C7u, 0x02C8u, 0x0000u);
+ b98:	|  |  |                                                  |  |  |        \-> 00000713          	addi	x14,x0,0
+ b9c:	|  |  |                                                  |  |  |            2c800693          	addi	x13,x0,712
+ ba0:	|  |  |                                                  |  |  |            2c700613          	addi	x12,x0,711
+ ba4:	|  |  |                                                  |  |  |            14100593          	addi	x11,x0,321
+ ba8:	|  +--|--------------------------------------------------|--|--|----------- fa9ff06f          	jal	x0,b50 <edge_ws+0x350>
+     ###                 if (n <= 7u) {
+ bac:	|  |  |                                                  |  |  \----------> 00700793          	addi	x15,x0,7
+ bb0:	|  |  |                                                  |  |     /-------- 02e7ea63          	bltu	x15,x14,be4 <edge_ws+0x3e4>
+     ###                     if (n <= 6u) {
+ bb4:	|  |  |                                                  |  |     |         00600793          	addi	x15,x0,6
+ bb8:	|  |  |                                                  |  |     |     /-- 00f71c63          	bne	x14,x15,bd0 <edge_ws+0x3d0>
+     ###                         return select_edge(k, 0x0143u, 0x03C1u, 0x0000u, 0x0000u);
+ bbc:	|  |  |                                                  |  |     |     |   00000713          	addi	x14,x0,0
+ bc0:	|  |  |                                                  |  |     |     |   00000693          	addi	x13,x0,0
+ bc4:	|  |  |                                                  |  |     |     |   3c100613          	addi	x12,x0,961
+ bc8:	|  |  |                                                  |  |     |     |   14300593          	addi	x11,x0,323
+ bcc:	|  +--|--------------------------------------------------|--|-----|-----|-- f85ff06f          	jal	x0,b50 <edge_ws+0x350>
+     ###                         return select_edge(k, 0x02C5u, 0x014Au, 0x02CFu, 0x0000u);
+ bd0:	|  |  |                                                  |  |     |     \-> 00000713          	addi	x14,x0,0
+ bd4:	|  |  |                                                  |  |     |         2cf00693          	addi	x13,x0,719
+ bd8:	|  |  |                                                  |  |     |         14a00613          	addi	x12,x0,330
+     ###                         return select_edge(k, 0x02C5u, 0x014Bu, 0x02D4u, 0x0000u);
+ bdc:	|  |  |                                                  |  |     |  /----> 2c500593          	addi	x11,x0,709
+ be0:	|  +--|--------------------------------------------------|--|-----|--|----- f71ff06f          	jal	x0,b50 <edge_ws+0x350>
+     ###                     if (n <= 8u) {
+ be4:	|  |  |                                                  |  |     \--|----> 00800793          	addi	x15,x0,8
+ be8:	|  |  |                                                  |  |        |  /-- 00f71a63          	bne	x14,x15,bfc <edge_ws+0x3fc>
+     ###                         return select_edge(k, 0x02C5u, 0x014Bu, 0x02D4u, 0x0000u);
+ bec:	|  |  |                                                  |  |        |  |   00000713          	addi	x14,x0,0
+ bf0:	|  |  |                                                  |  |        |  |   2d400693          	addi	x13,x0,724
+ bf4:	|  |  |                                                  |  |        |  |   14b00613          	addi	x12,x0,331
+ bf8:	|  |  |                                                  |  |        \--|-- fe5ff06f          	jal	x0,bdc <edge_ws+0x3dc>
+     ###                         return select_edge(k, 0x01CBu, 0x014Cu, 0x0000u, 0x0000u);
+ bfc:	|  |  |                                                  |  |           \-> 00000713          	addi	x14,x0,0
+ c00:	|  |  |                                                  |  |               00000693          	addi	x13,x0,0
+ c04:	|  |  |                                                  |  |               14c00613          	addi	x12,x0,332
+ c08:	|  |  |                                                  |  |               1cb00593          	addi	x11,x0,459
+ c0c:	|  +--|--------------------------------------------------|--|-------------- f45ff06f          	jal	x0,b50 <edge_ws+0x350>
+     ###             if (n <= 14u) {
+ c10:	|  |  |                                                  |  \-------------> 00e00793          	addi	x15,x0,14
+ c14:	|  |  |                                                  |     /----------- 08e7e263          	bltu	x15,x14,c98 <edge_ws+0x498>
+     ###                 if (n <= 12u) {
+ c18:	|  |  |                                                  |     |            00c00793          	addi	x15,x0,12
+ c1c:	|  |  |                                                  |     |  /-------- 04e7e663          	bltu	x15,x14,c68 <edge_ws+0x468>
+     ###                     if (n <= 11u) {
+ c20:	|  |  |                                                  |     |  |  /----- 02f70a63          	beq	x14,x15,c54 <edge_ws+0x454>
+     ###                         if (n <= 10u) {
+ c24:	|  |  |                                                  |     |  |  |      00a00793          	addi	x15,x0,10
+ c28:	|  |  |                                                  |     |  |  |  /-- 00f71c63          	bne	x14,x15,c40 <edge_ws+0x440>
+     ###                             return select_edge(k, 0x0147u, 0x0000u, 0x0000u, 0x0000u);
+ c2c:	|  |  |                                                  |     |  |  |  |   00000713          	addi	x14,x0,0
+ c30:	|  |  |                                                  |     |  |  |  |   00000693          	addi	x13,x0,0
+ c34:	|  |  |                                                  |     |  |  |  |   00000613          	addi	x12,x0,0
+ c38:	|  |  |                                                  |     |  |  |  |   14700593          	addi	x11,x0,327
+ c3c:	|  +--|--------------------------------------------------|-----|--|--|--|-- f15ff06f          	jal	x0,b50 <edge_ws+0x350>
+     ###                             return select_edge(k, 0x0148u, 0x01C9u, 0x01D3u, 0x0000u);
+ c40:	|  |  |                                                  |     |  |  |  \-> 00000713          	addi	x14,x0,0
+ c44:	|  |  |                                                  |     |  |  |      1d300693          	addi	x13,x0,467
+ c48:	|  |  |                                                  |     |  |  |      1c900613          	addi	x12,x0,457
+ c4c:	|  |  |                                                  |     |  |  |      14800593          	addi	x11,x0,328
+ c50:	|  +--|--------------------------------------------------|-----|--|--|----- f01ff06f          	jal	x0,b50 <edge_ws+0x350>
+     ###                         return select_edge(k, 0x0149u, 0x0000u, 0x0000u, 0x0000u);
+ c54:	|  |  |                                                  |     |  |  \----> 00000713          	addi	x14,x0,0
+ c58:	|  |  |                                                  |     |  |         00000693          	addi	x13,x0,0
+ c5c:	|  |  |                                                  |     |  |         00000613          	addi	x12,x0,0
+ c60:	|  |  |                                                  |     |  |         14900593          	addi	x11,x0,329
+ c64:	|  +--|--------------------------------------------------|-----|--|-------- eedff06f          	jal	x0,b50 <edge_ws+0x350>
+     ###                     if (n <= 13u) {
+ c68:	|  |  |                                                  |     |  \-------> 00d00793          	addi	x15,x0,13
+ c6c:	|  |  |                                                  |     |        /-- 00f71c63          	bne	x14,x15,c84 <edge_ws+0x484>
+     ###                         return select_edge(k, 0x014Eu, 0x04DEu, 0x0000u, 0x0000u);
+ c70:	|  |  |                                                  |     |        |   00000713          	addi	x14,x0,0
+ c74:	|  |  |                                                  |     |        |   00000693          	addi	x13,x0,0
+ c78:	|  |  |                                                  |     |        |   4de00613          	addi	x12,x0,1246
+     ###                         return select_edge(k, 0x014Eu, 0x02C7u, 0x0000u, 0x0000u);
+ c7c:	|  |  |                                                  |     |  /-----|-> 14e00593          	addi	x11,x0,334
+ c80:	|  +--|--------------------------------------------------|-----|--|-----|-- ed1ff06f          	jal	x0,b50 <edge_ws+0x350>
+     ###                         return select_edge(k, 0x014Du, 0x014Fu, 0x03C4u, 0x0000u);
+ c84:	|  |  |                                                  |     |  |     \-> 00000713          	addi	x14,x0,0
+ c88:	|  |  |                                                  |     |  |         3c400693          	addi	x13,x0,964
+ c8c:	|  |  |                                                  |     |  |         14f00613          	addi	x12,x0,335
+ c90:	|  |  |                                                  |     |  |         14d00593          	addi	x11,x0,333
+ c94:	|  +--|--------------------------------------------------|-----|--|-------- ebdff06f          	jal	x0,b50 <edge_ws+0x350>
+     ###                 if (n <= 16u) {
+ c98:	|  |  |                                                  |     \--|-------> 01000793          	addi	x15,x0,16
+ c9c:	|  |  |                                                  |        |  /----- 02e7e863          	bltu	x15,x14,ccc <edge_ws+0x4cc>
+     ###                     if (n <= 15u) {
+ ca0:	|  |  |                                                  |        |  |      00f00793          	addi	x15,x0,15
+ ca4:	|  |  |                                                  |        |  |  /-- 00f71a63          	bne	x14,x15,cb8 <edge_ws+0x4b8>
+     ###                         return select_edge(k, 0x014Eu, 0x02C7u, 0x0000u, 0x0000u);
+ ca8:	|  |  |                                                  |        |  |  |   00000713          	addi	x14,x0,0
+ cac:	|  |  |                                                  |        |  |  |   00000693          	addi	x13,x0,0
+ cb0:	|  |  |                                                  |        |  |  |   2c700613          	addi	x12,x0,711
+ cb4:	|  |  |                                                  |        \--|--|-- fc9ff06f          	jal	x0,c7c <edge_ws+0x47c>
+     ###                         return select_edge(k, 0x0151u, 0x01D7u, 0x0000u, 0x0000u);
+ cb8:	|  |  |                                                  |           |  \-> 00000713          	addi	x14,x0,0
+ cbc:	|  |  |                                                  |           |      00000693          	addi	x13,x0,0
+ cc0:	|  |  |                                                  |           |      1d700613          	addi	x12,x0,471
+ cc4:	|  |  |                                                  |           |      15100593          	addi	x11,x0,337
+ cc8:	|  +--|--------------------------------------------------|-----------|----- e89ff06f          	jal	x0,b50 <edge_ws+0x350>
+     ###                     if (n <= 17u) {
+ ccc:	|  |  |                                                  |           \----> 01100793          	addi	x15,x0,17
+ cd0:	|  |  |                                                  |              /-- 00f71c63          	bne	x14,x15,ce8 <edge_ws+0x4e8>
+     ###                         return select_edge(k, 0x0150u, 0x0000u, 0x0000u, 0x0000u);
+ cd4:	|  |  |                                                  |              |   00000713          	addi	x14,x0,0
+ cd8:	|  |  |                                                  |              |   00000693          	addi	x13,x0,0
+ cdc:	|  |  |                                                  |              |   00000613          	addi	x12,x0,0
+ ce0:	|  |  |                                                  |              |   15000593          	addi	x11,x0,336
+ ce4:	|  +--|--------------------------------------------------|--------------|-- e6dff06f          	jal	x0,b50 <edge_ws+0x350>
+     ###                         return select_edge(k, 0x0153u, 0x0000u, 0x0000u, 0x0000u);
+ ce8:	|  |  |                                                  |              \-> 00000713          	addi	x14,x0,0
+ cec:	|  |  |                                                  |                  00000693          	addi	x13,x0,0
+ cf0:	|  |  |                                                  |                  00000613          	addi	x12,x0,0
+ cf4:	|  |  |                                                  |                  15300593          	addi	x11,x0,339
+ cf8:	|  +--|--------------------------------------------------|----------------- e59ff06f          	jal	x0,b50 <edge_ws+0x350>
+     ###         if (n <= 27u) {
+ cfc:	|  |  |                                                  \----------------> 01b00793          	addi	x15,x0,27
+ d00:	|  |  |                                                     /-------------- 0ee7e863          	bltu	x15,x14,df0 <edge_ws+0x5f0>
+     ###             if (n <= 23u) {
+ d04:	|  |  |                                                     |               01700793          	addi	x15,x0,23
+ d08:	|  |  |                                                     |  /----------- 08e7e063          	bltu	x15,x14,d88 <edge_ws+0x588>
+     ###                 if (n <= 21u) {
+ d0c:	|  |  |                                                     |  |            01500793          	addi	x15,x0,21
+ d10:	|  |  |                                                     |  |  /-------- 04e7e463          	bltu	x15,x14,d58 <edge_ws+0x558>
+     ###                     if (n <= 20u) {
+ d14:	|  |  |                                                     |  |  |  /----- 02f70863          	beq	x14,x15,d44 <edge_ws+0x544>
+     ###                         if (n <= 19u) {
+ d18:	|  |  |                                                     |  |  |  |      01300793          	addi	x15,x0,19
+ d1c:	|  |  |                                                     |  |  |  |  /-- 00f71c63          	bne	x14,x15,d34 <edge_ws+0x534>
+     ###                             return select_edge(k, 0x0152u, 0x01CBu, 0x0000u, 0x0000u);
+ d20:	|  |  |                                                     |  |  |  |  |   00000713          	addi	x14,x0,0
+ d24:	|  |  |                                                     |  |  |  |  |   00000693          	addi	x13,x0,0
+ d28:	|  |  |                                                     |  |  |  |  |   1cb00613          	addi	x12,x0,459
+ d2c:	|  |  |                                                     |  |  |  |  |   15200593          	addi	x11,x0,338
+ d30:	|  +--|-----------------------------------------------------|--|--|--|--|-- e21ff06f          	jal	x0,b50 <edge_ws+0x350>
+     ###                             return select_edge(k, 0x0155u, 0x0000u, 0x02C8u, 0x02DBu);
+ d34:	|  |  |                                                     |  |  |  |  \-> 2db00713          	addi	x14,x0,731
+ d38:	|  |  |                                                     |  |  |  |      2c800693          	addi	x13,x0,712
+ d3c:	|  |  |                                                     |  |  |  |      00000613          	addi	x12,x0,0
+ d40:	|  |  \-----------------------------------------------------|--|--|--|----- b69ff06f          	jal	x0,8a8 <edge_ws+0xa8>
+     ###                         return select_edge(k, 0x0154u, 0x0000u, 0x0000u, 0x0000u);
+ d44:	|  |                                                        |  |  |  \----> 00000713          	addi	x14,x0,0
+ d48:	|  |                                                        |  |  |         00000693          	addi	x13,x0,0
+ d4c:	|  |                                                        |  |  |         00000613          	addi	x12,x0,0
+ d50:	|  |                                                        |  |  |         15400593          	addi	x11,x0,340
+ d54:	|  +--------------------------------------------------------|--|--|-------- dfdff06f          	jal	x0,b50 <edge_ws+0x350>
+     ###                     if (n <= 22u) {
+ d58:	|  |                                                        |  |  \-------> 01600793          	addi	x15,x0,22
+ d5c:	|  |                                                        |  |        /-- 00f71c63          	bne	x14,x15,d74 <edge_ws+0x574>
+     ###                         return select_edge(k, 0x0159u, 0x0000u, 0x0000u, 0x0000u);
+ d60:	|  |                                                        |  |        |   00000713          	addi	x14,x0,0
+ d64:	|  |                                                        |  |        |   00000693          	addi	x13,x0,0
+ d68:	|  |                                                        |  |        |   00000613          	addi	x12,x0,0
+ d6c:	|  |                                                        |  |        |   15900593          	addi	x11,x0,345
+ d70:	|  +--------------------------------------------------------|--|--------|-- de1ff06f          	jal	x0,b50 <edge_ws+0x350>
+     ###                         return select_edge(k, 0x01D0u, 0x01D9u, 0x015Au, 0x0000u);
+ d74:	|  |                                                        |  |        \-> 00000713          	addi	x14,x0,0
+ d78:	|  |                                                        |  |            15a00693          	addi	x13,x0,346
+ d7c:	|  |                                                        |  |            1d900613          	addi	x12,x0,473
+ d80:	|  |                                                        |  |            1d000593          	addi	x11,x0,464
+ d84:	|  +--------------------------------------------------------|--|----------- dcdff06f          	jal	x0,b50 <edge_ws+0x350>
+     ###                 if (n <= 25u) {
+ d88:	|  |                                                        |  \----------> 01900793          	addi	x15,x0,25
+ d8c:	|  |                                                        |        /----- 02e7ea63          	bltu	x15,x14,dc0 <edge_ws+0x5c0>
+     ###                     if (n <= 24u) {
+ d90:	|  |                                                        |        |      01800793          	addi	x15,x0,24
+ d94:	|  |                                                        |        |  /-- 00f71c63          	bne	x14,x15,dac <edge_ws+0x5ac>
+     ###                         return select_edge(k, 0x015Bu, 0x0000u, 0x0000u, 0x0000u);
+ d98:	|  |                                                        |        |  |   00000713          	addi	x14,x0,0
+ d9c:	|  |                                                        |        |  |   00000693          	addi	x13,x0,0
+ da0:	|  |                                                        |        |  |   00000613          	addi	x12,x0,0
+ da4:	|  |                                                        |        |  |   15b00593          	addi	x11,x0,347
+ da8:	|  +--------------------------------------------------------|--------|--|-- da9ff06f          	jal	x0,b50 <edge_ws+0x350>
+     ###                         return select_edge(k, 0x0156u, 0x01D7u, 0x0000u, 0x0000u);
+ dac:	|  |                                                        |        |  \-> 00000713          	addi	x14,x0,0
+ db0:	|  |                                                        |        |      00000693          	addi	x13,x0,0
+ db4:	|  |                                                        |        |      1d700613          	addi	x12,x0,471
+ db8:	|  |                                                        |        |      15600593          	addi	x11,x0,342
+ dbc:	|  +--------------------------------------------------------|--------|----- d95ff06f          	jal	x0,b50 <edge_ws+0x350>
+     ###                     if (n <= 26u) {
+ dc0:	|  |                                                        |        \----> 01a00793          	addi	x15,x0,26
+ dc4:	|  |                                                        |           /-- 00f71c63          	bne	x14,x15,ddc <edge_ws+0x5dc>
+     ###                         return select_edge(k, 0x0157u, 0x02DDu, 0x0000u, 0x0000u);
+ dc8:	|  |                                                        |           |   00000713          	addi	x14,x0,0
+ dcc:	|  |                                                        |           |   00000693          	addi	x13,x0,0
+ dd0:	|  |                                                        |           |   2dd00613          	addi	x12,x0,733
+ dd4:	|  |                                                        |           |   15700593          	addi	x11,x0,343
+ dd8:	|  +--------------------------------------------------------|-----------|-- d79ff06f          	jal	x0,b50 <edge_ws+0x350>
+     ###                         return select_edge(k, 0x0158u, 0x02D4u, 0x02DDu, 0x0000u);
+ ddc:	|  |                                                        |           \-> 00000713          	addi	x14,x0,0
+ de0:	|  |                                                        |               2dd00693          	addi	x13,x0,733
+ de4:	|  |                                                        |               2d400613          	addi	x12,x0,724
+ de8:	|  |                                                        |               15800593          	addi	x11,x0,344
+ dec:	|  +--------------------------------------------------------|-------------- d65ff06f          	jal	x0,b50 <edge_ws+0x350>
+     ###             if (n <= 32u) {
+ df0:	|  |                                                        \-------------> 02000793          	addi	x15,x0,32
+ df4:	|  |                                                           /----------- 08e7e263          	bltu	x15,x14,e78 <edge_ws+0x678>
+     ###                 if (n <= 30u) {
+ df8:	|  |                                                           |            01e00793          	addi	x15,x0,30
+ dfc:	|  |                                                           |  /-------- 04e7e663          	bltu	x15,x14,e48 <edge_ws+0x648>
+     ###                     if (n <= 29u) {
+ e00:	|  |                                                           |  |  /----- 02f70a63          	beq	x14,x15,e34 <edge_ws+0x634>
+     ###                         if (n <= 28u) {
+ e04:	|  |                                                           |  |  |      01c00793          	addi	x15,x0,28
+ e08:	|  |                                                           |  |  |  /-- 00f71c63          	bne	x14,x15,e20 <edge_ws+0x620>
+     ###                             return select_edge(k, 0x015Fu, 0x03E0u, 0x0000u, 0x0000u);
+ e0c:	|  |                                                           |  |  |  |   00000713          	addi	x14,x0,0
+ e10:	|  |                                                           |  |  |  |   00000693          	addi	x13,x0,0
+ e14:	|  |                                                           |  |  |  |   3e000613          	addi	x12,x0,992
+     ###                         return select_edge(k, 0x015Fu, 0x0000u, 0x0000u, 0x0000u);
+ e18:	|  |                                                        /--|--|--|--|-> 15f00593          	addi	x11,x0,351
+ e1c:	|  +--------------------------------------------------------|--|--|--|--|-- d35ff06f          	jal	x0,b50 <edge_ws+0x350>
+     ###                             return select_edge(k, 0x02DAu, 0x02DBu, 0x0160u, 0x0000u);
+ e20:	|  |                                                        |  |  |  |  \-> 00000713          	addi	x14,x0,0
+ e24:	|  |                                                        |  |  |  |      16000693          	addi	x13,x0,352
+ e28:	|  |                                                        |  |  |  |      2db00613          	addi	x12,x0,731
+ e2c:	|  |                                                        |  |  |  |      2da00593          	addi	x11,x0,730
+ e30:	|  +--------------------------------------------------------|--|--|--|----- d21ff06f          	jal	x0,b50 <edge_ws+0x350>
+     ###                         return select_edge(k, 0x0161u, 0x04CDu, 0x04E3u, 0x0000u);
+ e34:	|  |                                                        |  |  |  \----> 00000713          	addi	x14,x0,0
+ e38:	|  |                                                        |  |  |         4e300693          	addi	x13,x0,1251
+ e3c:	|  |                                                        |  |  |         4cd00613          	addi	x12,x0,1229
+ e40:	|  |                                                        |  |  |         16100593          	addi	x11,x0,353
+ e44:	|  +--------------------------------------------------------|--|--|-------- d0dff06f          	jal	x0,b50 <edge_ws+0x350>
+     ###                     if (n <= 31u) {
+ e48:	|  |                                                        |  |  \-------> 01f00793          	addi	x15,x0,31
+ e4c:	|  |                                                        |  |        /-- 00f71c63          	bne	x14,x15,e64 <edge_ws+0x664>
+     ###                         return select_edge(k, 0x015Cu, 0x0162u, 0x04E3u, 0x0000u);
+ e50:	|  |                                                        |  |        |   00000713          	addi	x14,x0,0
+ e54:	|  |                                                        |  |        |   4e300693          	addi	x13,x0,1251
+ e58:	|  |                                                        |  |        |   16200613          	addi	x12,x0,354
+ e5c:	|  |                                                        |  |        |   15c00593          	addi	x11,x0,348
+ e60:	|  +--------------------------------------------------------|--|--------|-- cf1ff06f          	jal	x0,b50 <edge_ws+0x350>
+     ###                         return select_edge(k, 0x015Du, 0x03DCu, 0x0000u, 0x0000u);
+ e64:	|  |                                                        |  |        \-> 00000713          	addi	x14,x0,0
+ e68:	|  |                                                        |  |            00000693          	addi	x13,x0,0
+ e6c:	|  |                                                        |  |            3dc00613          	addi	x12,x0,988
+ e70:	|  |                                                        |  |            15d00593          	addi	x11,x0,349
+ e74:	|  +--------------------------------------------------------|--|----------- cddff06f          	jal	x0,b50 <edge_ws+0x350>
+     ###                 if (n <= 34u) {
+ e78:	|  |                                                        |  \----------> 02200793          	addi	x15,x0,34
+ e7c:	|  |                                                        |        /----- 02e7e863          	bltu	x15,x14,eac <edge_ws+0x6ac>
+     ###                     if (n <= 33u) {
+ e80:	|  |                                                        |        |      02100793          	addi	x15,x0,33
+ e84:	|  |                                                        |        |  /-- 00f71c63          	bne	x14,x15,e9c <edge_ws+0x69c>
+     ###                         return select_edge(k, 0x015Eu, 0x0000u, 0x0000u, 0x0000u);
+ e88:	|  |                                                        |        |  |   00000713          	addi	x14,x0,0
+ e8c:	|  |                                                        |        |  |   00000693          	addi	x13,x0,0
+ e90:	|  |                                                        |        |  |   00000613          	addi	x12,x0,0
+ e94:	|  |                                                        |        |  |   15e00593          	addi	x11,x0,350
+ e98:	|  +--------------------------------------------------------|--------|--|-- cb9ff06f          	jal	x0,b50 <edge_ws+0x350>
+     ###                         return select_edge(k, 0x015Fu, 0x0000u, 0x0000u, 0x0000u);
+ e9c:	|  |                                                        |        |  \-> 00000713          	addi	x14,x0,0
+ ea0:	|  |                                                        |        |      00000693          	addi	x13,x0,0
+ ea4:	|  |                                                        |        |      00000613          	addi	x12,x0,0
+ ea8:	|  |                                                        \--------|----- f71ff06f          	jal	x0,e18 <edge_ws+0x618>
+     ###                     if (n <= 35u) {
+ eac:	|  |                                                                 \--/-X 00c71c63          	bne	x14,x12,ec4 <edge_ws+0x6c4>
+     ###                         return select_edge(k, 0x04DEu, 0x04DFu, 0x0000u, 0x0000u);
+ eb0:	|  |                                                                    |   00000713          	addi	x14,x0,0
+ eb4:	|  |                                                                    |   00000693          	addi	x13,x0,0
+ eb8:	|  |                                                                    |   4df00613          	addi	x12,x0,1247
+ ebc:	|  |                                                                    |   4de00593          	addi	x11,x0,1246
+ ec0:	|  +--------------------------------------------------------------------|-- c91ff06f          	jal	x0,b50 <edge_ws+0x350>
+     ###                         return select_edge(k, 0x1901u, 0x0000u, 0x0000u, 0x0000u);
+ ec4:	|  |                                                                    \-> 000025b7          	lui	x11,0x2
+ ec8:	|  |                                                                        00000713          	addi	x14,x0,0
+ ecc:	|  |                                                                        00000693          	addi	x13,x0,0
+ ed0:	|  |                                                                        00000613          	addi	x12,x0,0
+ ed4:	|  |                                                                        90158593          	addi	x11,x11,-1791 # 1901 <__flash_size+0x901>
+ ed8:	|  \----------------------------------------------------------------------- c79ff06f          	jal	x0,b50 <edge_ws+0x350>
+     ### }
+ edc:	\-------------------------------------------------------------------------> 00000513          	addi	x10,x0,0
+ ee0:	                                                                            00008067          	jalr	x0,0(x1)
+
+00000ee4 <_set_tls>:
+ ee4:	00050213          	addi	x4,x10,0
+ ee8:	00008067          	jalr	x0,0(x1)
+
+00000eec <memcpy>:
+ eec:	       00050313          	addi	x6,x10,0
+ ef0:	/----- 00060e63          	beq	x12,x0,f0c <memcpy+0x20>
+ ef4:	|  /-> 00058383          	lb	x7,0(x11)
+ ef8:	|  |   00730023          	sb	x7,0(x6)
+ efc:	|  |   fff60613          	addi	x12,x12,-1
+ f00:	|  |   00130313          	addi	x6,x6,1
+ f04:	|  |   00158593          	addi	x11,x11,1
+ f08:	|  \-- fe0616e3          	bne	x12,x0,ef4 <memcpy+0x8>
+ f0c:	\----> 00008067          	jalr	x0,0(x1)
+
+00000f10 <memset>:
+ f10:	       00050313          	addi	x6,x10,0
+ f14:	/----- 00060a63          	beq	x12,x0,f28 <memset+0x18>
+ f18:	|  /-> 00b30023          	sb	x11,0(x6)
+ f1c:	|  |   fff60613          	addi	x12,x12,-1
+ f20:	|  |   00130313          	addi	x6,x6,1
+ f24:	|  \-- fe061ae3          	bne	x12,x0,f18 <memset+0x8>
+ f28:	\----> 00008067          	jalr	x0,0(x1)
+
+00000f2c <__text_end>:
+ f2c:	0000                	c.unimp
+	...

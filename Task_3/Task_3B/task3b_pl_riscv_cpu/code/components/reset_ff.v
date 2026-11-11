@@ -12,8 +12,8 @@ initial begin
 end
 
 always @(posedge clk) begin
-    if (rst) q <= 0;
-    else if (!clr) q <= d;
+    if (rst) q <= 0; //q is the current value
+    else if (!clr) q <= d;	//d is the next value to be stored in q
 end
 
 endmodule

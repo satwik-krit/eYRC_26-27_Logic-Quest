@@ -67,15 +67,19 @@ set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id tb
 set_global_assignment -name EDA_TEST_BENCH_RUN_SIM_FOR "12 ms" -section_id tb
 set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME tb -section_id tb
 set_global_assignment -name EDA_TEST_BENCH_FILE .test/tb.v -section_id tb
+set_global_assignment -name VERILOG_FILE code/components/stage_memory.v
+set_global_assignment -name VERILOG_FILE code/components/stage_fetch.v
+set_global_assignment -name VERILOG_FILE code/components/stage_execute.v
+set_global_assignment -name VERILOG_FILE code/components/stage_decode.v
+set_global_assignment -name VERILOG_FILE code/components/pipe_mw.v
+set_global_assignment -name VERILOG_FILE code/components/pipe_fd.v
+set_global_assignment -name VERILOG_FILE code/components/pipe_em.v
+set_global_assignment -name VERILOG_FILE code/components/pipe_de.v
 set_global_assignment -name VERILOG_FILE code/pl_riscv_cpu.v
 set_global_assignment -name VERILOG_FILE code/riscv_cpu.v
 set_global_assignment -name VERILOG_FILE code/instr_mem.v
 set_global_assignment -name VERILOG_FILE code/data_mem.v
 set_global_assignment -name VERILOG_FILE code/components/hazard_unit.v
-set_global_assignment -name VERILOG_FILE code/components/pl_reg_em.v
-set_global_assignment -name VERILOG_FILE code/components/pl_reg_de.v
-set_global_assignment -name VERILOG_FILE code/components/pl_reg_mw.v
-set_global_assignment -name VERILOG_FILE code/components/pl_reg_fd.v
 set_global_assignment -name VERILOG_FILE code/components/branching_unit.v
 set_global_assignment -name VERILOG_FILE code/components/reset_ff.v
 set_global_assignment -name VERILOG_FILE code/components/reg_file.v
