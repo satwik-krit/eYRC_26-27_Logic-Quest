@@ -17,14 +17,15 @@ module datapath (
     output wire [31:0] PCW, ALUResultW, WriteDataW,
     output wire [31:0] InstrD,
     output wire [2:0]  funct3,
-    output wire        MemWriteM
+    output wire        MemWriteM,
+    output wire        StallF
 );
 
     // -------------------------------------------------
     // Hazard-unit control signals (internal)
     // -------------------------------------------------
 
-    wire StallF, StallD, FlushD, FlushE;
+    wire StallD, FlushD, FlushE;
     wire localUseHazard;
     wire [1:0] ForwardAE, ForwardBE;
 
@@ -91,8 +92,8 @@ module datapath (
     wire [2:0] funct3W;
     wire [1:0] ResultSrcW;
     wire RegWriteW;
-	 
-	 
+
+
 
     // -------------------------------------------------
     // Hazard unit

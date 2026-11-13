@@ -17,10 +17,10 @@ wire        MemWrite_rv32;
 
 // instantiate processor and memories
 riscv_cpu rvcpu    (clk, reset, PC, Instr,
-                    MemWrite_rv32, DataAdr_rv32,
+                    MemWrite_rv32, StallF, DataAdr_rv32,
                     WriteData_rv32, ReadData, Result,
                     funct3, PCW, ALUResultW, WriteDataW);
-instr_mem instrmem (PC, Instr);
+instr_mem instrmem (clk, ~StallF, PC, Instr);
 data_mem  datamem  (clk, MemWrite, Store, DataAdr, WriteData, ReadData);
 
 assign Store = (Ext_MemWrite && reset) ? 3'b010 : funct3;

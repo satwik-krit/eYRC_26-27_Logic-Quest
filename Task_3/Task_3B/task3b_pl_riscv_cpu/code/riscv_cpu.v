@@ -5,7 +5,7 @@ module riscv_cpu (
     input         clk, reset,
     output [31:0] PC,
     input  [31:0] Instr,
-    output        MemWrite,
+    output        MemWrite, StallF,
     output [31:0] Mem_WrAddr, Mem_WrData,
     input  [31:0] ReadData,
     output [31:0] Result,
@@ -60,7 +60,8 @@ datapath    dp  (
     .funct3(funct3),
     .ALUResultW(ALUResultW),
     .WriteDataW(WriteDataW),
-    .InstrD(InstrD)
+    .InstrD(InstrD),
+    .StallF(StallF)
     // .Zero(Zero)
 );
 

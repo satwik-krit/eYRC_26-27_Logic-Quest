@@ -21,10 +21,16 @@ module pipe_mw (
     output reg        RegWriteW
 );
 
+    always @(*) begin
+        // When reset is asserted, RegWrite is already 0,
+        // so ReadDataW can't write garbage.
+        ReadDataW = FormattedReadData;
+    end
+
     always @(posedge clk or posedge reset) begin
         if (reset) begin
             ALUResultW <= 32'b0;
-            ReadDataW  <= 32'b0;
+            // ReadDataW  <= 32'b0;
             RdW        <= 5'b0;
             PCPlus4W   <= 32'b0;
             ResultSrcW <= 2'b0;
@@ -33,7 +39,7 @@ module pipe_mw (
             funct3W    <= 3'b0;
         end else begin
             ALUResultW <= ALUResultM;
-            ReadDataW <= FormattedReadData;
+            // ReadDataW <= FormattedReadData;
             RdW <= RdM;
             PCPlus4W <= PCPlus4M;
             ResultSrcW <= ResultSrcM;
