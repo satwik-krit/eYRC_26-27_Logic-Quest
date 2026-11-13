@@ -16,12 +16,38 @@ wire [ 2:0] Store, funct3;
 wire        MemWrite_rv32;
 
 // instantiate processor and memories
-riscv_cpu rvcpu    (clk, reset, PC, Instr,
-                    MemWrite_rv32, StallF, DataAdr_rv32,
-                    WriteData_rv32, ReadData, Result,
-                    funct3, PCW, ALUResultW, WriteDataW);
-instr_mem instrmem (clk, ~StallF, PC, Instr);
-data_mem  datamem  (clk, MemWrite, Store, DataAdr, WriteData, ReadData);
+riscv_cpu rvcpu (
+    .clk        (clk),
+    .reset      (reset),
+    .PC         (PC),
+    .Instr      (Instr),
+    .MemWrite   (MemWrite_rv32),
+    .StallF     (StallF),
+    .Mem_WrAddr (DataAdr_rv32),
+    .Mem_WrData (WriteData_rv32),
+    .ReadData   (ReadData),
+    .Result     (Result),
+    .funct3     (funct3),
+    .PCW        (PCW),
+    .ALUResultW (ALUResultW),
+    .WriteDataW (WriteDataW)
+);
+
+instr_mem instrmem (
+    .clk        (clk),
+    .en         (~StallF),
+    .instr_addr (PC),
+    .instr      (Instr)
+);
+
+data_mem datamem (
+    .clk         (clk),
+    .wr_en       (MemWrite),
+    .funct3      (Store),
+    .wr_addr     (DataAdr),
+    .wr_data     (WriteData),
+    .rd_data_mem (ReadData)
+);
 
 assign Store = (Ext_MemWrite && reset) ? 3'b010 : funct3;
 assign MemWrite  = (Ext_MemWrite && reset) ? 1'b1 : MemWrite_rv32;
