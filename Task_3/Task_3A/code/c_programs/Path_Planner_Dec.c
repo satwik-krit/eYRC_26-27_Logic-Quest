@@ -560,8 +560,8 @@ int main(int argc, char const *argv[]) {
     uint8_t cur = CURRENT_NODE;
     if (cur < 1u || cur > 36u) return 1;
 
-    uint32_t P0 = cur, P1 = 0u, P2 = 0u;
     uint8_t i = 0u;
+    path_planned[0] = cur;
     for (;;) {
         if (cur == tgt) {
             idx = (uint8_t)(i + 1u);
@@ -571,24 +571,8 @@ int main(int argc, char const *argv[]) {
         if (!n) return 1;
         if (++i > 12u) return 1;
         cur = n;
-        uint8_t sh = (uint8_t)((i << 2) + (i << 1));
-        if (i < 5u) P0 |= (uint32_t)n << sh;
-        else if (i < 10u) P1 |= (uint32_t)n << (uint8_t)(sh - 30u);
-        else P2 |= (uint32_t)n << (uint8_t)(sh - 60u);
+        path_planned[i] = n;
     }
-    path_planned[0]  = (uint8_t)(P0 & 63u);
-    path_planned[1]  = (uint8_t)((P0 >> 6) & 63u);
-    path_planned[2]  = (uint8_t)((P0 >> 12) & 63u);
-    path_planned[3]  = (uint8_t)((P0 >> 18) & 63u);
-    path_planned[4]  = (uint8_t)((P0 >> 24) & 63u);
-    path_planned[5]  = (uint8_t)(P1 & 63u);
-    path_planned[6]  = (uint8_t)((P1 >> 6) & 63u);
-    path_planned[7]  = (uint8_t)((P1 >> 12) & 63u);
-    path_planned[8]  = (uint8_t)((P1 >> 18) & 63u);
-    path_planned[9]  = (uint8_t)((P1 >> 24) & 63u);
-    path_planned[10] = (uint8_t)(P2 & 63u);
-    path_planned[11] = (uint8_t)((P2 >> 6) & 63u);
-    path_planned[12] = (uint8_t)((P2 >> 12) & 63u);
 
     if (is_encrypted) {
         message[0] = (uint8_t)(q >> 48);
